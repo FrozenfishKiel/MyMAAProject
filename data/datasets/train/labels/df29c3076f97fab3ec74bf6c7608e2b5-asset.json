@@ -1,0 +1,48 @@
+{
+    "asset": {
+        "format": "png",
+        "id": "df29c3076f97fab3ec74bf6c7608e2b5",
+        "name": "screenshot_20260109_171934_0021.png",
+        "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171934_0021.png",
+        "size": {
+            "width": 1920,
+            "height": 1080
+        },
+        "state": 2,
+        "type": 1
+    },
+    "regions": [
+        {
+            "id": "YZ82pR0TdF",
+            "type": "RECTANGLE",
+            "tags": [
+                "battle_confirm_button"
+            ],
+            "boundingBox": {
+                "height": 428.8695652173913,
+                "width": 216.11745513866234,
+                "left": 1547.2756933115825,
+                "top": 544.4021739130435
+            },
+            "points": [
+                {
+                    "x": 1547.2756933115825,
+                    "y": 544.4021739130435
+                },
+                {
+                    "x": 1763.3931484502448,
+                    "y": 544.4021739130435
+                },
+                {
+                    "x": 1763.3931484502448,
+                    "y": 973.2717391304349
+                },
+                {
+                    "x": 1547.2756933115825,
+                    "y": 973.2717391304349
+                }
+            ]
+        }
+    ],
+    "version": "2.2.0"
+}

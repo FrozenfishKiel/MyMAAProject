@@ -1,0 +1,4317 @@
+{
+    "name": "maa",
+    "securityToken": "maa Token",
+    "sourceConnection": {
+        "name": "本地图片路径",
+        "providerType": "localFileSystemProxy",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiMDhkNzYyMDBiN2I5NzgwNGZmMDg0MDI1Mzk4YmIwOTg1NzI0ZWQyNjFiMzU1OTU1YmI1N2RlZWIzOGMxYTY3Mjk4NzRiNjg0NTdmZDljYjg4MjdiYjA2YzZiYmMwNmU5ODMyMGYxNzU4MWExZTA2OTI5YmE5YTZjMDI2OTIxYjNkMWJhOGFiODcyODlhODdhYzI1YTUzZTEyN2NlMjc2YSIsIml2IjoiNGY2N2M3YmQ5NDMxY2MwODhmYWVjZTNjNGJmZTVkN2U0MzgyZmYzMWNmMWViNzIyIn0="
+        },
+        "id": "9ewGaAxJ6P"
+    },
+    "targetConnection": {
+        "name": "输出路径",
+        "providerType": "localFileSystemProxy",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiNWY1MGE2MmYxYWJkZThjMTY3N2UyZjFjMjRhNjQ4Y2RkZTQ2YzNkYzZmZGFhZTI0MmYwZDlkZjkwNzk2MzAyNGM3NzM1MWUxMDY0OGNkYjM0MDg5NWVkOGJmOGFkYTJjNWY4NDg5OWNhZjZhMjYxMzM1NmViYmE2NGQ5NWM3ZmRlMzcyNmY3NmE4NGI0Y2EyMjcxMDdlMmM4ODI5YzZkNSIsIml2IjoiY2E5NGY2Njk2N2I3NmM3YWMwMjM4NzE3NTY3NjMyYzU1YjZlY2NiYzY5MjVjMWY4In0="
+        },
+        "id": "xq7HBQNDKj"
+    },
+    "videoSettings": {
+        "frameExtractionRate": 15
+    },
+    "tags": [
+        {
+            "name": "infrastructure_button",
+            "color": "#FF0000"
+        },
+        {
+            "name": "home_button",
+            "color": "#00FF00"
+        },
+        {
+            "name": "Notification_Button",
+            "color": "#008000"
+        },
+        {
+            "name": "All_Collection_Button",
+            "color": "#00FFFF"
+        },
+        {
+            "name": "All_Trading_Post_Collection_Button",
+            "color": "#008080"
+        },
+        {
+            "name": "All_Trust_Collection_Button",
+            "color": "#0000FF"
+        },
+        {
+            "name": "Return_Button",
+            "color": "#000080"
+        },
+        {
+            "name": "Return_Confirm",
+            "color": "#FF00FF"
+        },
+        {
+            "name": "Resource_Collection_Button",
+            "color": "#008000"
+        },
+        {
+            "name": "tactical_maneuver_button",
+            "color": "#0000FF"
+        },
+        {
+            "name": "LS-5_Button",
+            "color": "#0000FF"
+        },
+        {
+            "name": "start_battle_button",
+            "color": "#FFFF00"
+        },
+        {
+            "name": "battle_confirm_button",
+            "color": "#00FF00"
+        }
+    ],
+    "id": "HQGr3SK6tI",
+    "activeLearningSettings": {
+        "autoDetect": false,
+        "predictTag": true,
+        "modelPathType": "coco"
+    },
+    "exportFormat": {
+        "providerType": "vottJson",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiNWRmMDQ0ZDViZGJkMTA4NTZiOGVlODFiODdlYzFiZGExZjA1Njc0NzA2NzdjYTkxOTk4YmZlNWIwYWRmNjE2MTdmOGZlNDM5ZmFjMWU0YjY0OTVkY2FjYjE3YTg3MmY0IiwiaXYiOiJjZjU4NmRkZjQ2YjQ4NGU2YjUxOGE1MjljMDJlYzFhOTY1YmNkNjkwNmVlYzZjZDkifQ=="
+        }
+    },
+    "version": "2.2.0",
+    "lastVisitedAssetId": "af90ccef66c1c5b668d15e43f7a5407a",
+    "assets": {
+        "e02cc3c4e4615881425e94c7956344c1": {
+            "format": "png",
+            "id": "e02cc3c4e4615881425e94c7956344c1",
+            "name": "ScreenShot_2026-01-08_012631_484.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/ScreenShot_2026-01-08_012631_484.png",
+            "size": {
+                "width": 1770,
+                "height": 996
+            },
+            "state": 1,
+            "type": 1
+        },
+        "4fa6ab9b03136a91cf23c05e7f39ae9c": {
+            "format": "png",
+            "id": "4fa6ab9b03136a91cf23c05e7f39ae9c",
+            "name": "screenshot_20260108_205434_0001.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205434_0001.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6ee1e4ee63718196ad107ee5d9a2f36c": {
+            "format": "png",
+            "id": "6ee1e4ee63718196ad107ee5d9a2f36c",
+            "name": "screenshot_20260108_205436_0002.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205436_0002.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "10c80816c445462ca2057b09381de0d7": {
+            "format": "png",
+            "id": "10c80816c445462ca2057b09381de0d7",
+            "name": "screenshot_20260108_205437_0003.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205437_0003.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c28b68ac8e5ddad136f0221781638bec": {
+            "format": "png",
+            "id": "c28b68ac8e5ddad136f0221781638bec",
+            "name": "screenshot_20260108_205438_0004.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205438_0004.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "62c2aa31587cdad31a8568fca00f65eb": {
+            "format": "png",
+            "id": "62c2aa31587cdad31a8568fca00f65eb",
+            "name": "screenshot_20260108_205440_0005.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205440_0005.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "197a51a9d70ed4f3541b0c6218bff9f4": {
+            "format": "png",
+            "id": "197a51a9d70ed4f3541b0c6218bff9f4",
+            "name": "screenshot_20260108_205441_0006.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205441_0006.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "469ab1364f1c959f0c27a43486d10b6a": {
+            "format": "png",
+            "id": "469ab1364f1c959f0c27a43486d10b6a",
+            "name": "screenshot_20260108_205442_0007.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205442_0007.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "9d54e1d14ca2920e18448388bb92570e": {
+            "format": "png",
+            "id": "9d54e1d14ca2920e18448388bb92570e",
+            "name": "screenshot_20260108_205444_0008.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205444_0008.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "754e8749feee7e0aab4453e1e88aee5f": {
+            "format": "png",
+            "id": "754e8749feee7e0aab4453e1e88aee5f",
+            "name": "screenshot_20260108_205445_0009.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205445_0009.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4eb8b5ed4ff58646dd4ebf095aef3cc1": {
+            "format": "png",
+            "id": "4eb8b5ed4ff58646dd4ebf095aef3cc1",
+            "name": "screenshot_20260108_205446_0010.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205446_0010.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ab92f55b615b7b44eef5905a075af507": {
+            "format": "png",
+            "id": "ab92f55b615b7b44eef5905a075af507",
+            "name": "screenshot_20260108_205448_0011.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205448_0011.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "22816fb8402d8372fbfea23a3d178612": {
+            "format": "png",
+            "id": "22816fb8402d8372fbfea23a3d178612",
+            "name": "screenshot_20260108_205449_0012.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205449_0012.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ed85fbe84e6e2faf9f207b10185b9400": {
+            "format": "png",
+            "id": "ed85fbe84e6e2faf9f207b10185b9400",
+            "name": "screenshot_20260108_205451_0013.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205451_0013.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4aec731db09a98613f4f3c7c47b6431f": {
+            "format": "png",
+            "id": "4aec731db09a98613f4f3c7c47b6431f",
+            "name": "screenshot_20260108_205452_0014.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205452_0014.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7048485b9eed8a8f749d4fa8298b60de": {
+            "format": "png",
+            "id": "7048485b9eed8a8f749d4fa8298b60de",
+            "name": "screenshot_20260108_205453_0015.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205453_0015.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2ba1fc000a9fed374a795764eac5faf8": {
+            "format": "png",
+            "id": "2ba1fc000a9fed374a795764eac5faf8",
+            "name": "screenshot_20260108_205455_0016.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205455_0016.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "72ea4d71ca769e8fad07e3665eb73358": {
+            "format": "png",
+            "id": "72ea4d71ca769e8fad07e3665eb73358",
+            "name": "screenshot_20260108_205456_0017.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205456_0017.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "05247cca9c34abd487547d07c92a4fa1": {
+            "format": "png",
+            "id": "05247cca9c34abd487547d07c92a4fa1",
+            "name": "screenshot_20260108_205458_0018.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205458_0018.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "50849c1248fdb2f2884f338c3c91778a": {
+            "format": "png",
+            "id": "50849c1248fdb2f2884f338c3c91778a",
+            "name": "screenshot_20260108_205459_0019.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205459_0019.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7b0b6ce97469d0f5c3dc733bede1939b": {
+            "format": "png",
+            "id": "7b0b6ce97469d0f5c3dc733bede1939b",
+            "name": "screenshot_20260108_205500_0020.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205500_0020.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f106135fbd781ff52cc4156b5a92111e": {
+            "format": "png",
+            "id": "f106135fbd781ff52cc4156b5a92111e",
+            "name": "screenshot_20260108_205502_0021.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205502_0021.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ef6edcbb422c096dc4c3870da99c40ba": {
+            "format": "png",
+            "id": "ef6edcbb422c096dc4c3870da99c40ba",
+            "name": "screenshot_20260108_205503_0022.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205503_0022.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7c8ca2a39f9173c31f36145476bc8c3d": {
+            "format": "png",
+            "id": "7c8ca2a39f9173c31f36145476bc8c3d",
+            "name": "screenshot_20260108_205505_0023.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205505_0023.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e87cab7371cceda0e7a0d00ff5698295": {
+            "format": "png",
+            "id": "e87cab7371cceda0e7a0d00ff5698295",
+            "name": "screenshot_20260108_205506_0024.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205506_0024.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "13a930c1efcebaf41abd2322b86b33e4": {
+            "format": "png",
+            "id": "13a930c1efcebaf41abd2322b86b33e4",
+            "name": "screenshot_20260108_205507_0025.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205507_0025.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "afc46448327914215a4b52b69dc5f0d1": {
+            "format": "png",
+            "id": "afc46448327914215a4b52b69dc5f0d1",
+            "name": "screenshot_20260108_205509_0026.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205509_0026.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5c48f9eab840b286eef6d2fb3ab4cb54": {
+            "format": "png",
+            "id": "5c48f9eab840b286eef6d2fb3ab4cb54",
+            "name": "screenshot_20260108_205510_0027.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205510_0027.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "8ca7d8780f2ce3d4c8b13307ad931635": {
+            "format": "png",
+            "id": "8ca7d8780f2ce3d4c8b13307ad931635",
+            "name": "screenshot_20260108_205512_0028.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205512_0028.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "260f6dcacda648cd472a2a4e7811c1bc": {
+            "format": "png",
+            "id": "260f6dcacda648cd472a2a4e7811c1bc",
+            "name": "screenshot_20260108_205513_0029.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205513_0029.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5ebd99078cc89e7861419c2e3afd1c96": {
+            "format": "png",
+            "id": "5ebd99078cc89e7861419c2e3afd1c96",
+            "name": "screenshot_20260108_205514_0030.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205514_0030.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4a8b820b22f092e81cde39d7c7bee2d1": {
+            "format": "png",
+            "id": "4a8b820b22f092e81cde39d7c7bee2d1",
+            "name": "screenshot_20260108_205516_0031.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205516_0031.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "cc6c4436a6aeadc7ccf46399fe87e7ec": {
+            "format": "png",
+            "id": "cc6c4436a6aeadc7ccf46399fe87e7ec",
+            "name": "screenshot_20260108_205517_0032.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205517_0032.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "bd5d562fe40c91298bde986c4957ef52": {
+            "format": "png",
+            "id": "bd5d562fe40c91298bde986c4957ef52",
+            "name": "screenshot_20260108_205518_0033.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205518_0033.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "07e8dcd259d45517612f27525bd687a1": {
+            "format": "png",
+            "id": "07e8dcd259d45517612f27525bd687a1",
+            "name": "screenshot_20260108_205520_0034.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205520_0034.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "223d2f30786fa191f8b4ba1986d860ac": {
+            "format": "png",
+            "id": "223d2f30786fa191f8b4ba1986d860ac",
+            "name": "screenshot_20260108_205521_0035.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205521_0035.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c81a10351ce21e8237cf9332170f7d73": {
+            "format": "png",
+            "id": "c81a10351ce21e8237cf9332170f7d73",
+            "name": "screenshot_20260108_205523_0036.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205523_0036.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ab2c75be728cedcd95f4d26faed84d28": {
+            "format": "png",
+            "id": "ab2c75be728cedcd95f4d26faed84d28",
+            "name": "screenshot_20260108_205524_0037.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205524_0037.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c60a6a9712fd1d0c74f6270f04f8e909": {
+            "format": "png",
+            "id": "c60a6a9712fd1d0c74f6270f04f8e909",
+            "name": "screenshot_20260108_205525_0038.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205525_0038.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e83bb6ed4f042774aab8ae341f867528": {
+            "format": "png",
+            "id": "e83bb6ed4f042774aab8ae341f867528",
+            "name": "screenshot_20260108_205527_0039.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205527_0039.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "48f9a491d4a876da32faeb88817d9da6": {
+            "format": "png",
+            "id": "48f9a491d4a876da32faeb88817d9da6",
+            "name": "screenshot_20260108_205528_0040.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205528_0040.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "39deb0572a820055261b6a74f4c22be7": {
+            "format": "png",
+            "id": "39deb0572a820055261b6a74f4c22be7",
+            "name": "screenshot_20260108_205530_0041.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205530_0041.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "69810465cbc5a0ddf68639f6b87effe2": {
+            "format": "png",
+            "id": "69810465cbc5a0ddf68639f6b87effe2",
+            "name": "screenshot_20260108_205531_0042.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205531_0042.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "850c110e9dab6330affe8e5d9429e60b": {
+            "format": "png",
+            "id": "850c110e9dab6330affe8e5d9429e60b",
+            "name": "screenshot_20260108_205532_0043.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205532_0043.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0aa3995c75d00fa7fb93612cd4dd3624": {
+            "format": "png",
+            "id": "0aa3995c75d00fa7fb93612cd4dd3624",
+            "name": "screenshot_20260108_205534_0044.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205534_0044.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b901b17b0ac569d5fb316d4cab834842": {
+            "format": "png",
+            "id": "b901b17b0ac569d5fb316d4cab834842",
+            "name": "screenshot_20260108_205535_0045.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205535_0045.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "bf4c7b3c608d94ad120de2593515db2e": {
+            "format": "png",
+            "id": "bf4c7b3c608d94ad120de2593515db2e",
+            "name": "screenshot_20260108_205536_0046.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205536_0046.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6aa79a7dc83ab86aba52de0fd4cbe7da": {
+            "format": "png",
+            "id": "6aa79a7dc83ab86aba52de0fd4cbe7da",
+            "name": "screenshot_20260108_205538_0047.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205538_0047.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f02216be58753994f2ec51e0d0852e21": {
+            "format": "png",
+            "id": "f02216be58753994f2ec51e0d0852e21",
+            "name": "screenshot_20260108_205539_0048.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205539_0048.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2fddf2d6e4f62b8b4ce22282fbcefd7f": {
+            "format": "png",
+            "id": "2fddf2d6e4f62b8b4ce22282fbcefd7f",
+            "name": "screenshot_20260108_205541_0049.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205541_0049.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4bd1a3216b7d136d10ddb1b94fb6f173": {
+            "format": "png",
+            "id": "4bd1a3216b7d136d10ddb1b94fb6f173",
+            "name": "screenshot_20260108_205542_0050.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_205542_0050.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "123f79ca2f67551849abc1a9b9662ec2": {
+            "format": "png",
+            "id": "123f79ca2f67551849abc1a9b9662ec2",
+            "name": "screenshot_20260108_212951_0001.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_212951_0001.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "669859162a1af0ac880fa8ac80d121e0": {
+            "format": "png",
+            "id": "669859162a1af0ac880fa8ac80d121e0",
+            "name": "screenshot_20260108_212952_0002.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_212952_0002.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "25024c73a93577776db4a479f7ee74b9": {
+            "format": "png",
+            "id": "25024c73a93577776db4a479f7ee74b9",
+            "name": "screenshot_20260108_212954_0003.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_212954_0003.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7b1d035b63088aedc4db9ea021fe7245": {
+            "format": "png",
+            "id": "7b1d035b63088aedc4db9ea021fe7245",
+            "name": "screenshot_20260108_212955_0004.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_212955_0004.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6b548fe8ea0ee28e2e3fdae9505fa34c": {
+            "format": "png",
+            "id": "6b548fe8ea0ee28e2e3fdae9505fa34c",
+            "name": "screenshot_20260108_212956_0005.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_212956_0005.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "eb11382d2082ed0d537faa10fdfeaa9e": {
+            "format": "png",
+            "id": "eb11382d2082ed0d537faa10fdfeaa9e",
+            "name": "screenshot_20260108_212958_0006.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_212958_0006.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "857becdd41e501b8bf699a2261f92778": {
+            "format": "png",
+            "id": "857becdd41e501b8bf699a2261f92778",
+            "name": "screenshot_20260108_212959_0007.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_212959_0007.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "72d9a69c1a51caf82545b665a286be32": {
+            "format": "png",
+            "id": "72d9a69c1a51caf82545b665a286be32",
+            "name": "screenshot_20260108_213001_0008.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213001_0008.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "540831ce7d0d5459853634893bcc9597": {
+            "format": "png",
+            "id": "540831ce7d0d5459853634893bcc9597",
+            "name": "screenshot_20260108_213002_0009.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213002_0009.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "12d4abbfd7b60d490aecb7cf05c2d661": {
+            "format": "png",
+            "id": "12d4abbfd7b60d490aecb7cf05c2d661",
+            "name": "screenshot_20260108_213004_0010.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213004_0010.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2e22c9eb7fa370aaa62f3cba115ff4b5": {
+            "format": "png",
+            "id": "2e22c9eb7fa370aaa62f3cba115ff4b5",
+            "name": "screenshot_20260108_213005_0011.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213005_0011.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1cfad98e113c841968478f10c40a2b35": {
+            "format": "png",
+            "id": "1cfad98e113c841968478f10c40a2b35",
+            "name": "screenshot_20260108_213006_0012.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213006_0012.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "13acb392a3ff591de65b19dd5ecf0efd": {
+            "format": "png",
+            "id": "13acb392a3ff591de65b19dd5ecf0efd",
+            "name": "screenshot_20260108_213008_0013.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213008_0013.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1a2dfce9bada31eb2bbf1b4032babb97": {
+            "format": "png",
+            "id": "1a2dfce9bada31eb2bbf1b4032babb97",
+            "name": "screenshot_20260108_213009_0014.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213009_0014.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "464a8e27eebc4a62a6a2ee5be0cfa178": {
+            "format": "png",
+            "id": "464a8e27eebc4a62a6a2ee5be0cfa178",
+            "name": "screenshot_20260108_213011_0015.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213011_0015.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "8ca4766dbbed8d33edbecff6987eafd1": {
+            "format": "png",
+            "id": "8ca4766dbbed8d33edbecff6987eafd1",
+            "name": "screenshot_20260108_213012_0016.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213012_0016.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a3a2515d51f2dba48595a87757174520": {
+            "format": "png",
+            "id": "a3a2515d51f2dba48595a87757174520",
+            "name": "screenshot_20260108_213014_0017.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213014_0017.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c59bf514dce3627c340bbf8fb3c2ea2c": {
+            "format": "png",
+            "id": "c59bf514dce3627c340bbf8fb3c2ea2c",
+            "name": "screenshot_20260108_213015_0018.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213015_0018.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4de271f79d22c333b22a74f3657983f1": {
+            "format": "png",
+            "id": "4de271f79d22c333b22a74f3657983f1",
+            "name": "screenshot_20260108_213016_0019.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213016_0019.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f666fad1c96df94c5a09bdfaa395c5a2": {
+            "format": "png",
+            "id": "f666fad1c96df94c5a09bdfaa395c5a2",
+            "name": "screenshot_20260108_213018_0020.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213018_0020.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f135fac73844cee232cc7ac9a4c7a402": {
+            "format": "png",
+            "id": "f135fac73844cee232cc7ac9a4c7a402",
+            "name": "screenshot_20260108_213019_0021.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213019_0021.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6ddc3a7b89bc71a0d9b9da35e9204a2d": {
+            "format": "png",
+            "id": "6ddc3a7b89bc71a0d9b9da35e9204a2d",
+            "name": "screenshot_20260108_213021_0022.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213021_0022.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1fdec23bdf20673f6bbb75bb924f1196": {
+            "format": "png",
+            "id": "1fdec23bdf20673f6bbb75bb924f1196",
+            "name": "screenshot_20260108_213022_0023.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213022_0023.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "aa8af88cd984035a4ca78a3f127d4de7": {
+            "format": "png",
+            "id": "aa8af88cd984035a4ca78a3f127d4de7",
+            "name": "screenshot_20260108_213023_0024.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213023_0024.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f4b329db9ae50923c03bcaf9078fc081": {
+            "format": "png",
+            "id": "f4b329db9ae50923c03bcaf9078fc081",
+            "name": "screenshot_20260108_213025_0025.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213025_0025.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ed90ea55a70f8fdbb280e1e74f720726": {
+            "format": "png",
+            "id": "ed90ea55a70f8fdbb280e1e74f720726",
+            "name": "screenshot_20260108_213026_0026.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213026_0026.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b1d792045bf4e228e6c6dfb8313d696e": {
+            "format": "png",
+            "id": "b1d792045bf4e228e6c6dfb8313d696e",
+            "name": "screenshot_20260108_213028_0027.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213028_0027.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c4a99f5d325845d3bb9deb8296575cb0": {
+            "format": "png",
+            "id": "c4a99f5d325845d3bb9deb8296575cb0",
+            "name": "screenshot_20260108_213029_0028.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213029_0028.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "721a1b7e4ef8f275fde24aa898bb8792": {
+            "format": "png",
+            "id": "721a1b7e4ef8f275fde24aa898bb8792",
+            "name": "screenshot_20260108_213031_0029.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213031_0029.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f6143d2fc33766bcc383769e2738c9f7": {
+            "format": "png",
+            "id": "f6143d2fc33766bcc383769e2738c9f7",
+            "name": "screenshot_20260108_213032_0030.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213032_0030.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a74c8b0599f47266b3acd86729dd9b96": {
+            "format": "png",
+            "id": "a74c8b0599f47266b3acd86729dd9b96",
+            "name": "screenshot_20260108_213033_0031.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213033_0031.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3ab56b45d8fc653180ed1b270f36d6fd": {
+            "format": "png",
+            "id": "3ab56b45d8fc653180ed1b270f36d6fd",
+            "name": "screenshot_20260108_213035_0032.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213035_0032.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "99fc2b1a4b762ec0c2faca38ae2b2f02": {
+            "format": "png",
+            "id": "99fc2b1a4b762ec0c2faca38ae2b2f02",
+            "name": "screenshot_20260108_213036_0033.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213036_0033.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4b81a62a30861339138a1fa372475b0a": {
+            "format": "png",
+            "id": "4b81a62a30861339138a1fa372475b0a",
+            "name": "screenshot_20260108_213038_0034.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213038_0034.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4eec7ff1d03b78a83784e8ae820dfdf0": {
+            "format": "png",
+            "id": "4eec7ff1d03b78a83784e8ae820dfdf0",
+            "name": "screenshot_20260108_213039_0035.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213039_0035.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "69648d7a6c14bed29a70c9c2d73b296c": {
+            "format": "png",
+            "id": "69648d7a6c14bed29a70c9c2d73b296c",
+            "name": "screenshot_20260108_213041_0036.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213041_0036.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e10f856252a2e1517367aee1a8fb95f1": {
+            "format": "png",
+            "id": "e10f856252a2e1517367aee1a8fb95f1",
+            "name": "screenshot_20260108_213042_0037.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213042_0037.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6d155f42ac2aa12c6d15a5572b21a1f9": {
+            "format": "png",
+            "id": "6d155f42ac2aa12c6d15a5572b21a1f9",
+            "name": "screenshot_20260108_213043_0038.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213043_0038.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "9d5c71a304ce90239da89cde690f9bc3": {
+            "format": "png",
+            "id": "9d5c71a304ce90239da89cde690f9bc3",
+            "name": "screenshot_20260108_213045_0039.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213045_0039.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "079c8a7430e0f87dccd05f62ac324429": {
+            "format": "png",
+            "id": "079c8a7430e0f87dccd05f62ac324429",
+            "name": "screenshot_20260108_213046_0040.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213046_0040.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "bf33c93a0999739d884b845920c3237f": {
+            "format": "png",
+            "id": "bf33c93a0999739d884b845920c3237f",
+            "name": "screenshot_20260108_213048_0041.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213048_0041.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "38822a6478c12bd18fec8c832ac516e6": {
+            "format": "png",
+            "id": "38822a6478c12bd18fec8c832ac516e6",
+            "name": "screenshot_20260108_213049_0042.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213049_0042.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "01e03e33fa9e7b2b767befa2809e9c6b": {
+            "format": "png",
+            "id": "01e03e33fa9e7b2b767befa2809e9c6b",
+            "name": "screenshot_20260108_213050_0043.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213050_0043.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "49c832df8d08809fc710910a4793b364": {
+            "format": "png",
+            "id": "49c832df8d08809fc710910a4793b364",
+            "name": "screenshot_20260108_213052_0044.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213052_0044.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "03e6496631e93aa3a3a8fc66d5640f3d": {
+            "format": "png",
+            "id": "03e6496631e93aa3a3a8fc66d5640f3d",
+            "name": "screenshot_20260108_213053_0045.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213053_0045.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2b6ea47ede98007fb2cd8ed41403ef00": {
+            "format": "png",
+            "id": "2b6ea47ede98007fb2cd8ed41403ef00",
+            "name": "screenshot_20260108_213055_0046.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213055_0046.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "02b1e4937a5cf6ae969c379804c72574": {
+            "format": "png",
+            "id": "02b1e4937a5cf6ae969c379804c72574",
+            "name": "screenshot_20260108_213056_0047.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213056_0047.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ceb2b31327f03ab35a5d70dfe5af16c7": {
+            "format": "png",
+            "id": "ceb2b31327f03ab35a5d70dfe5af16c7",
+            "name": "screenshot_20260108_213058_0048.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213058_0048.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e871d8b7bd730a9a0378e194652ec156": {
+            "format": "png",
+            "id": "e871d8b7bd730a9a0378e194652ec156",
+            "name": "screenshot_20260108_213059_0049.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213059_0049.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d985ed9c0ee015639b453631aa11c613": {
+            "format": "png",
+            "id": "d985ed9c0ee015639b453631aa11c613",
+            "name": "screenshot_20260108_213100_0050.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_213100_0050.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "836a5b1acc59ad4ee18a76ec4d8f6c4e": {
+            "format": "png",
+            "id": "836a5b1acc59ad4ee18a76ec4d8f6c4e",
+            "name": "screenshot_20260109_161108_0001.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161108_0001.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a9e7dfad6c9b38c2262c10ce3fb173a8": {
+            "format": "png",
+            "id": "a9e7dfad6c9b38c2262c10ce3fb173a8",
+            "name": "screenshot_20260109_161110_0002.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161110_0002.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "45074327306aa6fde8b8545d6a94ef23": {
+            "format": "png",
+            "id": "45074327306aa6fde8b8545d6a94ef23",
+            "name": "screenshot_20260109_161112_0003.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161112_0003.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "74c6364ec414f7a2a9c322cf25c85ace": {
+            "format": "png",
+            "id": "74c6364ec414f7a2a9c322cf25c85ace",
+            "name": "screenshot_20260109_161114_0004.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161114_0004.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e587e246cfb6f179c46f12a5084b850c": {
+            "format": "png",
+            "id": "e587e246cfb6f179c46f12a5084b850c",
+            "name": "screenshot_20260109_161116_0005.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161116_0005.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "93e7557cb97337f56ec511b0e6302bb3": {
+            "format": "png",
+            "id": "93e7557cb97337f56ec511b0e6302bb3",
+            "name": "screenshot_20260109_161118_0006.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161118_0006.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "81cd4aac4341d1a9b60c1747d3899083": {
+            "format": "png",
+            "id": "81cd4aac4341d1a9b60c1747d3899083",
+            "name": "screenshot_20260109_161120_0007.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161120_0007.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "af02c969d32ef3a803e9034f8251e4bd": {
+            "format": "png",
+            "id": "af02c969d32ef3a803e9034f8251e4bd",
+            "name": "screenshot_20260109_161122_0008.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161122_0008.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d877f19fb7ff675074fed010eb59bc0b": {
+            "format": "png",
+            "id": "d877f19fb7ff675074fed010eb59bc0b",
+            "name": "screenshot_20260109_161124_0009.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161124_0009.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d88dcb118a173dfb96852cb36fba4d30": {
+            "format": "png",
+            "id": "d88dcb118a173dfb96852cb36fba4d30",
+            "name": "screenshot_20260109_161126_0010.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161126_0010.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a3447977187985a42268aadd92d1bba1": {
+            "format": "png",
+            "id": "a3447977187985a42268aadd92d1bba1",
+            "name": "screenshot_20260109_161128_0011.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161128_0011.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2e43e8654341575711c3bce5971e08ef": {
+            "format": "png",
+            "id": "2e43e8654341575711c3bce5971e08ef",
+            "name": "screenshot_20260109_161130_0012.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161130_0012.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1cebecb17d5c36e594194f8c5ae63d04": {
+            "format": "png",
+            "id": "1cebecb17d5c36e594194f8c5ae63d04",
+            "name": "screenshot_20260109_161132_0013.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161132_0013.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e64ddad4444173935768292a461440cf": {
+            "format": "png",
+            "id": "e64ddad4444173935768292a461440cf",
+            "name": "screenshot_20260109_161134_0014.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161134_0014.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2b126e0843e35cb2b1f23438c1bcd3ac": {
+            "format": "png",
+            "id": "2b126e0843e35cb2b1f23438c1bcd3ac",
+            "name": "screenshot_20260109_161136_0015.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161136_0015.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c1eb148c3dd68d99c1b69a4de1932059": {
+            "format": "png",
+            "id": "c1eb148c3dd68d99c1b69a4de1932059",
+            "name": "screenshot_20260109_161138_0016.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161138_0016.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3e6dcb7c4692077ab1aabde0efaa3ca9": {
+            "format": "png",
+            "id": "3e6dcb7c4692077ab1aabde0efaa3ca9",
+            "name": "screenshot_20260109_161140_0017.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161140_0017.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "23c91e689ecc2f1a3940e8b2fd92dbdc": {
+            "format": "png",
+            "id": "23c91e689ecc2f1a3940e8b2fd92dbdc",
+            "name": "screenshot_20260109_161142_0018.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161142_0018.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "54bfeb7fb37aacdeaabec2e1c965a1da": {
+            "format": "png",
+            "id": "54bfeb7fb37aacdeaabec2e1c965a1da",
+            "name": "screenshot_20260109_161144_0019.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161144_0019.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "41414e05ced18a643c48071d7eed4fc3": {
+            "format": "png",
+            "id": "41414e05ced18a643c48071d7eed4fc3",
+            "name": "screenshot_20260109_161146_0020.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161146_0020.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "18c0db184a4b6d05e41d3b160a1b7a62": {
+            "format": "png",
+            "id": "18c0db184a4b6d05e41d3b160a1b7a62",
+            "name": "screenshot_20260109_161147_0021.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161147_0021.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a83c7d1702bc5eac4655fdb0ed1f243d": {
+            "format": "png",
+            "id": "a83c7d1702bc5eac4655fdb0ed1f243d",
+            "name": "screenshot_20260109_161149_0022.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161149_0022.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ad5f286f7d136256a404639d2ee1b03d": {
+            "format": "png",
+            "id": "ad5f286f7d136256a404639d2ee1b03d",
+            "name": "screenshot_20260109_161151_0023.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161151_0023.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "28f878c9cd945916cbd595a637fec6d0": {
+            "format": "png",
+            "id": "28f878c9cd945916cbd595a637fec6d0",
+            "name": "screenshot_20260109_161153_0024.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161153_0024.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4a30c9744751d706bf9d1d434d6af217": {
+            "format": "png",
+            "id": "4a30c9744751d706bf9d1d434d6af217",
+            "name": "screenshot_20260109_161155_0025.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161155_0025.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "fdc2f6f3b3980ce173f4731c1405d951": {
+            "format": "png",
+            "id": "fdc2f6f3b3980ce173f4731c1405d951",
+            "name": "screenshot_20260109_161157_0026.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161157_0026.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "31b3c1dd43440624e45c9fddcd590491": {
+            "format": "png",
+            "id": "31b3c1dd43440624e45c9fddcd590491",
+            "name": "screenshot_20260109_161159_0027.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161159_0027.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e1cbd85c358dfd9750fd7b2cc3add577": {
+            "format": "png",
+            "id": "e1cbd85c358dfd9750fd7b2cc3add577",
+            "name": "screenshot_20260109_161201_0028.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161201_0028.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "81a55686bb766e159238bea3dd0ee697": {
+            "format": "png",
+            "id": "81a55686bb766e159238bea3dd0ee697",
+            "name": "screenshot_20260109_161203_0029.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161203_0029.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "409fe41d65f9d6705119d0146455d231": {
+            "format": "png",
+            "id": "409fe41d65f9d6705119d0146455d231",
+            "name": "screenshot_20260109_161205_0030.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161205_0030.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a63025b186937843324e6853c167374f": {
+            "format": "png",
+            "id": "a63025b186937843324e6853c167374f",
+            "name": "screenshot_20260109_161207_0031.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161207_0031.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5cc3d7dd7d739806478ea6100dcd1db2": {
+            "format": "png",
+            "id": "5cc3d7dd7d739806478ea6100dcd1db2",
+            "name": "screenshot_20260109_161209_0032.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161209_0032.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5a4fc01e1d3e910935f78ba6bfda5327": {
+            "format": "png",
+            "id": "5a4fc01e1d3e910935f78ba6bfda5327",
+            "name": "screenshot_20260109_161211_0033.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161211_0033.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "12b78c53274b03be7fa0540048ce65c6": {
+            "format": "png",
+            "id": "12b78c53274b03be7fa0540048ce65c6",
+            "name": "screenshot_20260109_161213_0034.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161213_0034.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "cc519f20b109abe6d15ca3488bb2c43a": {
+            "format": "png",
+            "id": "cc519f20b109abe6d15ca3488bb2c43a",
+            "name": "screenshot_20260109_161215_0035.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161215_0035.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f198ddfa8c682e29db55cba30cf66055": {
+            "format": "png",
+            "id": "f198ddfa8c682e29db55cba30cf66055",
+            "name": "screenshot_20260109_161217_0036.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161217_0036.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f4026ff8a7c59d5ff3ccb113f234c182": {
+            "format": "png",
+            "id": "f4026ff8a7c59d5ff3ccb113f234c182",
+            "name": "screenshot_20260109_161219_0037.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161219_0037.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f67a0e4413656934e4c3dca8ad8c529f": {
+            "format": "png",
+            "id": "f67a0e4413656934e4c3dca8ad8c529f",
+            "name": "screenshot_20260109_161221_0038.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161221_0038.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3b17495e25390eae7a70e6565b6259d3": {
+            "format": "png",
+            "id": "3b17495e25390eae7a70e6565b6259d3",
+            "name": "screenshot_20260109_161223_0039.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161223_0039.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c1bd1306025af01586341f6912483175": {
+            "format": "png",
+            "id": "c1bd1306025af01586341f6912483175",
+            "name": "screenshot_20260109_161225_0040.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161225_0040.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "add8d9b2c889a9feb7b1aac03765fde7": {
+            "format": "png",
+            "id": "add8d9b2c889a9feb7b1aac03765fde7",
+            "name": "screenshot_20260109_161227_0041.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161227_0041.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "426e5c8c5ecffc9fec9a6889e5f786a8": {
+            "format": "png",
+            "id": "426e5c8c5ecffc9fec9a6889e5f786a8",
+            "name": "screenshot_20260109_161229_0042.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161229_0042.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "78905a5d90580e598a7273d1443ec17f": {
+            "format": "png",
+            "id": "78905a5d90580e598a7273d1443ec17f",
+            "name": "screenshot_20260109_161231_0043.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161231_0043.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d3c7657eb68896e2b0def4d085219bc2": {
+            "format": "png",
+            "id": "d3c7657eb68896e2b0def4d085219bc2",
+            "name": "screenshot_20260109_161233_0044.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161233_0044.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ba7e91d75556da2c5caf221300675970": {
+            "format": "png",
+            "id": "ba7e91d75556da2c5caf221300675970",
+            "name": "screenshot_20260109_161235_0045.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161235_0045.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "775a0c63b552ed8c0c1cf716711d6678": {
+            "format": "png",
+            "id": "775a0c63b552ed8c0c1cf716711d6678",
+            "name": "screenshot_20260109_161237_0046.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161237_0046.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "86e2125722004d864011afc55323d496": {
+            "format": "png",
+            "id": "86e2125722004d864011afc55323d496",
+            "name": "screenshot_20260109_161239_0047.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161239_0047.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ac535bd514bec7313b8b938a4c56d403": {
+            "format": "png",
+            "id": "ac535bd514bec7313b8b938a4c56d403",
+            "name": "screenshot_20260109_161241_0048.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161241_0048.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2e519e224a8f4b02c0b1b083eb6a660b": {
+            "format": "png",
+            "id": "2e519e224a8f4b02c0b1b083eb6a660b",
+            "name": "screenshot_20260109_161243_0049.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161243_0049.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "55323211f7502f7f676600bd48b58a46": {
+            "format": "png",
+            "id": "55323211f7502f7f676600bd48b58a46",
+            "name": "screenshot_20260109_161245_0050.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_161245_0050.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b6cfb14f9ef8acbba358080d52296bb1": {
+            "format": "png",
+            "id": "b6cfb14f9ef8acbba358080d52296bb1",
+            "name": "screenshot_20260109_163147_0001.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163147_0001.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a014ab0967ef33201e8ba76e098d4c61": {
+            "format": "png",
+            "id": "a014ab0967ef33201e8ba76e098d4c61",
+            "name": "screenshot_20260109_163149_0002.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163149_0002.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a3a72c140c38700f2d3ee86d51ee22de": {
+            "format": "png",
+            "id": "a3a72c140c38700f2d3ee86d51ee22de",
+            "name": "screenshot_20260109_163151_0003.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163151_0003.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f1b6da066fbc6b8b3b239c1f8de4d804": {
+            "format": "png",
+            "id": "f1b6da066fbc6b8b3b239c1f8de4d804",
+            "name": "screenshot_20260109_163153_0004.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163153_0004.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ed184fd7b91302b836f1dfdf9066131c": {
+            "format": "png",
+            "id": "ed184fd7b91302b836f1dfdf9066131c",
+            "name": "screenshot_20260109_163155_0005.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163155_0005.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6691f21b9b6d5e33735dc386c39f8f8e": {
+            "format": "png",
+            "id": "6691f21b9b6d5e33735dc386c39f8f8e",
+            "name": "screenshot_20260109_163156_0006.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163156_0006.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "791fce8b5a551a705e9afa19c8632ccf": {
+            "format": "png",
+            "id": "791fce8b5a551a705e9afa19c8632ccf",
+            "name": "screenshot_20260109_163158_0007.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163158_0007.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b18df8808a84404542f957ff3ced582d": {
+            "format": "png",
+            "id": "b18df8808a84404542f957ff3ced582d",
+            "name": "screenshot_20260109_163200_0008.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163200_0008.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2770e3aab79e106c3aba18d0a9a8e142": {
+            "format": "png",
+            "id": "2770e3aab79e106c3aba18d0a9a8e142",
+            "name": "screenshot_20260109_163202_0009.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163202_0009.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "663ca01a0ce45b068b5265ed33ce3a5c": {
+            "format": "png",
+            "id": "663ca01a0ce45b068b5265ed33ce3a5c",
+            "name": "screenshot_20260109_163204_0010.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163204_0010.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "02dd006c9ec9cf4030589aa988bcf801": {
+            "format": "png",
+            "id": "02dd006c9ec9cf4030589aa988bcf801",
+            "name": "screenshot_20260109_163206_0011.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163206_0011.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "266c9da5a46af5222ed791c21d09678b": {
+            "format": "png",
+            "id": "266c9da5a46af5222ed791c21d09678b",
+            "name": "screenshot_20260109_163208_0012.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163208_0012.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a69c4f864d6988f671efa4733fb2ba2b": {
+            "format": "png",
+            "id": "a69c4f864d6988f671efa4733fb2ba2b",
+            "name": "screenshot_20260109_163210_0013.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163210_0013.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "9412ef2757e68c6e25d9b7aa666724e0": {
+            "format": "png",
+            "id": "9412ef2757e68c6e25d9b7aa666724e0",
+            "name": "screenshot_20260109_163212_0014.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163212_0014.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "77566364f50f50591ab82bc1783e9bdf": {
+            "format": "png",
+            "id": "77566364f50f50591ab82bc1783e9bdf",
+            "name": "screenshot_20260109_163214_0015.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163214_0015.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f6caba0ae87559049de0bd52a2e85ba6": {
+            "format": "png",
+            "id": "f6caba0ae87559049de0bd52a2e85ba6",
+            "name": "screenshot_20260109_163215_0016.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163215_0016.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b6a95b46987372754e29f9517c306b63": {
+            "format": "png",
+            "id": "b6a95b46987372754e29f9517c306b63",
+            "name": "screenshot_20260109_163217_0017.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163217_0017.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c9a772304d6398ac005d4319073ab5c3": {
+            "format": "png",
+            "id": "c9a772304d6398ac005d4319073ab5c3",
+            "name": "screenshot_20260109_163219_0018.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163219_0018.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5b64f710750893f3e57a8b16e25644d9": {
+            "format": "png",
+            "id": "5b64f710750893f3e57a8b16e25644d9",
+            "name": "screenshot_20260109_163221_0019.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163221_0019.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "08205de8415d40c6529b7b0e5abe8076": {
+            "format": "png",
+            "id": "08205de8415d40c6529b7b0e5abe8076",
+            "name": "screenshot_20260109_163223_0020.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163223_0020.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2b4ead7cfc9d50c99b6fc0ce8bc992fd": {
+            "format": "png",
+            "id": "2b4ead7cfc9d50c99b6fc0ce8bc992fd",
+            "name": "screenshot_20260109_163225_0021.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163225_0021.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c19a1be4a0d164d1ecc36a6656c6d5cf": {
+            "format": "png",
+            "id": "c19a1be4a0d164d1ecc36a6656c6d5cf",
+            "name": "screenshot_20260109_163227_0022.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163227_0022.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "06918beeb111501763d37707adfc44e5": {
+            "format": "png",
+            "id": "06918beeb111501763d37707adfc44e5",
+            "name": "screenshot_20260109_163229_0023.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163229_0023.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "306d5759f56fe54067abe2c68e8f7c0f": {
+            "format": "png",
+            "id": "306d5759f56fe54067abe2c68e8f7c0f",
+            "name": "screenshot_20260109_163231_0024.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163231_0024.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d920b3af4dcb3fdc4a0b4e92b4e6096a": {
+            "format": "png",
+            "id": "d920b3af4dcb3fdc4a0b4e92b4e6096a",
+            "name": "screenshot_20260109_163233_0025.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163233_0025.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4d8301d1350149662edeaa38d70e7a15": {
+            "format": "png",
+            "id": "4d8301d1350149662edeaa38d70e7a15",
+            "name": "screenshot_20260109_163234_0026.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163234_0026.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ceb300f1700c3269b29795a69f94a6b9": {
+            "format": "png",
+            "id": "ceb300f1700c3269b29795a69f94a6b9",
+            "name": "screenshot_20260109_163236_0027.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163236_0027.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "65217a69c58bb40a89b77987d1dd6ce3": {
+            "format": "png",
+            "id": "65217a69c58bb40a89b77987d1dd6ce3",
+            "name": "screenshot_20260109_163238_0028.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163238_0028.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "19c1b5209f222dfc344294bdf92705b8": {
+            "format": "png",
+            "id": "19c1b5209f222dfc344294bdf92705b8",
+            "name": "screenshot_20260109_163240_0029.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163240_0029.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "553e4291d35c32f30751ec5c3dec8621": {
+            "format": "png",
+            "id": "553e4291d35c32f30751ec5c3dec8621",
+            "name": "screenshot_20260109_163242_0030.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163242_0030.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4c5798f8d854d698d82e8731eef58fa4": {
+            "format": "png",
+            "id": "4c5798f8d854d698d82e8731eef58fa4",
+            "name": "screenshot_20260109_163244_0031.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163244_0031.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b653443b56537b30611042b353ff91d0": {
+            "format": "png",
+            "id": "b653443b56537b30611042b353ff91d0",
+            "name": "screenshot_20260109_163246_0032.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163246_0032.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "589056b8cf858d0b8704ea91128d21ed": {
+            "format": "png",
+            "id": "589056b8cf858d0b8704ea91128d21ed",
+            "name": "screenshot_20260109_163248_0033.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163248_0033.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5f8a7287f16a92af1ff7ffc60209f1d0": {
+            "format": "png",
+            "id": "5f8a7287f16a92af1ff7ffc60209f1d0",
+            "name": "screenshot_20260109_163250_0034.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163250_0034.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "99f5007b493a6f3f7d9b79bdef097483": {
+            "format": "png",
+            "id": "99f5007b493a6f3f7d9b79bdef097483",
+            "name": "screenshot_20260109_163252_0035.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163252_0035.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7d5783467cea00fa5acb0ed187d5b417": {
+            "format": "png",
+            "id": "7d5783467cea00fa5acb0ed187d5b417",
+            "name": "screenshot_20260109_163253_0036.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163253_0036.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "82714441404a0f73ca784a272df24ce7": {
+            "format": "png",
+            "id": "82714441404a0f73ca784a272df24ce7",
+            "name": "screenshot_20260109_163255_0037.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163255_0037.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4900f4cd743917dc75edeb8bc70cc0b7": {
+            "format": "png",
+            "id": "4900f4cd743917dc75edeb8bc70cc0b7",
+            "name": "screenshot_20260109_163257_0038.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163257_0038.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5ea9c9edaee69bd4d34a0108d2ec1d64": {
+            "format": "png",
+            "id": "5ea9c9edaee69bd4d34a0108d2ec1d64",
+            "name": "screenshot_20260109_163259_0039.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163259_0039.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "8a4fad023e669a72634ae9c0eee55e2f": {
+            "format": "png",
+            "id": "8a4fad023e669a72634ae9c0eee55e2f",
+            "name": "screenshot_20260109_163301_0040.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163301_0040.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1ad18e95568b92104d7f2c3258e18836": {
+            "format": "png",
+            "id": "1ad18e95568b92104d7f2c3258e18836",
+            "name": "screenshot_20260109_163303_0041.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163303_0041.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3f8d6adbc80a23530426deb53413b656": {
+            "format": "png",
+            "id": "3f8d6adbc80a23530426deb53413b656",
+            "name": "screenshot_20260109_163305_0042.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163305_0042.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "82b5dc660216db10afd2be73f1c8014f": {
+            "format": "png",
+            "id": "82b5dc660216db10afd2be73f1c8014f",
+            "name": "screenshot_20260109_163307_0043.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163307_0043.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "281954f4f48b306fec8e23d810743201": {
+            "format": "png",
+            "id": "281954f4f48b306fec8e23d810743201",
+            "name": "screenshot_20260109_163309_0044.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163309_0044.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "061bc61738a516e66091d05e8d84bb0e": {
+            "format": "png",
+            "id": "061bc61738a516e66091d05e8d84bb0e",
+            "name": "screenshot_20260109_163310_0045.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163310_0045.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "30c19a70a316ccb6cb6626e204836f9a": {
+            "format": "png",
+            "id": "30c19a70a316ccb6cb6626e204836f9a",
+            "name": "screenshot_20260109_163312_0046.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163312_0046.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d6c018fd42df606bf57b70166d97a792": {
+            "format": "png",
+            "id": "d6c018fd42df606bf57b70166d97a792",
+            "name": "screenshot_20260109_163314_0047.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163314_0047.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5756d7d98a8dccbe06fda3c4f06b4146": {
+            "format": "png",
+            "id": "5756d7d98a8dccbe06fda3c4f06b4146",
+            "name": "screenshot_20260109_163316_0048.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163316_0048.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "12a70285fbcea73fa501ae528290bd97": {
+            "format": "png",
+            "id": "12a70285fbcea73fa501ae528290bd97",
+            "name": "screenshot_20260109_163318_0049.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163318_0049.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b3bbaf697f9615d403deaeb31196f2b6": {
+            "format": "png",
+            "id": "b3bbaf697f9615d403deaeb31196f2b6",
+            "name": "screenshot_20260109_163320_0050.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_163320_0050.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2dfa29e052d41f964b14c6bc60a1c72c": {
+            "format": "png",
+            "id": "2dfa29e052d41f964b14c6bc60a1c72c",
+            "name": "screenshot_20260109_165023_0001.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165023_0001.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0bb04b8d58c859942508be30e123a7a1": {
+            "format": "png",
+            "id": "0bb04b8d58c859942508be30e123a7a1",
+            "name": "screenshot_20260109_165024_0002.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165024_0002.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "009d99ce3dc3177221205949501caf3d": {
+            "format": "png",
+            "id": "009d99ce3dc3177221205949501caf3d",
+            "name": "screenshot_20260109_165026_0003.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165026_0003.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "525f8bb272d6c808e95e8ce067b7713e": {
+            "format": "png",
+            "id": "525f8bb272d6c808e95e8ce067b7713e",
+            "name": "screenshot_20260109_165028_0004.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165028_0004.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "bfabf8dc891472b27929ebb5a7e6a9ff": {
+            "format": "png",
+            "id": "bfabf8dc891472b27929ebb5a7e6a9ff",
+            "name": "screenshot_20260109_165029_0005.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165029_0005.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "bd6bbac53bfdf80430080a8f3aa7d24e": {
+            "format": "png",
+            "id": "bd6bbac53bfdf80430080a8f3aa7d24e",
+            "name": "screenshot_20260109_165030_0006.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165030_0006.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a6f75a95f149fbbd2381ebb0de0fa745": {
+            "format": "png",
+            "id": "a6f75a95f149fbbd2381ebb0de0fa745",
+            "name": "screenshot_20260109_165032_0007.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165032_0007.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "087b1e21cdd13dd8ca4abdf30f1db384": {
+            "format": "png",
+            "id": "087b1e21cdd13dd8ca4abdf30f1db384",
+            "name": "screenshot_20260109_165034_0008.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165034_0008.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d6b43f5e7c4fe293e19ee4982fbbf350": {
+            "format": "png",
+            "id": "d6b43f5e7c4fe293e19ee4982fbbf350",
+            "name": "screenshot_20260109_165035_0009.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165035_0009.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "06398ccd50e01476f481c250d637321d": {
+            "format": "png",
+            "id": "06398ccd50e01476f481c250d637321d",
+            "name": "screenshot_20260109_165037_0010.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165037_0010.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5a6f83ba1c2da35617c67b2244f50d15": {
+            "format": "png",
+            "id": "5a6f83ba1c2da35617c67b2244f50d15",
+            "name": "screenshot_20260109_165038_0011.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165038_0011.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2928c4e8bd9dd420c571f836fe4c6323": {
+            "format": "png",
+            "id": "2928c4e8bd9dd420c571f836fe4c6323",
+            "name": "screenshot_20260109_165040_0012.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165040_0012.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "70f1c3995ad2e1cdfe756e2ce6446ba4": {
+            "format": "png",
+            "id": "70f1c3995ad2e1cdfe756e2ce6446ba4",
+            "name": "screenshot_20260109_165041_0013.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165041_0013.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2065d53f8538c335f24ee3d702763286": {
+            "format": "png",
+            "id": "2065d53f8538c335f24ee3d702763286",
+            "name": "screenshot_20260109_165043_0014.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165043_0014.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b3391124ba9441710c73f4cba5a32dcc": {
+            "format": "png",
+            "id": "b3391124ba9441710c73f4cba5a32dcc",
+            "name": "screenshot_20260109_165044_0015.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165044_0015.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0433720cdf8f6fe6f071e568994f888a": {
+            "format": "png",
+            "id": "0433720cdf8f6fe6f071e568994f888a",
+            "name": "screenshot_20260109_165046_0016.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165046_0016.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "022642e15ff3c3118b11601998dd2757": {
+            "format": "png",
+            "id": "022642e15ff3c3118b11601998dd2757",
+            "name": "screenshot_20260109_165047_0017.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165047_0017.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6cfaa1bb45a38498fbe32975fd1d866f": {
+            "format": "png",
+            "id": "6cfaa1bb45a38498fbe32975fd1d866f",
+            "name": "screenshot_20260109_165049_0018.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165049_0018.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b0388b1e29a34f0df968728b5a9311b8": {
+            "format": "png",
+            "id": "b0388b1e29a34f0df968728b5a9311b8",
+            "name": "screenshot_20260109_165050_0019.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165050_0019.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f1d9b1a655122ebb694fb9fac78e2794": {
+            "format": "png",
+            "id": "f1d9b1a655122ebb694fb9fac78e2794",
+            "name": "screenshot_20260109_165052_0020.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165052_0020.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6d108a6fca4c69f907c908bf4c38414c": {
+            "format": "png",
+            "id": "6d108a6fca4c69f907c908bf4c38414c",
+            "name": "screenshot_20260109_165053_0021.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165053_0021.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "91a7eda2ca5a0fadbd0402821f284694": {
+            "format": "png",
+            "id": "91a7eda2ca5a0fadbd0402821f284694",
+            "name": "screenshot_20260109_165055_0022.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165055_0022.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "8f5369b686d44af00720181cb2e63555": {
+            "format": "png",
+            "id": "8f5369b686d44af00720181cb2e63555",
+            "name": "screenshot_20260109_165056_0023.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165056_0023.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "15f8ecfd850c4b2afd867e7ff6a06702": {
+            "format": "png",
+            "id": "15f8ecfd850c4b2afd867e7ff6a06702",
+            "name": "screenshot_20260109_165058_0024.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165058_0024.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "54cb15ca27a6c8cc5aafb714b330e57e": {
+            "format": "png",
+            "id": "54cb15ca27a6c8cc5aafb714b330e57e",
+            "name": "screenshot_20260109_165059_0025.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165059_0025.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "90bb5ed3c082b63dcb9bf03d12f7edf5": {
+            "format": "png",
+            "id": "90bb5ed3c082b63dcb9bf03d12f7edf5",
+            "name": "screenshot_20260109_165101_0026.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165101_0026.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0b41de18dddafd7154020be2e20a20ba": {
+            "format": "png",
+            "id": "0b41de18dddafd7154020be2e20a20ba",
+            "name": "screenshot_20260109_165103_0027.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165103_0027.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "fb70f1f761bc9471ac59222681cea272": {
+            "format": "png",
+            "id": "fb70f1f761bc9471ac59222681cea272",
+            "name": "screenshot_20260109_165104_0028.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165104_0028.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "98e8d140f14a4610803303a5c850f57e": {
+            "format": "png",
+            "id": "98e8d140f14a4610803303a5c850f57e",
+            "name": "screenshot_20260109_165106_0029.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165106_0029.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2cba5eacc2a06f797cb1b91464f1f5c7": {
+            "format": "png",
+            "id": "2cba5eacc2a06f797cb1b91464f1f5c7",
+            "name": "screenshot_20260109_165107_0030.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165107_0030.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "50abdddaf2dd62925a5767246a6af7b8": {
+            "format": "png",
+            "id": "50abdddaf2dd62925a5767246a6af7b8",
+            "name": "screenshot_20260109_165109_0031.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165109_0031.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3d4dc810ee996efc3554889cb13b999f": {
+            "format": "png",
+            "id": "3d4dc810ee996efc3554889cb13b999f",
+            "name": "screenshot_20260109_165110_0032.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165110_0032.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2a245aaf17aeb4f81053efd800d6f97d": {
+            "format": "png",
+            "id": "2a245aaf17aeb4f81053efd800d6f97d",
+            "name": "screenshot_20260109_165112_0033.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165112_0033.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7a0b4e9192cfcc80f8be0828551529ad": {
+            "format": "png",
+            "id": "7a0b4e9192cfcc80f8be0828551529ad",
+            "name": "screenshot_20260109_165113_0034.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165113_0034.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7745cb20ea117754c0e7635204d00d00": {
+            "format": "png",
+            "id": "7745cb20ea117754c0e7635204d00d00",
+            "name": "screenshot_20260109_165115_0035.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165115_0035.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a6488c2c37b97817e9b8538a2d8ddd03": {
+            "format": "png",
+            "id": "a6488c2c37b97817e9b8538a2d8ddd03",
+            "name": "screenshot_20260109_165116_0036.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165116_0036.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b1a05f999adeb949253c95dfaf76b115": {
+            "format": "png",
+            "id": "b1a05f999adeb949253c95dfaf76b115",
+            "name": "screenshot_20260109_165118_0037.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165118_0037.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "52fe92de8317cf10cff82e5a72fb3b4e": {
+            "format": "png",
+            "id": "52fe92de8317cf10cff82e5a72fb3b4e",
+            "name": "screenshot_20260109_165119_0038.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165119_0038.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "21472328bb3e4204c2496f2590bb41fa": {
+            "format": "png",
+            "id": "21472328bb3e4204c2496f2590bb41fa",
+            "name": "screenshot_20260109_165121_0039.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165121_0039.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "82206ebaa1ce0e6da86c624507b8c896": {
+            "format": "png",
+            "id": "82206ebaa1ce0e6da86c624507b8c896",
+            "name": "screenshot_20260109_165122_0040.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165122_0040.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "918b8c961d9a0e72b23f92ad3c43e277": {
+            "format": "png",
+            "id": "918b8c961d9a0e72b23f92ad3c43e277",
+            "name": "screenshot_20260109_165124_0041.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165124_0041.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7e57aeef74575adb035b3484b3b0e459": {
+            "format": "png",
+            "id": "7e57aeef74575adb035b3484b3b0e459",
+            "name": "screenshot_20260109_165125_0042.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165125_0042.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ece4b435154e7c7040ff1c97354be004": {
+            "format": "png",
+            "id": "ece4b435154e7c7040ff1c97354be004",
+            "name": "screenshot_20260109_165127_0043.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165127_0043.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "993622416d56ac1c0631f97aca865630": {
+            "format": "png",
+            "id": "993622416d56ac1c0631f97aca865630",
+            "name": "screenshot_20260109_165129_0044.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165129_0044.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b561d178c0eb73a93f0f695ff3587930": {
+            "format": "png",
+            "id": "b561d178c0eb73a93f0f695ff3587930",
+            "name": "screenshot_20260109_165130_0045.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165130_0045.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7aa4abe8e9d9fd7696ae202b561ab661": {
+            "format": "png",
+            "id": "7aa4abe8e9d9fd7696ae202b561ab661",
+            "name": "screenshot_20260109_165132_0046.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165132_0046.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d0194c4e66a41e7ebe185f8856801bf1": {
+            "format": "png",
+            "id": "d0194c4e66a41e7ebe185f8856801bf1",
+            "name": "screenshot_20260109_165133_0047.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165133_0047.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "101d847f604946b43ff290fb747fdab9": {
+            "format": "png",
+            "id": "101d847f604946b43ff290fb747fdab9",
+            "name": "screenshot_20260109_165135_0048.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165135_0048.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f7a2a8506f5690e7bea0af7623ac8d73": {
+            "format": "png",
+            "id": "f7a2a8506f5690e7bea0af7623ac8d73",
+            "name": "screenshot_20260109_165136_0049.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165136_0049.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e168f6380cbd62e40af804ff5bf13068": {
+            "format": "png",
+            "id": "e168f6380cbd62e40af804ff5bf13068",
+            "name": "screenshot_20260109_165138_0050.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_165138_0050.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e23147a2667c9e9a922befa0dcd26993": {
+            "format": "png",
+            "id": "e23147a2667c9e9a922befa0dcd26993",
+            "name": "screenshot_20260109_170503_0001.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170503_0001.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d039c51548638ae16b22589b2f1f21f0": {
+            "format": "png",
+            "id": "d039c51548638ae16b22589b2f1f21f0",
+            "name": "screenshot_20260109_170505_0002.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170505_0002.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "14db6572f560f1ca90d40679e87480ef": {
+            "format": "png",
+            "id": "14db6572f560f1ca90d40679e87480ef",
+            "name": "screenshot_20260109_170506_0003.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170506_0003.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a157b0203df6e911b4a4020c2d440837": {
+            "format": "png",
+            "id": "a157b0203df6e911b4a4020c2d440837",
+            "name": "screenshot_20260109_170508_0004.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170508_0004.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2b6fb5710ba10b3fa79c3f7184645e25": {
+            "format": "png",
+            "id": "2b6fb5710ba10b3fa79c3f7184645e25",
+            "name": "screenshot_20260109_170509_0005.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170509_0005.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4461841ae83fae457c72c4884685cb14": {
+            "format": "png",
+            "id": "4461841ae83fae457c72c4884685cb14",
+            "name": "screenshot_20260109_170511_0006.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170511_0006.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a258f7d0998cfce95a55853d112d195a": {
+            "format": "png",
+            "id": "a258f7d0998cfce95a55853d112d195a",
+            "name": "screenshot_20260109_170512_0007.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170512_0007.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b6642d742761d0150a52579c13ef4b68": {
+            "format": "png",
+            "id": "b6642d742761d0150a52579c13ef4b68",
+            "name": "screenshot_20260109_170513_0008.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170513_0008.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c36c188ffdfc7aceccc923c853f676ca": {
+            "format": "png",
+            "id": "c36c188ffdfc7aceccc923c853f676ca",
+            "name": "screenshot_20260109_170515_0009.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170515_0009.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "871d6e5129a937c23b2c83599eb4dbb6": {
+            "format": "png",
+            "id": "871d6e5129a937c23b2c83599eb4dbb6",
+            "name": "screenshot_20260109_170516_0010.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170516_0010.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "652b49ec3fb2dd3eb6c642582fae63ea": {
+            "format": "png",
+            "id": "652b49ec3fb2dd3eb6c642582fae63ea",
+            "name": "screenshot_20260109_170518_0011.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170518_0011.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e8ec43be016f489baed3d63e4cc725ac": {
+            "format": "png",
+            "id": "e8ec43be016f489baed3d63e4cc725ac",
+            "name": "screenshot_20260109_170519_0012.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170519_0012.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f67f2cc331531f3acee80cc5e54c9527": {
+            "format": "png",
+            "id": "f67f2cc331531f3acee80cc5e54c9527",
+            "name": "screenshot_20260109_170521_0013.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170521_0013.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "80ad3d19b21c2bf42395c6b8d0f92642": {
+            "format": "png",
+            "id": "80ad3d19b21c2bf42395c6b8d0f92642",
+            "name": "screenshot_20260109_170522_0014.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170522_0014.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0a2cb011f956a38bd687f8bc48c04e36": {
+            "format": "png",
+            "id": "0a2cb011f956a38bd687f8bc48c04e36",
+            "name": "screenshot_20260109_170524_0015.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170524_0015.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "791c4882bcdb6e52fd1be54237cc6694": {
+            "format": "png",
+            "id": "791c4882bcdb6e52fd1be54237cc6694",
+            "name": "screenshot_20260109_170525_0016.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170525_0016.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "88f17030e78cc8e58f334d75f907f646": {
+            "format": "png",
+            "id": "88f17030e78cc8e58f334d75f907f646",
+            "name": "screenshot_20260109_170527_0017.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170527_0017.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3a1dc88c75aff1efeda0020a3f9e78f0": {
+            "format": "png",
+            "id": "3a1dc88c75aff1efeda0020a3f9e78f0",
+            "name": "screenshot_20260109_170528_0018.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170528_0018.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f13d19181a1f0ff2e9b20a46c56ea858": {
+            "format": "png",
+            "id": "f13d19181a1f0ff2e9b20a46c56ea858",
+            "name": "screenshot_20260109_170530_0019.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170530_0019.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "517124865c2d0261334bd73db9de6482": {
+            "format": "png",
+            "id": "517124865c2d0261334bd73db9de6482",
+            "name": "screenshot_20260109_170531_0020.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170531_0020.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2926fd05984b710f84289a32b55a06b9": {
+            "format": "png",
+            "id": "2926fd05984b710f84289a32b55a06b9",
+            "name": "screenshot_20260109_170533_0021.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170533_0021.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "320516e3132908e1dc53278eb6709ba6": {
+            "format": "png",
+            "id": "320516e3132908e1dc53278eb6709ba6",
+            "name": "screenshot_20260109_170534_0022.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170534_0022.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1c32b05bdb49a2c230f2fa3229deee18": {
+            "format": "png",
+            "id": "1c32b05bdb49a2c230f2fa3229deee18",
+            "name": "screenshot_20260109_170536_0023.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170536_0023.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4750230c7a559f73da68d9c6b057f666": {
+            "format": "png",
+            "id": "4750230c7a559f73da68d9c6b057f666",
+            "name": "screenshot_20260109_170537_0024.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170537_0024.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c076bfff0f8e1ad903e1832d89860e7a": {
+            "format": "png",
+            "id": "c076bfff0f8e1ad903e1832d89860e7a",
+            "name": "screenshot_20260109_170539_0025.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170539_0025.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7a86ec847660ab10ce8dc6c346142b34": {
+            "format": "png",
+            "id": "7a86ec847660ab10ce8dc6c346142b34",
+            "name": "screenshot_20260109_170540_0026.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170540_0026.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "01e8b57a1c8b074c2acaab69a2f2659b": {
+            "format": "png",
+            "id": "01e8b57a1c8b074c2acaab69a2f2659b",
+            "name": "screenshot_20260109_170542_0027.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170542_0027.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7b41c7213dd4b4d6fe4736d23f1bd87f": {
+            "format": "png",
+            "id": "7b41c7213dd4b4d6fe4736d23f1bd87f",
+            "name": "screenshot_20260109_170543_0028.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170543_0028.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "dfe78e77936a46fe7e99000ef2ad7f56": {
+            "format": "png",
+            "id": "dfe78e77936a46fe7e99000ef2ad7f56",
+            "name": "screenshot_20260109_170545_0029.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170545_0029.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d3db46093e3309d971172eaa2f754f51": {
+            "format": "png",
+            "id": "d3db46093e3309d971172eaa2f754f51",
+            "name": "screenshot_20260109_170546_0030.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170546_0030.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "376b8e37865c1400fbecf115f99aa9e3": {
+            "format": "png",
+            "id": "376b8e37865c1400fbecf115f99aa9e3",
+            "name": "screenshot_20260109_170548_0031.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170548_0031.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "98634e90073638571cb5c1ab813e6f79": {
+            "format": "png",
+            "id": "98634e90073638571cb5c1ab813e6f79",
+            "name": "screenshot_20260109_170549_0032.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170549_0032.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "002b463570ff9fd6239a582e31e7292d": {
+            "format": "png",
+            "id": "002b463570ff9fd6239a582e31e7292d",
+            "name": "screenshot_20260109_170551_0033.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170551_0033.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e2e3039784ae78ba86cdd09bad6884ab": {
+            "format": "png",
+            "id": "e2e3039784ae78ba86cdd09bad6884ab",
+            "name": "screenshot_20260109_170552_0034.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170552_0034.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3e56673bc04c422f3feae51d60424274": {
+            "format": "png",
+            "id": "3e56673bc04c422f3feae51d60424274",
+            "name": "screenshot_20260109_170554_0035.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170554_0035.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c1cb8328d3145678fda1600854467dc3": {
+            "format": "png",
+            "id": "c1cb8328d3145678fda1600854467dc3",
+            "name": "screenshot_20260109_170555_0036.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170555_0036.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "50ca0aed0bb7ae60c56830a0610db0f5": {
+            "format": "png",
+            "id": "50ca0aed0bb7ae60c56830a0610db0f5",
+            "name": "screenshot_20260109_170557_0037.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170557_0037.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2a12f60a6797966a6cfa72e92bf73ac1": {
+            "format": "png",
+            "id": "2a12f60a6797966a6cfa72e92bf73ac1",
+            "name": "screenshot_20260109_170558_0038.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170558_0038.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7582f06a5f3798d4af05e00696fbbd89": {
+            "format": "png",
+            "id": "7582f06a5f3798d4af05e00696fbbd89",
+            "name": "screenshot_20260109_170600_0039.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170600_0039.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "108204ba02fbd0a8b1609e163516ecf2": {
+            "format": "png",
+            "id": "108204ba02fbd0a8b1609e163516ecf2",
+            "name": "screenshot_20260109_170601_0040.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170601_0040.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6c74eacd9d93f37aeaa743425376f58c": {
+            "format": "png",
+            "id": "6c74eacd9d93f37aeaa743425376f58c",
+            "name": "screenshot_20260109_170603_0041.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170603_0041.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b44cfb6e0dfdaa9eedcde3ff7e00402c": {
+            "format": "png",
+            "id": "b44cfb6e0dfdaa9eedcde3ff7e00402c",
+            "name": "screenshot_20260109_170604_0042.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170604_0042.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "91f0763ec6a09125b13b0c2c3f3910fd": {
+            "format": "png",
+            "id": "91f0763ec6a09125b13b0c2c3f3910fd",
+            "name": "screenshot_20260109_170606_0043.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170606_0043.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "060e41468f1da2662ea3a4bbe5de965a": {
+            "format": "png",
+            "id": "060e41468f1da2662ea3a4bbe5de965a",
+            "name": "screenshot_20260109_170607_0044.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170607_0044.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ed4aea0980110e9df4b69a5e8f6f0921": {
+            "format": "png",
+            "id": "ed4aea0980110e9df4b69a5e8f6f0921",
+            "name": "screenshot_20260109_170609_0045.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170609_0045.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "865d1d29eed7004dfbb3865a3845d7d1": {
+            "format": "png",
+            "id": "865d1d29eed7004dfbb3865a3845d7d1",
+            "name": "screenshot_20260109_170610_0046.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170610_0046.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "95ffc625ab3b50e78aba1d6c70609528": {
+            "format": "png",
+            "id": "95ffc625ab3b50e78aba1d6c70609528",
+            "name": "screenshot_20260109_170612_0047.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170612_0047.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d44c6de9f131547afa16925be27fb9d3": {
+            "format": "png",
+            "id": "d44c6de9f131547afa16925be27fb9d3",
+            "name": "screenshot_20260109_170613_0048.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170613_0048.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "72bb2d971653f07b8fc56537e046ed46": {
+            "format": "png",
+            "id": "72bb2d971653f07b8fc56537e046ed46",
+            "name": "screenshot_20260109_170615_0049.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170615_0049.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e55976ca50a4979b2e924ada46f20f0b": {
+            "format": "png",
+            "id": "e55976ca50a4979b2e924ada46f20f0b",
+            "name": "screenshot_20260109_170616_0050.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_170616_0050.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "fbfc6621b1d036311f007f75fa471670": {
+            "format": "png",
+            "id": "fbfc6621b1d036311f007f75fa471670",
+            "name": "screenshot_20260109_171901_0001.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171901_0001.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d549bade537d973cd01e5ad32c0ac2d3": {
+            "format": "png",
+            "id": "d549bade537d973cd01e5ad32c0ac2d3",
+            "name": "screenshot_20260108_021302_0200.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260108_021302_0200.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 1,
+            "type": 1
+        },
+        "cfb7a656d0a818eba7d681a081de2141": {
+            "format": "png",
+            "id": "cfb7a656d0a818eba7d681a081de2141",
+            "name": "screenshot_20260109_171903_0002.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171903_0002.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7500a36d6317cb48b69c702861ce548f": {
+            "format": "png",
+            "id": "7500a36d6317cb48b69c702861ce548f",
+            "name": "screenshot_20260109_171905_0003.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171905_0003.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0c824ddb96961efbff259e5a06b4b2db": {
+            "format": "png",
+            "id": "0c824ddb96961efbff259e5a06b4b2db",
+            "name": "screenshot_20260109_171906_0004.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171906_0004.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "87d0f5d0f759b770723ad32a63dbb0fa": {
+            "format": "png",
+            "id": "87d0f5d0f759b770723ad32a63dbb0fa",
+            "name": "screenshot_20260109_171908_0005.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171908_0005.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a6475ad81c81e0e1eaa7782c6a68d5ad": {
+            "format": "png",
+            "id": "a6475ad81c81e0e1eaa7782c6a68d5ad",
+            "name": "screenshot_20260109_171910_0006.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171910_0006.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7b17132c32069dac4270b7557b85841e": {
+            "format": "png",
+            "id": "7b17132c32069dac4270b7557b85841e",
+            "name": "screenshot_20260109_171911_0007.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171911_0007.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ce98fe9b3747e27ad828ffb473634362": {
+            "format": "png",
+            "id": "ce98fe9b3747e27ad828ffb473634362",
+            "name": "screenshot_20260109_171913_0008.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171913_0008.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d777dea646c72f58c3aa908bdbed45b9": {
+            "format": "png",
+            "id": "d777dea646c72f58c3aa908bdbed45b9",
+            "name": "screenshot_20260109_171915_0009.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171915_0009.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "df4613958394683c545438e8320d9151": {
+            "format": "png",
+            "id": "df4613958394683c545438e8320d9151",
+            "name": "screenshot_20260109_171916_0010.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171916_0010.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "eedfea0db5970da2e9a53e718cf562e3": {
+            "format": "png",
+            "id": "eedfea0db5970da2e9a53e718cf562e3",
+            "name": "screenshot_20260109_171918_0011.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171918_0011.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4a7a70a31299ca1c8439597c88ac1145": {
+            "format": "png",
+            "id": "4a7a70a31299ca1c8439597c88ac1145",
+            "name": "screenshot_20260109_171920_0012.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171920_0012.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "cc81a2f6fd4b2f1727148ffc7b58ae67": {
+            "format": "png",
+            "id": "cc81a2f6fd4b2f1727148ffc7b58ae67",
+            "name": "screenshot_20260109_171921_0013.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171921_0013.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "df87c85148e2b048c231e550b568248b": {
+            "format": "png",
+            "id": "df87c85148e2b048c231e550b568248b",
+            "name": "screenshot_20260109_171923_0014.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171923_0014.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ae56d3519dfa8e5d7dd0bedf0c8cac15": {
+            "format": "png",
+            "id": "ae56d3519dfa8e5d7dd0bedf0c8cac15",
+            "name": "screenshot_20260109_171924_0015.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171924_0015.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "84646193af8cffce61ec28f6c6e30117": {
+            "format": "png",
+            "id": "84646193af8cffce61ec28f6c6e30117",
+            "name": "screenshot_20260109_171926_0016.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171926_0016.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d5f2c3b691f970c4cc7f83eb7310d898": {
+            "format": "png",
+            "id": "d5f2c3b691f970c4cc7f83eb7310d898",
+            "name": "screenshot_20260109_171928_0017.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171928_0017.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5e0185e9b09baf56c7750d2e8aab105e": {
+            "format": "png",
+            "id": "5e0185e9b09baf56c7750d2e8aab105e",
+            "name": "screenshot_20260109_171929_0018.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171929_0018.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "353598fb83aed12845bc3988de7b946c": {
+            "format": "png",
+            "id": "353598fb83aed12845bc3988de7b946c",
+            "name": "screenshot_20260109_171931_0019.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171931_0019.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "9a46097cab823ad82fa4e6c52e638cbf": {
+            "format": "png",
+            "id": "9a46097cab823ad82fa4e6c52e638cbf",
+            "name": "screenshot_20260109_171932_0020.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171932_0020.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "df29c3076f97fab3ec74bf6c7608e2b5": {
+            "format": "png",
+            "id": "df29c3076f97fab3ec74bf6c7608e2b5",
+            "name": "screenshot_20260109_171934_0021.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171934_0021.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "30c6353d20a5d6dffbf675abc315a43d": {
+            "format": "png",
+            "id": "30c6353d20a5d6dffbf675abc315a43d",
+            "name": "screenshot_20260109_171936_0022.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171936_0022.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "cff77796e0f27c62667d8efbd695c3a7": {
+            "format": "png",
+            "id": "cff77796e0f27c62667d8efbd695c3a7",
+            "name": "screenshot_20260109_171938_0023.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171938_0023.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "88d257c1abb2593279ea8f21d636374e": {
+            "format": "png",
+            "id": "88d257c1abb2593279ea8f21d636374e",
+            "name": "screenshot_20260109_171939_0024.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171939_0024.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "9c6651a9e3dfeb99bb0a303b95196679": {
+            "format": "png",
+            "id": "9c6651a9e3dfeb99bb0a303b95196679",
+            "name": "screenshot_20260109_171941_0025.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171941_0025.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "65a86fb2c2cb6faeedf9545f43bdf191": {
+            "format": "png",
+            "id": "65a86fb2c2cb6faeedf9545f43bdf191",
+            "name": "screenshot_20260109_171942_0026.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171942_0026.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "83fe81c7ad5a47ccc546c1967d50095d": {
+            "format": "png",
+            "id": "83fe81c7ad5a47ccc546c1967d50095d",
+            "name": "screenshot_20260109_171944_0027.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171944_0027.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a85518a608b5bb5a511dec577780f652": {
+            "format": "png",
+            "id": "a85518a608b5bb5a511dec577780f652",
+            "name": "screenshot_20260109_171946_0028.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171946_0028.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a9a791c2eaa9a6dcf290a116e9ea8455": {
+            "format": "png",
+            "id": "a9a791c2eaa9a6dcf290a116e9ea8455",
+            "name": "screenshot_20260109_171947_0029.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171947_0029.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5790efb5b4cb7911284d442c3904ebe4": {
+            "format": "png",
+            "id": "5790efb5b4cb7911284d442c3904ebe4",
+            "name": "screenshot_20260109_171949_0030.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171949_0030.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "67cd1f02d3dd74d18f2138c979e38e63": {
+            "format": "png",
+            "id": "67cd1f02d3dd74d18f2138c979e38e63",
+            "name": "screenshot_20260109_171950_0031.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171950_0031.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "45b05035262244dc9d58371e706115d1": {
+            "format": "png",
+            "id": "45b05035262244dc9d58371e706115d1",
+            "name": "screenshot_20260109_171952_0032.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171952_0032.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "17e0bbbdfa56400eb43110542d3c60ee": {
+            "format": "png",
+            "id": "17e0bbbdfa56400eb43110542d3c60ee",
+            "name": "screenshot_20260109_171954_0033.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171954_0033.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "fb1e8ead6e9c444b33f9bcd7e58f9fa9": {
+            "format": "png",
+            "id": "fb1e8ead6e9c444b33f9bcd7e58f9fa9",
+            "name": "screenshot_20260109_171956_0034.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171956_0034.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "884f1f83bab1e10597605a0d508d9f0e": {
+            "format": "png",
+            "id": "884f1f83bab1e10597605a0d508d9f0e",
+            "name": "screenshot_20260109_171957_0035.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171957_0035.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "feb12407f7821061960583b29bc35bf9": {
+            "format": "png",
+            "id": "feb12407f7821061960583b29bc35bf9",
+            "name": "screenshot_20260109_171959_0036.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_171959_0036.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d9223ef32c891458bcae4f16abc357d9": {
+            "format": "png",
+            "id": "d9223ef32c891458bcae4f16abc357d9",
+            "name": "screenshot_20260109_172000_0037.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172000_0037.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "fabb54216c47bfd8d2f00dc2e0c84871": {
+            "format": "png",
+            "id": "fabb54216c47bfd8d2f00dc2e0c84871",
+            "name": "screenshot_20260109_172002_0038.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172002_0038.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d31c152cc908216a782f52d6056b880e": {
+            "format": "png",
+            "id": "d31c152cc908216a782f52d6056b880e",
+            "name": "screenshot_20260109_172004_0039.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172004_0039.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "bf0a481e98a6e2a62a0b4f96d3657e1d": {
+            "format": "png",
+            "id": "bf0a481e98a6e2a62a0b4f96d3657e1d",
+            "name": "screenshot_20260109_172005_0040.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172005_0040.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1b9ea939d6d5da12abe1ee09456fe251": {
+            "format": "png",
+            "id": "1b9ea939d6d5da12abe1ee09456fe251",
+            "name": "screenshot_20260109_172007_0041.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172007_0041.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "133cbbc6359dcea80d82d20dd01dbb7e": {
+            "format": "png",
+            "id": "133cbbc6359dcea80d82d20dd01dbb7e",
+            "name": "screenshot_20260109_172009_0042.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172009_0042.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0b42d8843052ac5d73cf27e8509ac60d": {
+            "format": "png",
+            "id": "0b42d8843052ac5d73cf27e8509ac60d",
+            "name": "screenshot_20260109_172010_0043.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172010_0043.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a5f972033c0d8c0362e5b25d7d9a13d9": {
+            "format": "png",
+            "id": "a5f972033c0d8c0362e5b25d7d9a13d9",
+            "name": "screenshot_20260109_172012_0044.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172012_0044.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f3b99cc535d9a9aca1e597c2630462eb": {
+            "format": "png",
+            "id": "f3b99cc535d9a9aca1e597c2630462eb",
+            "name": "screenshot_20260109_172014_0045.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172014_0045.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "36a6d680193515c076b85aad887c8218": {
+            "format": "png",
+            "id": "36a6d680193515c076b85aad887c8218",
+            "name": "screenshot_20260109_172015_0046.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172015_0046.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6cd5306469c4ea0b8e295a12dc009a29": {
+            "format": "png",
+            "id": "6cd5306469c4ea0b8e295a12dc009a29",
+            "name": "screenshot_20260109_172017_0047.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172017_0047.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7901c604370dcd48cf094a1e9f4cbcb9": {
+            "format": "png",
+            "id": "7901c604370dcd48cf094a1e9f4cbcb9",
+            "name": "screenshot_20260109_172019_0048.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172019_0048.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f3a92ae86289b699ea03c846d9629bea": {
+            "format": "png",
+            "id": "f3a92ae86289b699ea03c846d9629bea",
+            "name": "screenshot_20260109_172021_0049.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172021_0049.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "af90ccef66c1c5b668d15e43f7a5407a": {
+            "format": "png",
+            "id": "af90ccef66c1c5b668d15e43f7a5407a",
+            "name": "screenshot_20260109_172022_0050.png",
+            "path": "file:D:/BiShe/MyMAAProject/data/datasets/train/images/screenshot_20260109_172022_0050.png",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        }
+    }
+}

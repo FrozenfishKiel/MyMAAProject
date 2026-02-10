@@ -1,0 +1,50 @@
+# 优化版YOLO训练配置 - 单张图片训练专用
+
+# 基础配置
+task: detect
+mode: train
+model: yolov8n.pt
+data: data/datasets/simplified_data.yaml
+
+# 训练参数优化
+epochs: 200  # 大幅增加训练轮数
+patience: 50  # 增加早停耐心
+batch: 1     # 单张图片，batch_size设为1
+imgsz: 640
+
+# 数据增强 - 关键！必须开启
+augment: true  # 开启数据增强
+
+# 数据增强参数优化
+hsv_h: 0.1    # 色调变化
+hsv_s: 0.9    # 饱和度变化  
+hsv_v: 0.9    # 亮度变化
+degrees: 45.0 # 旋转角度
+translate: 0.2 # 平移
+scale: 0.9    # 缩放
+shear: 0.2    # 剪切
+fliplr: 0.5   # 水平翻转
+
+# 高级增强
+mosaic: 0.8   # 马赛克增强
+mixup: 0.1    # 混合增强
+
+# 学习率优化
+lr0: 0.001    # 降低初始学习率
+lrf: 0.01     # 最终学习率
+warmup_epochs: 10  # 增加预热轮数
+
+# 验证设置
+val: true
+split: val
+
+# 其他优化
+workers: 0    # Windows系统设为0
+cache: false  # 单张图片不需要缓存
+
+# 损失函数权重
+box: 5.0      # 降低边界框损失权重
+cls: 0.8      # 降低分类损失权重
+
+# 早停和保存
+save_period: 10  # 每10个epoch保存一次

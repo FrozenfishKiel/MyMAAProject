@@ -1,0 +1,35 @@
+# YOLO数据集配置文件 - 明日方舟核心按钮检测
+# 路径：data/datasets/data.yaml
+
+# 数据集根路径（相对于此配置文件）
+path: D:/BiShe/MyMAAProject/data/datasets
+
+# 训练集路径
+# 使用绝对路径避免解析问题
+train: D:/BiShe/MyMAAProject/data/datasets/train/images
+
+# 验证集路径 - 使用真实验证集
+# 注意：需要先创建验证集目录并复制数据
+val: D:/BiShe/MyMAAProject/data/datasets/val/images
+
+# 测试集路径
+test: D:/BiShe/MyMAAProject/data/datasets/test/images
+
+# 类别数量（13个核心按钮）
+nc: 13
+
+# 类别名称（13个核心按钮）
+names:
+  0: infrastructure_button  # 基建按钮
+  1: home_button            # 终端按钮
+  2: Notification_Button    # 通知按钮
+  3: All_Collection_Button  # 全部收集按钮
+  4: All_Trading_Post_Collection_Button  # 全部贸易站收集按钮
+  5: All_Trust_Collection_Button  # 全部信赖收集按钮
+  6: Return_Button          # 返回按钮
+  7: Return_Confirm         # 返回确认按钮
+  8: Resource_Collection_Button  # 资源收集按钮
+  9: tactical_maneuver_button  # 战术演习按钮
+  10: LS-5_Button  # LS-5按钮
+  11: start_battle_button  # 开始战斗按钮
+  12: battle_confirm_button  # 战斗确认按钮

@@ -1,0 +1,89 @@
+# YOLO训练配置文件 - 修改此文件即可调整所有参数
+# 文件路径: d:\BiShe\MyMAAProject\config\yolo_training_config.yaml
+
+# 训练基础配置
+training:
+  # 模型配置
+  model: "yolov8s"           # 模型类型: yolov8n(轻量)/yolov8s(标准)/yolov8m(中量)
+  epochs: 100                # 训练轮数
+  batch_size: 32             # 批次大小
+  img_size: 640              # 输入图像尺寸
+  
+  # 数据增强配置（自动优化，无需手动调整）
+  data_augmentation:
+    hsv_h: 0.015             # 色调增强幅度
+    hsv_s: 0.7               # 饱和度增强幅度  
+    hsv_v: 0.4               # 亮度增强幅度
+    degrees: 0.0             # 旋转角度范围
+    translate: 0.1           # 平移幅度
+    scale: 0.5               # 缩放幅度
+    shear: 0.0               # 剪切幅度
+    perspective: 0.0         # 透视变换
+    flipud: 0.0              # 上下翻转概率
+    fliplr: 0.5              # 左右翻转概率
+    mosaic: 1.0              # 马赛克增强概率
+    mixup: 0.0               # 混合增强概率
+
+  # 优化器配置（默认最优参数）
+  optimizer:
+    lr0: 0.01                # 初始学习率
+    lrf: 0.01                # 最终学习率
+    momentum: 0.937          # 动量参数
+    weight_decay: 0.0005     # 权重衰减
+    warmup_epochs: 3.0       # 预热轮数
+    warmup_momentum: 0.8     # 预热动量
+    warmup_bias_lr: 0.1      # 预热偏置学习率
+
+  # 训练策略
+  strategy:
+    patience: 50             # 早停耐心值（50轮无改善则停止）
+    save_period: -1          # 保存周期（-1表示只保存最佳）
+    single_cls: false        # 单类别模式（false为多类别）
+    rect: false              # 矩形训练（false为正方形）
+    cos_lr: false            # 余弦学习率调度
+    label_smoothing: 0.0     # 标签平滑系数
+    nbs: 64                  # 名义批次大小
+
+# 数据集配置（需要根据实际数据集调整）
+dataset:
+  path: "datasets/game_ui"   # 数据集根路径（相对于项目根目录）
+  train: "images/train"      # 训练集图像路径
+  val: "images/val"          # 验证集图像路径
+  test: ""                   # 测试集路径（可选）
+  nc: 10                     # 类别数量（需要根据实际标注调整）
+  names:                     # 类别名称列表（需要根据实际标注调整）
+    - start_button
+    - settings_icon
+    - back_button
+    - battle_button
+    - character_icon
+    - resource_icon
+    - mission_icon
+    - shop_icon
+    - team_icon
+    - skill_icon
+
+# 输出配置
+output:
+  # 模型保存配置
+  model_save_path: "models/yolo"           # 最终模型保存位置
+  model_name: "game_ui_detector"           # 模型文件名（不含扩展名）
+  
+  # 训练过程文件配置
+  training_runs_path: "runs/train"         # 训练过程文件位置
+  copy_best_to_models: true                # 是否自动复制最佳模型到models目录
+  cleanup_training_files: true             # 是否清理训练过程文件（true为清理）
+  
+  # 输出选项
+  exist_ok: false                          # 是否覆盖现有实验
+  verbose: true                            # 是否显示详细输出
+  save_json: false                         # 是否保存JSON格式结果
+  save_conf: true                          # 是否保存置信度
+  save_txt: true                           # 是否保存TXT格式标签
+
+# 系统配置（一般无需修改）
+system:
+  workers: 8                               # 数据加载工作线程数
+  device: ""                               # 训练设备（空表示自动选择）
+  seed: 0                                  # 随机种子（0表示随机）
+  deterministic: true                      # 是否确定性训练

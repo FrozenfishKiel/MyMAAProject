@@ -1,0 +1,13 @@
+infrastructure_button
+home_button
+Notification_Button
+All_Collection_Button
+All_Trading_Post_Collection_Button
+All_Trust_Collection_Button
+Return_Button
+Return_Confirm
+Resource_Collection_Button
+tactical_maneuver_button
+LS-5_Button
+start_battle_button
+battle_confirm_button

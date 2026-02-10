@@ -1,0 +1,72 @@
+{
+    "user_interface": {
+        "description": "用户界面配置 - 模拟用户点击不同按钮",
+        "buttons": [
+            {
+                "name": "基建",
+                "description": "基建收菜功能",
+                "task_chain": "base_collection",
+                "enabled": true
+            },
+            {
+                "name": "战斗",
+                "description": "战斗任务功能",
+                "task_chain": "combat_mission",
+                "enabled": false
+            },
+            {
+                "name": "主界面检测",
+                "description": "检测主界面状态",
+                "task_chain": "main_menu_detection",
+                "enabled": false
+            }
+        ]
+    },
+    
+    "task_chains": {
+        "base_collection": {
+            "description": "基建收菜任务链",
+            "tasks": ["detect_main_menu", "detect_base_entrance", "detect_base_management", "detect_base_collection"],
+            "max_retries": 3,
+            "post_delay": 2000
+        }
+    },
+    
+    "tasks": {
+        "detect_main_menu": {
+            "description": "检测主界面",
+            "algorithm": "ocr_detect",
+            "keywords": ["基建", "开始行动", "任务"],
+            "confidence_threshold": 0.6,
+            "action": "click_text"
+        },
+        "detect_base_entrance": {
+            "description": "检测基建入口",
+            "algorithm": "ocr_detect",
+            "keywords": ["基建", "控制中枢", "宿舍"],
+            "confidence_threshold": 0.6,
+            "action": "click_text"
+        },
+        "detect_base_management": {
+            "description": "检测基建管理界面",
+            "algorithm": "ocr_detect",
+            "keywords": ["收取", "制造站", "贸易站"],
+            "confidence_threshold": 0.6,
+            "action": "click_text"
+        },
+        "detect_base_collection": {
+            "description": "检测基建收菜界面",
+            "algorithm": "ocr_detect",
+            "keywords": ["收取全部", "确认", "完成"],
+            "confidence_threshold": 0.6,
+            "action": "click_text"
+        }
+    },
+    
+    "test_settings": {
+        "max_iterations": 10,
+        "task_delay": 2000,
+        "retry_times": 3,
+        "confidence_threshold": 0.6
+    }
+}
