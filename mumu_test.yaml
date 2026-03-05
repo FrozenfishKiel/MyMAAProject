@@ -1,0 +1,16 @@
+project:
+  name: mumu-test
+device:
+  type: adb
+  adb_path: e:/Program Files/Netease/MuMu Player 12/nx_device/12.0/shell/adb.exe
+  address: 127.0.0.1:7555
+tasks:
+  - type: wait
+    seconds: 0.5
+  - type: tap
+    x: 540
+    y: 960
+  - type: wait
+    seconds: 0.5
+  - type: assert
+    condition: always_true

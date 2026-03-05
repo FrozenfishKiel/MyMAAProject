@@ -1,0 +1,15 @@
+project:
+  name: sample
+device:
+  mode: dry_run
+tasks:
+  - type: wait
+    seconds: 0.2
+  - type: tap
+    x: 100
+    y: 200
+  - type: wait
+    seconds: 0.1
+  - type: assert
+    condition: always_true
+
