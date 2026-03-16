@@ -75,7 +75,7 @@ def test_template_match():
     templates_dir = project_root / "data" / "templates"
     
     # 读取截图
-    image_path = str(Path(__file__).parent / "output" / "screenshot.png")
+    image_path = str(Path(__file__).parent / "output" / "action2_after_drag_screenshot.png")
     image = cv2.imread(image_path)
     
     if image is None:
@@ -110,7 +110,7 @@ def test_template_match():
         print(f"\n测试模板: {template_file.name}")
         
         # 测试模板匹配
-        result = template_match(image, str(template_file), threshold=0.7)
+        result = template_match(image, str(template_file), threshold=0.4)
         
         if result:
             confidence, box_xyxy = result

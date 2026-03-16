@@ -1,12 +1,21 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+from typing import Any, Dict, Tuple
+
 import numpy as np
 from gymnasium import Env
 from gymnasium.spaces import Box, Discrete
-from typing import Any, Dict, Tuple
 
-from src.ai_plugins.yolo_recognizer import YoloRecognizer
-from src.rl_environment.actions import DeployOperatorActions
+# 添加项目路径到sys.path
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "ai-plugins"))
+sys.path.insert(0, str(ROOT / "rl-environment"))
+
+from yolo_recognizer import YoloRecognizer
+from template_matcher import TemplateMatcher
+from actions import DeployOperatorActions
 
 
 class GameEnv(Env):
@@ -16,21 +25,23 @@ class GameEnv(Env):
     实现Gymnasium接口，用于训练RL模型
     """
     
-    def __init__(self, controller: Any, yolo_recognizer: YoloRecognizer) -> None:
+    def __init__(self, controller: Any, yolo_recognizer: YoloRecognizer, template_matcher: TemplateMatcher) -> None:
         """
         初始化RL环境
         
         Args:
             controller: MaaFramework控制器
             yolo_recognizer: YOLO识别器
+            template_matcher: 模板匹配识别器
         """
         super().__init__()
         
         self._controller = controller
         self._yolo_recognizer = yolo_recognizer
+        self._template_matcher = template_matcher
         
         # 创建部署干员动作
-        self._deploy_actions = DeployOperatorActions(controller, yolo_recognizer)
+        self._deploy_actions = DeployOperatorActions(controller, yolo_recognizer, template_matcher)
         
         # 定义状态空间（observation space）
         # - 0: 是否成功点击干员头像（0/1）
@@ -107,6 +118,10 @@ class GameEnv(Env):
             truncated: 是否截断
             info: 额外信息
         """
+        # 类型转换：如果action是str，转换为int
+        if isinstance(action, str):
+            action = int(action)
+        
         self.time_step += 1
         self.state[4] = self.time_step
         
@@ -152,8 +167,15 @@ class GameEnv(Env):
                         # 记录放置区域中心点
                         self._deployment_position = position
                     else:
-                        # 失败拖拽到放置区域
-                        reward = -0.1
+                        # 失败拖拽到放置区域，重置到初始状态
+                        self._deployment_progress = 0  # 重置
+                        self.state[3] = 0.0
+                        self._action1_success = False  # 重置
+                        self.state[0] = 0.0
+                        self._action2_success = False
+                        self.state[1] = 0.0
+                        self._operator_position = None
+                        reward = -0.5  # 更大的惩罚
                 else:
                     # 未获取到干员位置
                     reward = -0.1
@@ -214,7 +236,7 @@ class GameEnv(Env):
         }
         
         # 判断是否截断（超过最大时间步）
-        max_time_steps = 100
+        max_time_steps = 1000  # 增加最大时间步数
         if self.time_step >= max_time_steps:
             truncated = True
         

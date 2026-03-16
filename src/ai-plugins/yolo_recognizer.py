@@ -20,12 +20,33 @@ class YoloRecognizer:
     def load(self) -> None:
         from ultralytics import YOLO
         import torch
+        import os
+        import urllib3
 
         # 检查GPU是否可用
         if self._device == "cuda" and not torch.cuda.is_available():
             raise RuntimeError("GPU (CUDA) is not available. Please install CUDA or use CPU.")
         
-        self._model = YOLO(self._model_path)
+        # 禁用SSL证书验证
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        os.environ['PYTHONHTTPSVERIFY'] = '0'
+        os.environ['CURL_CA_BUNDLE'] = ''
+        os.environ['REQUESTS_CA_BUNDLE'] = ''
+        
+        # 尝试加载模型
+        try:
+            self._model = YOLO(self._model_path, verbose=False)
+        except Exception as e:
+            print(f"Failed to load YOLO model: {e}")
+            print("Trying to load model using torch.load...")
+            try:
+                import torch
+                checkpoint = torch.load(self._model_path, map_location=self._device)
+                self._model = YOLO(checkpoint['model'].state_dict())
+                print("YOLO model loaded successfully using torch.load!")
+            except Exception as e2:
+                print(f"Failed to load YOLO model using torch.load: {e2}")
+                raise e
 
     def detect(self, bgr_image: Any, conf: float = 0.25) -> List[Detection]:
         if self._model is None:

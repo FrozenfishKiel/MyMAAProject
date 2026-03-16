@@ -40,7 +40,7 @@ class TemplateMatcher:
         self,
         bgr_image: Any,
         template_path: str,
-        threshold: float = 0.7,
+        threshold: float = 0.4,
         roi: Optional[Tuple[int, int, int, int]] = None
     ) -> Optional[TemplateMatchResult]:
         """
@@ -49,7 +49,7 @@ class TemplateMatcher:
         Args:
             bgr_image: BGR图像
             template_path: 模板图像路径
-            threshold: 匹配阈值（0-1），默认0.7
+            threshold: 匹配阈值（0-1），默认0.4
             roi: 感兴趣区域（x1, y1, x2, y2），默认None（全图）
         
         Returns:
@@ -109,7 +109,7 @@ class TemplateMatcher:
         self,
         bgr_image: Any,
         template_paths: List[str],
-        threshold: float = 0.7,
+        threshold: float = 0.4,
         roi: Optional[Tuple[int, int, int, int]] = None
     ) -> List[TemplateMatchResult]:
         """
@@ -118,7 +118,7 @@ class TemplateMatcher:
         Args:
             bgr_image: BGR图像
             template_paths: 模板图像路径列表
-            threshold: 匹配阈值（0-1），默认0.7
+            threshold: 匹配阈值（0-1），默认0.4
             roi: 感兴趣区域（x1, y1, x2, y2），默认None（全图）
         
         Returns:

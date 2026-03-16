@@ -1,11 +1,18 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
 import random
 from typing import Optional, Tuple, Dict, Any
 
-from src.ai_plugins.yolo_recognizer import YoloRecognizer, Detection
-from src.ai_plugins.template_matcher import TemplateMatcher
-from src.rl_environment.green_highlight import find_green_highlight
+# 添加项目路径到sys.path
+ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(ROOT / "src" / "ai-plugins"))
+sys.path.insert(0, str(ROOT / "src" / "rl-environment"))
+
+from yolo_recognizer import YoloRecognizer, Detection
+from template_matcher import TemplateMatcher
+from green_highlight import find_green_highlight
 
 
 class DeployOperatorActions:
@@ -32,14 +39,14 @@ class DeployOperatorActions:
         self._yolo_recognizer = yolo_recognizer
         self._template_matcher = template_matcher
         
-        # 部署区范围：999 x 193
-        # 左上角坐标：(0, 806)
-        # 右下角坐标：(999, 999)
+        # 部署区范围：1272 x 116
+        # 左上角坐标：(2, 598)
+        # 右下角坐标：(1274, 714)
         self._deployment_area = {
-            "x1": 0,
-            "y1": 806,
-            "x2": 999,
-            "y2": 999
+            "x1": 2,
+            "y1": 598,
+            "x2": 1274,
+            "y2": 714
         }
     
     def action1_click_operator_avatar(self) -> Tuple[bool, Optional[Tuple[int, int]]]:
@@ -58,13 +65,17 @@ class DeployOperatorActions:
         # 点击干员头像
         self._controller.post_click(x, y).wait()
         
+        # 等待游戏响应，显示干员信息血条
+        import time
+        time.sleep(0.5)
+        
         # 截图
-        image = self._controller.post_screencap().wait()
+        image = self._controller.post_screencap().wait().get()
         
         # 使用模板匹配识别干员信息血条
         # 干员信息血条的位置是固定的，所以可以使用模板匹配
-        hp_bar_template_path = "data/templates/hp_bar.png"
-        hp_bar_result = self._template_matcher.match(image, hp_bar_template_path, threshold=0.7)
+        hp_bar_template_path = str(ROOT / "data" / "templates" / "hp_bar.png")
+        hp_bar_result = self._template_matcher.match(image, hp_bar_template_path, threshold=0.4)
         
         if hp_bar_result is not None:
             # 成功点击干员头像
@@ -85,9 +96,22 @@ class DeployOperatorActions:
         Returns:
             (success, end_position): 是否成功拖拽到放置区域，放置区域中心点
         """
+        def cancel_deployment_and_wait():
+            """
+            取消部署并等待费用恢复
+            """
+            # 点击随机位置取消部署
+            click_x = random.randint(100, 1180)
+            click_y = random.randint(100, 620)
+            self._controller.post_click(click_x, click_y).wait()
+            
+            # 等待5秒，让费用恢复
+            import time
+            time.sleep(5.0)
+        
         # 点击干员头像后，游戏自动标亮可放置的地点
         # 截图
-        image = self._controller.post_screencap().wait()
+        image = self._controller.post_screencap().wait().get()
         
         # 找到绿色高亮区域的中心点
         green_center = find_green_highlight(image)
@@ -98,19 +122,31 @@ class DeployOperatorActions:
             end_x, end_y = green_center
             self._controller.post_swipe(start_x, start_y, end_x, end_y, 500).wait()
             
+            # 等待一小段时间，让cancel_ui显示出来
+            import time
+            time.sleep(0.5)
+            
+            # 截图（包含cancel_ui）
+            image = self._controller.post_screencap().wait().get()
+            
             # 使用模板匹配识别点击取消UI
             # 点击取消UI的位置是固定的，所以可以使用模板匹配
-            cancel_ui_template_path = "data/templates/cancel_ui.png"
-            cancel_ui_result = self._template_matcher.match(image, cancel_ui_template_path, threshold=0.7)
+            cancel_ui_template_path = str(ROOT / "data" / "templates" / "cancel_ui.png")
+            cancel_ui_result = self._template_matcher.match(image, cancel_ui_template_path, threshold=0.4)
+            
+            # 等待2秒，让用户看到结果
+            time.sleep(2.0)
             
             if cancel_ui_result is not None:
                 # 成功拖拽到放置区域
                 return (True, green_center)
             else:
-                # 失败拖拽到放置区域
+                # 失败拖拽到放置区域，可能是费用不足或取消UI未显示
+                cancel_deployment_and_wait()
                 return (False, None)
         else:
             # 未找到绿色高亮区域
+            cancel_deployment_and_wait()
             return (False, None)
     
     def action3_adjust_direction(self, center_position: Tuple[int, int]) -> Tuple[int, Tuple[int, int]]:
@@ -133,7 +169,7 @@ class DeployOperatorActions:
         direction = random.choice([0, 1, 2, 3])
         
         # 滑动距离
-        distance = 50
+        distance = 200
         
         # 计算滑动结束位置
         x, y = center_position
@@ -169,7 +205,7 @@ class DeployOperatorActions:
         time.sleep(0.5)
         
         # 截图
-        image = self._controller.post_screencap().wait()
+        image = self._controller.post_screencap().wait().get()
         
         # 使用YOLO识别干员血条
         # 干员血条的位置在部署位置稍微偏移一点点
