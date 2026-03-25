@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import sys
+import time
+import cv2
+import numpy as np
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
-import numpy as np
 from gymnasium import Env
-from gymnasium.spaces import Box, Discrete
+from gymnasium.spaces import Box, MultiDiscrete
 
 # 添加项目路径到sys.path
 ROOT = Path(__file__).resolve().parent.parent
@@ -14,248 +16,159 @@ sys.path.insert(0, str(ROOT / "ai-plugins"))
 sys.path.insert(0, str(ROOT / "rl-environment"))
 
 from yolo_recognizer import YoloRecognizer
-from template_matcher import TemplateMatcher
 from actions import DeployOperatorActions
 
 
 class GameEnv(Env):
     """
-    部署干员的RL环境
-    
-    实现Gymnasium接口，用于训练RL模型
+    网格化的明日方舟 RL 部署环境
+    完全移除了固定流程，交由模型输出多维坐标
     """
-    
-    def __init__(self, controller: Any, yolo_recognizer: YoloRecognizer, template_matcher: TemplateMatcher) -> None:
+
+    def __init__(self, controller: Any, yolo_recognizer: YoloRecognizer, template_matcher: Any = None) -> None:
         """
         初始化RL环境
-        
+
         Args:
             controller: MaaFramework控制器
             yolo_recognizer: YOLO识别器
-            template_matcher: 模板匹配识别器
+            template_matcher: 预留接口，已弃用
         """
         super().__init__()
-        
+
         self._controller = controller
         self._yolo_recognizer = yolo_recognizer
-        self._template_matcher = template_matcher
-        
-        # 创建部署干员动作
-        self._deploy_actions = DeployOperatorActions(controller, yolo_recognizer, template_matcher)
-        
-        # 定义状态空间（observation space）
-        # - 0: 是否成功点击干员头像（0/1）
-        # - 1: 是否成功拖拽到放置区域（0/1）
-        # - 2: 是否成功部署（0/1）
-        # - 3: 当前部署干员的进展（0-3）
-        # - 4: 当前时间步（0-∞）
+        self._deploy_actions = DeployOperatorActions(controller)
+
+        # 1. 新的状态空间 (Observation Space) - 彩色图像 RGB
+        # 宽 128, 高 72 (16:9比例), 通道数 3
+        self.WIDTH = 128
+        self.HEIGHT = 72
+        self.CHANNELS = 3
+
         self.observation_space = Box(
-            low=np.array([0, 0, 0, 0, 0], dtype=np.float32),
-            high=np.array([1, 1, 1, 3, np.inf], dtype=np.float32),
-            dtype=np.float32
+            low=0, high=255,
+            shape=(self.CHANNELS, self.HEIGHT, self.WIDTH),  # SB3 CNN 要求的形状是 Channel-First
+            dtype=np.uint8
         )
-        
-        # 定义动作空间（action space）
-        # - 0: 点击干员头像
-        # - 1: 拖拽到放置区域
-        # - 2: 调整方向
-        # - 3: 松手完成部署
-        self.action_space = Discrete(4)
-        
-        # 初始化状态
-        self.state = np.zeros(5, dtype=np.float32)
+
+        # 2. 新的动作空间 (Action Space) - MultiDiscrete
+        # [选干员位(0-9), 网格X(0-9), 网格Y(0-4), 朝向(0-3)]
+        self.action_space = MultiDiscrete([10, 10, 5, 4])
+
         self.time_step = 0
-        
-        # 记录部署干员的进展
-        self._deployment_progress = 0  # 0: 未开始, 1: 已点击干员头像, 2: 已拖拽到放置区域, 3: 已成功部署
-        self._action1_success = False  # 是否成功点击干员头像
-        self._action2_success = False  # 是否成功拖拽到放置区域
-        self._action3_direction = None  # 动作3选择的方向
-        self._action4_success = False  # 是否成功部署
-        
-        # 记录位置
-        self._operator_position = None  # 干员位置
-        self._deployment_position = None  # 放置区域中心点
-    
+        self.max_time_steps = 30 # 最大部署步数
+
+    def _get_state_and_raw_image(self) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        获取缩小后的状态输入，以及用于检测血条的原图
+        """
+        try:
+            if self._controller is None:
+                return np.zeros((self.CHANNELS, self.HEIGHT, self.WIDTH), dtype=np.uint8), None
+
+            # 获取原图
+            raw_image = self._controller.post_screencap().wait().get()
+
+            # 缩小尺寸，用于 RL 模型输入
+            state = cv2.resize(raw_image, (self.WIDTH, self.HEIGHT))
+
+            # 颜色转换：MAA 截图默认可能是 BGR，转换为 RGB 以获得真实色彩特征
+            state = cv2.cvtColor(state, cv2.COLOR_BGR2RGB)
+
+            # 转换为 SB3 要求的格式 (Channels, Height, Width)
+            state = np.transpose(state, (2, 0, 1))
+
+            return state, raw_image
+        except Exception as e:
+            print(f"[ERROR] 获取状态失败: {e}")
+            return np.zeros((self.CHANNELS, self.HEIGHT, self.WIDTH), dtype=np.uint8), None
+
     def reset(self, seed: int = None, options: Dict[str, Any] = None) -> Tuple[np.ndarray, Dict[str, Any]]:
-        """
-        重置环境
-        
-        Returns:
-            observation: 初始状态
-            info: 额外信息
-        """
         super().reset(seed=seed)
-        
-        # 重置状态
-        self.state = np.zeros(5, dtype=np.float32)
         self.time_step = 0
-        
-        # 重置部署干员的进展
-        self._deployment_progress = 0
-        self._action1_success = False
-        self._action2_success = False
-        self._action3_direction = None
-        self._action4_success = False
-        
-        return self.state, {}
-    
-    def step(self, action: int) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:
-        """
-        执行动作
-        
-        Args:
-            action: 动作（0-3）
-                0: 点击干员头像
-                1: 拖拽到放置区域
-                2: 调整方向
-                3: 松手完成部署
-        
-        Returns:
-            observation: 新状态
-            reward: 奖励
-            terminated: 是否终止
-            truncated: 是否截断
-            info: 额外信息
-        """
-        # 类型转换：如果action是str，转换为int
-        if isinstance(action, str):
-            action = int(action)
-        
+        state, _ = self._get_state_and_raw_image()
+        return state, {}
+
+    def step(self, action: np.ndarray) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:
         self.time_step += 1
-        self.state[4] = self.time_step
-        
-        reward = 0.0
         terminated = False
         truncated = False
         info = {}
-        
-        # 执行动作
-        if action == 0:  # 点击干员头像
-            success, position = self._deploy_actions.action1_click_operator_avatar()
-            self._action1_success = success
-            self.state[0] = 1.0 if success else 0.0
-            
-            if success:
-                # 成功点击干员头像，更新部署进展
-                self._deployment_progress = 1
-                self.state[3] = 1.0
-                reward = 1.0
-                # 记录干员位置
-                self._operator_position = position
-            else:
-                # 失败点击干员头像
-                reward = -0.1
-        
-        elif action == 1:  # 拖拽到放置区域
-            if self._deployment_progress < 1:
-                # 还未点击干员头像，不能拖拽
-                reward = -0.1
-            else:
-                # 获取干员位置
-                operator_position = self._get_operator_position()
-                if operator_position:
-                    success, position = self._deploy_actions.action2_drag_to_deployment_area(operator_position)
-                    self._action2_success = success
-                    self.state[1] = 1.0 if success else 0.0
-                    
-                    if success:
-                        # 成功拖拽到放置区域，更新部署进展
-                        self._deployment_progress = 2
-                        self.state[3] = 2.0
-                        reward = 1.0
-                        # 记录放置区域中心点
-                        self._deployment_position = position
-                    else:
-                        # 失败拖拽到放置区域，重置到初始状态
-                        self._deployment_progress = 0  # 重置
-                        self.state[3] = 0.0
-                        self._action1_success = False  # 重置
-                        self.state[0] = 0.0
-                        self._action2_success = False
-                        self.state[1] = 0.0
-                        self._operator_position = None
-                        reward = -0.5  # 更大的惩罚
-                else:
-                    # 未获取到干员位置
-                    reward = -0.1
-        
-        elif action == 2:  # 调整方向
-            if self._deployment_progress < 2:
-                # 还未拖拽到放置区域，不能调整方向
-                reward = -0.1
-            else:
-                # 获取放置区域中心点
-                deployment_position = self._get_deployment_position()
-                if deployment_position:
-                    direction, _ = self._deploy_actions.action3_adjust_direction(deployment_position)
-                    self._action3_direction = direction
-                    # 调整方向不影响奖励
-                    reward = 0.0
-                else:
-                    # 未获取到放置区域中心点
-                    reward = -0.1
-        
-        elif action == 3:  # 松手完成部署
-            if self._deployment_progress < 2:
-                # 还未拖拽到放置区域，不能松手完成部署
-                reward = -0.1
-            else:
-                # 获取放置区域中心点
-                deployment_position = self._get_deployment_position()
-                if deployment_position:
-                    success = self._deploy_actions.action4_release_to_deploy(deployment_position)
-                    self._action4_success = success
-                    self.state[2] = 1.0 if success else 0.0
-                    
-                    if success:
-                        # 成功部署，更新部署进展
-                        self._deployment_progress = 3
-                        self.state[3] = 3.0
-                        reward = 1.0
-                        terminated = True  # 成功部署，终止
-                    else:
-                        # 失败部署
-                        reward = -0.1
-                else:
-                    # 未获取到放置区域中心点
-                    reward = -0.1
-        
+
+        print(f"\n[STEP {self.time_step}] 开始执行动作...")
+
+        # 1. 动作执行前：截图并识别血条数量
+        state_before, img_before = self._get_state_and_raw_image()
+        hp_bars_before = 0
+        if img_before is not None:
+            # 寻找当前屏幕上有多少个干员的血条
+            detections = self._yolo_recognizer.detect(img_before, conf=0.25)
+            hp_bars_before = sum(1 for d in detections if d.label == "operator_hp_bar")
+
+        # 2. 调用 actions.py，把离散的动作数组变成 MAA 的物理操作
+        self._deploy_actions.execute_deployment(action)
+
+        # 3. 等待游戏响应（拖拽动画和特效时间）
+        time.sleep(1.5)
+
+        # 4. 动作执行后：截图并计算奖励
+        state_after, img_after = self._get_state_and_raw_image()
+        hp_bars_after = 0
+        if img_after is not None:
+            detections = self._yolo_recognizer.detect(img_after, conf=0.25)
+            hp_bars_after = sum(1 for d in detections if d.label == "operator_hp_bar")
+
+        # 5. 核心逻辑：YOLO 血条判定法 + 像素残差判别非法操作
+        reward = 0.0
+        print(f"[REWARD] 执行前血条数: {hp_bars_before} -> 执行后血条数: {hp_bars_after}")
+
+        if hp_bars_after > hp_bars_before:
+            # 【奖励情况 1：干员部署成功】
+            # 屏幕上的干员血条增多了，说明模型成功地将可用干员拖到了合法高亮格子上
+            reward = 10.0
+            print("[REWARD] 恭喜！成功部署干员。奖励 +10.0")
         else:
-            # 未知动作
-            reward = -0.1
-        
-        # 更新info
-        info = {
-            "deployment_progress": self._deployment_progress,
-            "action1_success": self._action1_success,
-            "action2_success": self._action2_success,
-            "action3_direction": self._action3_direction,
-            "action4_success": self._action4_success,
-            "time_step": self.time_step
-        }
-        
-        # 判断是否截断（超过最大时间步）
-        max_time_steps = 1000  # 增加最大时间步数
-        if self.time_step >= max_time_steps:
+            # 如果血条没变，说明部署失败。我们计算一下动作前后的图像差异 (MSE)
+            if img_before is not None and img_after is not None:
+                # 转灰度算残差，加速计算
+                gray_before = cv2.cvtColor(img_before, cv2.COLOR_BGR2GRAY)
+                gray_after = cv2.cvtColor(img_after, cv2.COLOR_BGR2GRAY)
+                mse = np.mean((gray_after.astype("float") - gray_before.astype("float")) ** 2)
+
+                print(f"[REWARD] 部署失败，计算前后帧 MSE (均方误差) = {mse:.2f}")
+
+                # 如果画面差异极小（比如 < 15.0），说明拖拽后弹回去了，没有任何反应
+                if mse < 15.0:
+                    # 【奖励情况 2：非法操作/无脑乱点】
+                    reward = -1.0
+                    print("[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0")
+                else:
+                    # 【奖励情况 3：未部署成功，但有特效在动 (正常战斗状态)】
+                    reward = 0.1
+                    print("[REWARD] 游戏继续，常规存活。奖励 +0.1")
+
+        # 6. 锚点检测（判断战斗是否结束，比如跳转到了结算界面）
+        # 如果获取到了原图，我们截取右上角固定位置的一小块作为“战斗内标志位”
+        if img_after is not None:
+            # 截取右上角 (比如设置按钮周围区域)
+            h, w, _ = img_after.shape
+            anchor_region = img_after[0:40, w-40:w]  # 40x40区域
+            avg_brightness = np.mean(anchor_region)
+
+            # 如果亮度低于极低阈值（黑屏或者暗场），判定结束
+            if avg_brightness < 10.0:
+                print(f"[ENV] 战斗画面锚点亮度过低 ({avg_brightness:.1f})，判定战斗结束。")
+                terminated = True
+
+        # 强制截断保护
+        if self.time_step >= self.max_time_steps:
             truncated = True
-        
-        return self.state, reward, terminated, truncated, info
-    
-    def _get_operator_position(self) -> Tuple[int, int] | None:
-        """
-        获取干员位置
-        
-        Returns:
-            (x, y): 干员位置，如果未获取到则返回None
-        """
-        return self._operator_position
-    
-    def _get_deployment_position(self) -> Tuple[int, int] | None:
-        """
-        获取放置区域中心点
-        
-        Returns:
-            (x, y): 放置区域中心点，如果未获取到则返回None
-        """
-        return self._deployment_position
+            print(f"[ENV] 达到最大步数 ({self.max_time_steps})，终止回合。")
+
+        info = {
+            "hp_bars": hp_bars_after,
+            "reward_given": reward
+        }
+
+        return state_after, reward, terminated, truncated, info

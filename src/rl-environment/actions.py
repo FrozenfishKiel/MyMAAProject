@@ -1,271 +1,88 @@
 from __future__ import annotations
 
 import sys
+import time
 from pathlib import Path
-import random
-from typing import Optional, Tuple, Dict, Any
-
-# 添加项目路径到sys.path
-ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(ROOT / "src" / "ai-plugins"))
-sys.path.insert(0, str(ROOT / "src" / "rl-environment"))
-
-from yolo_recognizer import YoloRecognizer, Detection
-from template_matcher import TemplateMatcher
-from green_highlight import find_green_highlight
-
+from typing import Any
+import numpy as np
 
 class DeployOperatorActions:
     """
-    部署干员的动作实现
-    
-    包含4个动作：
-    1. 点击干员头像
-    2. 拖拽到放置区域
-    3. 调整方向
-    4. 松手完成部署
+    负责将 RL 模型的离散网格动作，映射为 MAA 控制器的底层坐标操作 (点击/滑动)
     """
-    
-    def __init__(self, controller: Any, yolo_recognizer: YoloRecognizer, template_matcher: TemplateMatcher) -> None:
+
+    def __init__(self, controller: Any) -> None:
         """
-        初始化部署干员动作
-        
+        初始化部署执行器
+
         Args:
             controller: MaaFramework控制器
-            yolo_recognizer: YOLO识别器
-            template_matcher: 模板匹配识别器
         """
         self._controller = controller
-        self._yolo_recognizer = yolo_recognizer
-        self._template_matcher = template_matcher
-        
-        # 部署区范围：1272 x 116
-        # 左上角坐标：(2, 598)
-        # 右下角坐标：(1274, 714)
-        self._deployment_area = {
-            "x1": 2,
-            "y1": 598,
-            "x2": 1274,
-            "y2": 714
-        }
-    
-    def action1_click_operator_avatar(self) -> Tuple[bool, Optional[Tuple[int, int]]]:
+
+        # 屏幕分辨率假设为标准的 1280x720
+        # 手牌区 (10个干员位) 的坐标范围
+        self.CARD_START_X = 250
+        self.CARD_END_X = 1150
+        self.CARD_Y = 650
+
+        # 战斗网格区 (10列 x 5行) 的坐标范围
+        self.GRID_START_X = 150
+        self.GRID_END_X = 1150
+        self.GRID_START_Y = 150
+        self.GRID_END_Y = 550
+
+        self.GRID_COLS = 10
+        self.GRID_ROWS = 5
+
+        # 计算每个格子的宽高
+        self.CELL_W = (self.GRID_END_X - self.GRID_START_X) // self.GRID_COLS
+        self.CELL_H = (self.GRID_END_Y - self.GRID_START_Y) // self.GRID_ROWS
+
+    def execute_deployment(self, action: np.ndarray) -> None:
         """
-        动作1：点击干员头像
-        
-        在部署区范围内随机点击，通过模板匹配识别干员信息血条
-        
-        Returns:
-            (success, position): 是否成功点击干员头像，干员位置
+        执行部署动作
+        action: [card_idx, grid_x, grid_y, direction]
         """
-        # 在部署区范围内随机点击
-        x = random.randint(self._deployment_area["x1"], self._deployment_area["x2"])
-        y = random.randint(self._deployment_area["y1"], self._deployment_area["y2"])
-        
-        # 点击干员头像
-        self._controller.post_click(x, y).wait()
-        
-        # 等待游戏响应，显示干员信息血条
-        import time
-        time.sleep(0.5)
-        
-        # 截图
-        image = self._controller.post_screencap().wait().get()
-        
-        # 使用模板匹配识别干员信息血条
-        # 干员信息血条的位置是固定的，所以可以使用模板匹配
-        hp_bar_template_path = str(ROOT / "data" / "templates" / "hp_bar.png")
-        hp_bar_result = self._template_matcher.match(image, hp_bar_template_path, threshold=0.4)
-        
-        if hp_bar_result is not None:
-            # 成功点击干员头像
-            return (True, (x, y))
-        else:
-            # 失败点击干员头像
-            return (False, None)
-    
-    def action2_drag_to_deployment_area(self, start_position: Tuple[int, int]) -> Tuple[bool, Optional[Tuple[int, int]]]:
-        """
-        动作2：拖拽到放置区域
-        
-        从干员位置拖拽到绿色高亮区域的中心点
-        
-        Args:
-            start_position: 干员位置 (x, y)
-        
-        Returns:
-            (success, end_position): 是否成功拖拽到放置区域，放置区域中心点
-        """
-        def cancel_deployment_and_wait():
-            """
-            取消部署并等待费用恢复
-            """
-            # 点击随机位置取消部署
-            click_x = random.randint(100, 1180)
-            click_y = random.randint(100, 620)
-            self._controller.post_click(click_x, click_y).wait()
-            
-            # 等待5秒，让费用恢复
-            import time
-            time.sleep(5.0)
-        
-        # 点击干员头像后，游戏自动标亮可放置的地点
-        # 截图
-        image = self._controller.post_screencap().wait().get()
-        
-        # 找到绿色高亮区域的中心点
-        green_center = find_green_highlight(image)
-        
-        if green_center:
-            # 拖拽到绿色高亮区域中心点
-            start_x, start_y = start_position
-            end_x, end_y = green_center
-            self._controller.post_swipe(start_x, start_y, end_x, end_y, 500).wait()
-            
-            # 等待一小段时间，让cancel_ui显示出来
-            import time
+        card_idx = int(action[0])    # 0~9
+        grid_x = int(action[1])      # 0~9
+        grid_y = int(action[2])      # 0~4
+        direction = int(action[3])   # 0:上, 1:下, 2:左, 3:右
+
+        # 1. 计算手牌干员坐标 (平均分布)
+        card_step = (self.CARD_END_X - self.CARD_START_X) // 10
+        cx = self.CARD_START_X + card_idx * card_step + card_step // 2
+        cy = self.CARD_Y
+
+        # 2. 计算目标网格的中心坐标
+        gx = self.GRID_START_X + grid_x * self.CELL_W + self.CELL_W // 2
+        gy = self.GRID_START_Y + grid_y * self.CELL_H + self.CELL_H // 2
+
+        # 3. 计算划定朝向的终点坐标
+        swipe_offset = 150
+        end_x, end_y = gx, gy
+        if direction == 0:   # 上
+            end_y -= swipe_offset
+        elif direction == 1: # 下
+            end_y += swipe_offset
+        elif direction == 2: # 左
+            end_x -= swipe_offset
+        elif direction == 3: # 右
+            end_x += swipe_offset
+
+        print(f"[ACTION] AI决定: 选卡 {card_idx} -> 放入网格({grid_x},{grid_y}) -> 朝向 {direction}")
+        print(f"         坐标映射: 拖拽从({cx},{cy})至({gx},{gy}) -> 方向滑动至({end_x},{end_y})")
+
+        # === 执行 MAA 指令 ===
+        try:
+            # 步骤A：将底部干员卡牌拖拽到目标网格（释放后进入慢动作方向选择阶段）
+            self._controller.post_swipe(cx, cy, gx, gy, duration=500).wait()
+
+            # 等待极短时间让游戏出现方向选择的慢动作 UI
             time.sleep(0.5)
-            
-            # 截图（包含cancel_ui）
-            image = self._controller.post_screencap().wait().get()
-            
-            # 使用模板匹配识别点击取消UI
-            # 点击取消UI的位置是固定的，所以可以使用模板匹配
-            cancel_ui_template_path = str(ROOT / "data" / "templates" / "cancel_ui.png")
-            cancel_ui_result = self._template_matcher.match(image, cancel_ui_template_path, threshold=0.4)
-            
-            # 等待2秒，让用户看到结果
-            time.sleep(2.0)
-            
-            if cancel_ui_result is not None:
-                # 成功拖拽到放置区域
-                return (True, green_center)
-            else:
-                # 失败拖拽到放置区域，可能是费用不足或取消UI未显示
-                cancel_deployment_and_wait()
-                return (False, None)
-        else:
-            # 未找到绿色高亮区域
-            cancel_deployment_and_wait()
-            return (False, None)
-    
-    def action3_adjust_direction(self, center_position: Tuple[int, int]) -> Tuple[int, Tuple[int, int]]:
-        """
-        动作3：调整方向
-        
-        随机选择一个方向（上/下/左/右），滑动选择方向
-        
-        Args:
-            center_position: 放置区域中心点 (x, y)
-        
-        Returns:
-            (direction, end_position): 方向（0-3），滑动结束位置
-                0: 上
-                1: 下
-                2: 左
-                3: 右
-        """
-        # 随机选择一个方向
-        direction = random.choice([0, 1, 2, 3])
-        
-        # 滑动距离
-        distance = 200
-        
-        # 计算滑动结束位置
-        x, y = center_position
-        if direction == 0:  # 上
-            end_position = (x, y - distance)
-        elif direction == 1:  # 下
-            end_position = (x, y + distance)
-        elif direction == 2:  # 左
-            end_position = (x - distance, y)
-        else:  # 右
-            end_position = (x + distance, y)
-        
-        # 滑动选择方向
-        self._controller.post_swipe(x, y, end_position[0], end_position[1], 300).wait()
-        
-        return (direction, end_position)
-    
-    def action4_release_to_deploy(self, center_position: Tuple[int, int]) -> bool:
-        """
-        动作4：松手完成部署
-        
-        松手完成部署，通过干员血条判断是否成功部署
-        
-        Args:
-            center_position: 放置区域中心点 (x, y)
-        
-        Returns:
-            success: 是否成功部署
-        """
-        # 简单松手（不需要额外操作）
-        # 等待一小段时间让游戏响应
-        import time
-        time.sleep(0.5)
-        
-        # 截图
-        image = self._controller.post_screencap().wait().get()
-        
-        # 使用YOLO识别干员血条
-        # 干员血条的位置在部署位置稍微偏移一点点
-        detections = self._yolo_recognizer.detect(image, conf=0.25)
-        operator_hp_bar_detected = any(d.label == "operator_hp_bar" for d in detections)
-        
-        if operator_hp_bar_detected:
-            # 成功部署
-            return True
-        else:
-            # 失败部署
-            return False
-    
-    def deploy_operator(self) -> Dict[str, Any]:
-        """
-        完整的部署干员流程
-        
-        Returns:
-            result: 部署结果
-                - success: 是否成功部署
-                - action1_success: 动作1是否成功
-                - action2_success: 动作2是否成功
-                - action3_direction: 动作3选择的方向
-                - action4_success: 动作4是否成功
-                - operator_position: 干员位置
-                - deployment_position: 放置区域中心点
-        """
-        result = {
-            "success": False,
-            "action1_success": False,
-            "action2_success": False,
-            "action3_direction": None,
-            "action4_success": False,
-            "operator_position": None,
-            "deployment_position": None
-        }
-        
-        # 动作1：点击干员头像
-        action1_success, operator_position = self.action1_click_operator_avatar()
-        result["action1_success"] = action1_success
-        result["operator_position"] = operator_position
-        
-        if not action1_success:
-            return result
-        
-        # 动作2：拖拽到放置区域
-        action2_success, deployment_position = self.action2_drag_to_deployment_area(operator_position)
-        result["action2_success"] = action2_success
-        result["deployment_position"] = deployment_position
-        
-        if not action2_success:
-            return result
-        
-        # 动作3：调整方向
-        action3_direction, _ = self.action3_adjust_direction(deployment_position)
-        result["action3_direction"] = action3_direction
-        
-        # 动作4：松手完成部署
-        action4_success = self.action4_release_to_deploy(deployment_position)
-        result["action4_success"] = action4_success
-        result["success"] = action4_success
-        
-        return result
+
+            # 步骤B：在目标网格上按住，并划向指定方向松手（完成部署）
+            self._controller.post_swipe(gx, gy, end_x, end_y, duration=300).wait()
+
+        except Exception as e:
+            print(f"[ACTION ERROR] 动作执行异常: {e}")
