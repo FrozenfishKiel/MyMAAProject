@@ -5,6 +5,31 @@ import sys
 from pathlib import Path
 from typing import Dict, Any
 import numpy as np
+import datetime
+
+# --- 配置双重日志输出 ---
+class Logger(object):
+    def __init__(self, filename="training_log.txt"):
+        self.terminal = sys.stdout
+        self.log = open(filename, "a", encoding="utf-8")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)
+        self.log.flush() # 强制写入硬盘，防止崩溃丢失
+
+    def flush(self):
+        self.terminal.flush()
+
+# 获取当前时间生成带时间戳的日志文件
+log_dir = Path(r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\logs")
+log_dir.mkdir(parents=True, exist_ok=True)
+timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+log_file = log_dir / f"training_{timestamp}.log"
+
+# 重定向标准输出
+sys.stdout = Logger(str(log_file))
+# -------------------------
 
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import BaseCallback
@@ -19,6 +44,7 @@ sys.path.insert(0, str(ROOT / "ai-plugins"))
 sys.path.insert(0, str(ROOT / "rl-environment"))
 
 from yolo_recognizer import YoloRecognizer
+from template_matcher import TemplateMatcher
 from game_env import GameEnv
 
 def check_pause_training() -> bool:
@@ -100,9 +126,13 @@ def train_rl_model(
     yolo_recognizer.load()
     print("[SUCCESS] YOLO 模型加载完成!")
 
+    print("[INFO] 正在加载模板匹配器...")
+    template_matcher = TemplateMatcher(controller)
+    template_matcher.load()
+    print("[SUCCESS] 模板匹配器加载完成!")
+
     print("[INFO] 正在创建强化学习环境...")
-    # 这里我们移除了 template_matcher，因为新的环境不需要它了
-    env = DummyVecEnv([lambda: GameEnv(controller, yolo_recognizer)])
+    env = DummyVecEnv([lambda: GameEnv(controller, yolo_recognizer, template_matcher)])
     print("[SUCCESS] 环境创建完成!")
 
     callback = TrainingCallback(verbose=verbose, check_pause_func=check_pause_training)

@@ -1,15 +1,18 @@
 @echo off
-title [RL] Arknights End-to-End PPO Training
+chcp 65001 > /dev/null
+title [RL] MaAutomaton Training
+cd /d D:\BiShe\MaAutomaton-main\MaAutomaton-main
 
-echo ===================================================
-echo   Starting maa-auto virtual environment and training...
-echo ===================================================
+echo ==========================================
+echo Starting MaAutomaton RL Training Script
+echo ==========================================
 echo.
+echo Activating anaconda environment...
+call D:\Anaconda3\Scripts\activate.bat D:\Anaconda3\envs\maa-auto
 
-D:\Anaconda3\envs\maa-auto\python.exe D:\BiShe\MaAutomaton-main\MaAutomaton-main\src\rl-training\train.py
+echo Running training...
+python src\rl-training\train.py
 
 echo.
-echo ===================================================
-echo   Training finished or interrupted by user (Ctrl+C).
-echo ===================================================
+echo Training process finished or exited.
 pause
