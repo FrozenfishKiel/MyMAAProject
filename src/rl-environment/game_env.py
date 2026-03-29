@@ -88,7 +88,7 @@ class GameEnv(Env):
             print(f"[ERROR] 获取状态失败: {e}")
             return np.zeros((self.CHANNELS, self.HEIGHT, self.WIDTH), dtype=np.uint8), None
 
-    def _click_template(self, image: np.ndarray, template_name: str, threshold: float = 0.6) -> bool:
+    def _click_template(self, image: np.ndarray, template_name: str, threshold: float = 0.6, roi: Tuple[int, int, int, int] = None, check_only: bool = False) -> bool:
         """
         在画面中寻找指定的模板图片，并点击它的中心点。
         """
@@ -101,20 +101,22 @@ class GameEnv(Env):
             print(f"[WARN] 找不到重启模板文件: {template_path}，跳过点击。")
             return False
 
-        result = self._template_matcher.match(image, template_path, threshold=threshold)
+        result = self._template_matcher.match(image, template_path, threshold=threshold, roi=roi)
         if result is not None:
             # 计算中心点坐标
             x1, y1, x2, y2 = result.box_xyxy
             cx = int((x1 + x2) / 2)
             cy = int((y1 + y2) / 2)
-            print(f"[RESET] 找到 [{template_name}] (置信度 {result.confidence:.2f} >= {threshold})，点击 ({cx}, {cy})")
-            self._controller.post_click(cx, cy).wait()
+
+            if check_only:
+                print(f"[RESET] 找到 [{template_name}] (置信度 {result.confidence:.2f} >= {threshold})，(仅检测，不点击)")
+            else:
+                print(f"[RESET] 找到 [{template_name}] (置信度 {result.confidence:.2f} >= {threshold})，点击 ({cx}, {cy})")
+                self._controller.post_click(cx, cy).wait()
             return True
         else:
-            # 增加一行调试信息，让我们知道它到底为什么没找到（是根本没图，还是置信度太低被拒了）
-            # 由于 template_matcher.match 内部如果低于 threshold 会直接返回 None，
-            # 我们这里就简单提示一下在当前画面没匹配上这个模板。
-            # print(f"[DEBUG] 当前画面未能匹配上 [{template_name}] (要求阈值 {threshold})")
+            # 开启这行调试信息，让我们可以看到它确实在找，只是没找到（或者置信度太低）
+            print(f"[DEBUG] 未匹配 [{template_name}] (要求阈值 {threshold})")
             pass
         return False
 
@@ -167,31 +169,49 @@ class GameEnv(Env):
                 time.sleep(1)
                 continue
 
+            # --- 逆向优先级状态机 ---
+            # 逻辑：倒序检查，从最接近“进入战斗”的界面开始匹配。
+            # 如果在编队界面，由于匹配了 start_action，它就不会去试图寻找 stage_1_7，解决了你的死循环问题。
+
+            # 动态获取画面尺寸以计算 ROI (Region of Interest)
+            h, w = image.shape[:2]
+
             # 状态1：检测是否已经进入战斗（看到齿轮标志）
-            if self._click_template(image, "pause_gear", threshold=0.7):
+            # ROI: 屏幕右上角区域 [宽 70%~100%, 高 0%~30%]
+            gear_roi = (int(w * 0.7), 0, w, int(h * 0.3))
+
+            # 使用 check_only=True 仅仅检测，不点击它
+            if self._click_template(image, "pause_gear", threshold=0.60, roi=gear_roi, check_only=True):
                 print("[RESET] ✅ 检测到战斗画面右上角齿轮，重启成功！")
                 in_battle = True
                 # 进入战斗后，稍微等一等动画播完再交还控制权给 AI
                 time.sleep(4)
                 break
 
-            # 状态2：如果在地图选关界面，点击 "1-7" 关卡图标
-            # 注意：如果截图带有背景杂色，0.75 可能太高了。我们降低一点，防止它在这一步无限卡死。
-            if self._click_template(image, "stage_1_7", threshold=0.6):
-                print("[RESET] 点击关卡 1-7 图标")
-                time.sleep(1.5)
+            # 状态2：如果在干员编队页，点击红色的“开始行动”
+            # ROI: 使用动态比例，限制在右下角 [宽 50%~100%, 高 40%~100%]，和演习区域完全对齐
+            start_roi = (int(w * 0.75), int(h * 0.4), w, h)
+            if self._click_template(image, "start_action", threshold=0.55, roi=start_roi):
+                print("[RESET] 点击开始行动，进入加载...")
+                time.sleep(5) # 点击开始行动后，加载时间较长
                 continue
 
             # 状态3：在关卡详情页，点击“演习”
-            if self._click_template(image, "practice", threshold=0.6):
+            # ROI: 屏幕右半边偏下区域 [宽 50%~100%, 高 40%~100%]
+            practice_roi = (int(w * 0.3), int(h * 0.75), w, h)
+            if self._click_template(image, "practice", threshold=0.42, roi=practice_roi):
                 print("[RESET] 点击演习按钮")
-                time.sleep(1.5)
+                time.sleep(2)
                 continue
 
-            # 状态4：在干员编队页，点击红色的“开始行动”
-            if self._click_template(image, "start_action", threshold=0.6):
-                print("[RESET] 点击开始行动，进入加载...")
-                time.sleep(5) # 点击开始行动后，加载时间较长
+            # 状态4：如果在地图选关界面，点击 "1-7" 关卡图标
+            # ROI: 听你的！限制在屏幕中间区域，避开边缘的UI杂色干扰。
+            # [宽 20%~80%, 高 20%~80%]，这样就屏蔽了左右两侧的干员立绘。
+            # 并且把阈值降回 0.48，这样它就能轻松识别上去了！
+            stage_roi = (int(w * 0.2), int(h * 0.2), int(w * 0.8), int(h * 0.8))
+            if self._click_template(image, "stage_1_7", threshold=0.48, roi=stage_roi):
+                print("[RESET] 点击关卡 1-7 图标")
+                time.sleep(2)
                 continue
 
             # 状态5：如果在战斗中，由于某种原因触发了 reset（比如达到了强制的最大步数）
@@ -204,6 +224,7 @@ class GameEnv(Env):
             print(f"[RESET] 尝试跳过动画/寻找入口... (尝试 {attempts}/{max_attempts})")
             self._controller.post_click(640, 600).wait()
             time.sleep(1.5)
+
 
         if attempts >= max_attempts:
             print("[ERROR] 自动重启关卡失败！陷入死循环，请检查模拟器界面是否异常！")
@@ -336,10 +357,7 @@ class GameEnv(Env):
                 else:
                     self.consecutive_missing_gear = 0
 
-        # 优先级 3：连续失能超时
-        if not terminated and self.consecutive_fast_fails >= 20:
-            print(f"[ENV] 🚨 优先级 3 触发：连续 {self.consecutive_fast_fails} 次操作无效被拦截，判定卡死或游戏已结束！")
-            terminated = True
+ 
 
         # 强制截断保护 (已移除步数限制)
         # if self.time_step >= self.max_time_steps:

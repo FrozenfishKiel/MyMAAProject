@@ -73,35 +73,88 @@ class TemplateMatcher:
             image = bgr_image[y1:y2, x1:x2]
         else:
             image = bgr_image
-        
-        # 转换为灰度图像
-        image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
-        
-        # 模板匹配
-        result = cv2.matchTemplate(image_gray, template_gray, cv2.TM_CCOEFF_NORMED)
-        
-        # 找到最佳匹配位置
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-        
-        # 如果匹配值小于阈值，返回None
-        if max_val < threshold:
+
+        # === 新增：保存裁剪后的图像供调试（覆盖式） ===
+        try:
+            from pathlib import Path
+            import os
+            # logs 目录在项目根目录下
+            debug_dir = Path(__file__).resolve().parent.parent.parent / "logs" / "roi_debug"
+            debug_dir.mkdir(parents=True, exist_ok=True)
+
+            # 提取模板名字作为文件名
+            template_name_only = str(template_path).replace('\\', '/').split('/')[-1].split('.')[0]
+            debug_img_path = str(debug_dir / f"{template_name_only}_roi.png")
+
+            # 保存这张将被用于实际匹配的图
+            cv2.imwrite(debug_img_path, image)
+        except Exception as e:
+            print(f"[TemplateMatcher] 保存 debug 图片失败: {e}")
+        # =============================================
+
+        # === 新增：多尺度金字塔匹配 (Multi-Scale Matching) ===
+        # 考虑到模拟器截图可能和模板截图存在细微的比例差异
+        # 我们对输入图像进行几次微小的缩放，取最高的分数
+        best_max_val = -1.0
+        best_max_loc = None
+        best_scale = 1.0
+
+        # 稍微拉宽尺度范围，测试5个微调尺寸 (90% 到 110%)
+        scales = [1.0, 0.95, 1.05, 0.90, 1.10]
+
+        for scale in scales:
+            # 根据尺度缩放图像（如果不等于 1.0）
+            if scale != 1.0:
+                scaled_w = int(image.shape[1] * scale)
+                scaled_h = int(image.shape[0] * scale)
+                # 如果缩放后的图像比模板还小，就跳过这个尺度
+                if scaled_h < template.shape[0] or scaled_w < template.shape[1]:
+                    continue
+                scaled_image = cv2.resize(image, (scaled_w, scaled_h))
+            else:
+                scaled_image = image
+
+            # 转换为灰度图像
+            image_gray = cv2.cvtColor(scaled_image, cv2.COLOR_BGR2GRAY)
+            template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+
+            # 模板匹配
+            res = cv2.matchTemplate(image_gray, template_gray, cv2.TM_CCOEFF_NORMED)
+            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+
+            if max_val > best_max_val:
+                best_max_val = max_val
+                best_max_loc = max_loc
+                best_scale = scale
+
+        # 将最佳分数和它的尺度打印出来
+        template_name = str(template_path).replace('\\', '/').split('/')[-1]
+        print(f"[TemplateMatcher] {template_name} -> max conf: {best_max_val:.3f} (needs {threshold}, scale {best_scale})")
+
+        # 如果最佳匹配值仍小于阈值，返回None
+        if best_max_val < threshold:
             return None
-        
-        # 计算匹配框的位置
+
+        # 计算匹配框的位置 (需要根据尺度反向还原坐标)
         h, w = template_gray.shape
-        top_left = max_loc
+        # 把匹配到的坐标，除以它当时的尺度，还原回我们在原始 image 上的坐标
+        orig_x = int(best_max_loc[0] / best_scale)
+        orig_y = int(best_max_loc[1] / best_scale)
+        orig_w = int(w / best_scale)
+        orig_h = int(h / best_scale)
+
+        top_left = (orig_x, orig_y)
+        bottom_right = (orig_x + orig_w, orig_y + orig_h)
         
         # 如果指定了ROI，需要加上ROI的偏移
         if roi is not None:
             x1, y1, x2, y2 = roi
             top_left = (top_left[0] + x1, top_left[1] + y1)
-        
-        bottom_right = (top_left[0] + w, top_left[1] + h)
-        
+            bottom_right = (bottom_right[0] + x1, bottom_right[1] + y1)
+
         return TemplateMatchResult(
             label=template_path,
-            confidence=float(max_val),
+            confidence=float(best_max_val),
             box_xyxy=(top_left[0], top_left[1], bottom_right[0], bottom_right[1])
         )
     
