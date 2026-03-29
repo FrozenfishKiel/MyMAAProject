@@ -92,69 +92,70 @@ class TemplateMatcher:
             print(f"[TemplateMatcher] 保存 debug 图片失败: {e}")
         # =============================================
 
-        # === 新增：多尺度金字塔匹配 (Multi-Scale Matching) ===
-        # 考虑到模拟器截图可能和模板截图存在细微的比例差异
-        # 我们对输入图像进行几次微小的缩放，取最高的分数
+        # 转换前检查：如果目标图像比模板图像还小，直接匹配失败
+        if image.shape[0] < template.shape[0] or image.shape[1] < template.shape[1]:
+            print(f"[TemplateMatcher] Warning: Template {template_path} is larger than the target image region. Match skipped.")
+            return None
+
+        # 转换为灰度图像
+        image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+
+        # === 算法升级：多尺度特征金字塔匹配 (Multi-Scale Pyramids) ===
+        # 应对模拟器分辨率缩放、UI等比拉伸导致的模板不匹配问题
         best_max_val = -1.0
-        best_max_loc = None
+        best_max_loc = (0, 0)
         best_scale = 1.0
+        best_h, best_w = template_gray.shape
 
-        # 稍微拉宽尺度范围，测试5个微调尺寸 (90% 到 110%)
-        scales = [1.0, 0.95, 1.05, 0.90, 1.10]
+        # 在 0.8 倍到 1.2 倍之间，以 0.05 为步长进行多尺度缩放扫描
+        for scale in np.arange(0.8, 1.25, 0.05):
+            # 缩放模板图
+            resized_w = int(template_gray.shape[1] * scale)
+            resized_h = int(template_gray.shape[0] * scale)
 
-        for scale in scales:
-            # 根据尺度缩放图像（如果不等于 1.0）
-            if scale != 1.0:
-                scaled_w = int(image.shape[1] * scale)
-                scaled_h = int(image.shape[0] * scale)
-                # 如果缩放后的图像比模板还小，就跳过这个尺度
-                if scaled_h < template.shape[0] or scaled_w < template.shape[1]:
-                    continue
-                scaled_image = cv2.resize(image, (scaled_w, scaled_h))
-            else:
-                scaled_image = image
+            # 如果缩放后的模板比目标图像还要大，则跳过这个尺度
+            if resized_w > image_gray.shape[1] or resized_h > image_gray.shape[0]:
+                continue
 
-            # 转换为灰度图像
-            image_gray = cv2.cvtColor(scaled_image, cv2.COLOR_BGR2GRAY)
-            template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+            resized_template = cv2.resize(template_gray, (resized_w, resized_h))
 
-            # 模板匹配
-            res = cv2.matchTemplate(image_gray, template_gray, cv2.TM_CCOEFF_NORMED)
-            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+            # 使用缩放后的模板进行匹配
+            res = cv2.matchTemplate(image_gray, resized_template, cv2.TM_CCOEFF_NORMED)
+            _, max_val, _, max_loc = cv2.minMaxLoc(res)
 
+            # 记录得分最高的尺度
             if max_val > best_max_val:
                 best_max_val = max_val
                 best_max_loc = max_loc
                 best_scale = scale
+                best_h, best_w = resized_h, resized_w
 
-        # 将最佳分数和它的尺度打印出来
+        max_val = best_max_val
+        max_loc = best_max_loc
+
+        # 将实际的最高置信度打印出来，包含最终确定的缩放比例
         template_name = str(template_path).replace('\\', '/').split('/')[-1]
-        print(f"[TemplateMatcher] {template_name} -> max conf: {best_max_val:.3f} (needs {threshold}, scale {best_scale})")
+        print(f"[TemplateMatcher] {template_name} -> max conf: {max_val:.3f} (needs {threshold}, optimal scale: {best_scale:.2f}x)")
 
-        # 如果最佳匹配值仍小于阈值，返回None
-        if best_max_val < threshold:
+        # 如果最高匹配得分依然小于阈值，返回None
+        if max_val < threshold:
             return None
 
-        # 计算匹配框的位置 (需要根据尺度反向还原坐标)
-        h, w = template_gray.shape
-        # 把匹配到的坐标，除以它当时的尺度，还原回我们在原始 image 上的坐标
-        orig_x = int(best_max_loc[0] / best_scale)
-        orig_y = int(best_max_loc[1] / best_scale)
-        orig_w = int(w / best_scale)
-        orig_h = int(h / best_scale)
-
-        top_left = (orig_x, orig_y)
-        bottom_right = (orig_x + orig_w, orig_y + orig_h)
+        # 计算最终匹配框的位置
+        h, w = best_h, best_w
+        top_left = max_loc
         
         # 如果指定了ROI，需要加上ROI的偏移
         if roi is not None:
             x1, y1, x2, y2 = roi
             top_left = (top_left[0] + x1, top_left[1] + y1)
-            bottom_right = (bottom_right[0] + x1, bottom_right[1] + y1)
-
+        
+        bottom_right = (top_left[0] + w, top_left[1] + h)
+        
         return TemplateMatchResult(
             label=template_path,
-            confidence=float(best_max_val),
+            confidence=float(max_val),
             box_xyxy=(top_left[0], top_left[1], bottom_right[0], bottom_right[1])
         )
     

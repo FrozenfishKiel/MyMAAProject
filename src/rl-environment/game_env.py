@@ -181,7 +181,7 @@ class GameEnv(Env):
             gear_roi = (int(w * 0.7), 0, w, int(h * 0.3))
 
             # 使用 check_only=True 仅仅检测，不点击它
-            if self._click_template(image, "pause_gear", threshold=0.60, roi=gear_roi, check_only=True):
+            if self._click_template(image, "pause_gear", threshold=0.70, roi=gear_roi, check_only=True):
                 print("[RESET] ✅ 检测到战斗画面右上角齿轮，重启成功！")
                 in_battle = True
                 # 进入战斗后，稍微等一等动画播完再交还控制权给 AI
@@ -191,7 +191,7 @@ class GameEnv(Env):
             # 状态2：如果在干员编队页，点击红色的“开始行动”
             # ROI: 使用动态比例，限制在右下角 [宽 50%~100%, 高 40%~100%]，和演习区域完全对齐
             start_roi = (int(w * 0.75), int(h * 0.4), w, h)
-            if self._click_template(image, "start_action", threshold=0.55, roi=start_roi):
+            if self._click_template(image, "start_action", threshold=0.45, roi=start_roi):
                 print("[RESET] 点击开始行动，进入加载...")
                 time.sleep(5) # 点击开始行动后，加载时间较长
                 continue
@@ -199,7 +199,7 @@ class GameEnv(Env):
             # 状态3：在关卡详情页，点击“演习”
             # ROI: 屏幕右半边偏下区域 [宽 50%~100%, 高 40%~100%]
             practice_roi = (int(w * 0.3), int(h * 0.75), w, h)
-            if self._click_template(image, "practice", threshold=0.42, roi=practice_roi):
+            if self._click_template(image, "practice", threshold=0.5, roi=practice_roi):
                 print("[RESET] 点击演习按钮")
                 time.sleep(2)
                 continue
@@ -209,7 +209,7 @@ class GameEnv(Env):
             # [宽 20%~80%, 高 20%~80%]，这样就屏蔽了左右两侧的干员立绘。
             # 并且把阈值降回 0.48，这样它就能轻松识别上去了！
             stage_roi = (int(w * 0.2), int(h * 0.2), int(w * 0.8), int(h * 0.8))
-            if self._click_template(image, "stage_1_7", threshold=0.48, roi=stage_roi):
+            if self._click_template(image, "stage_1_7", threshold=0.5, roi=stage_roi):
                 print("[RESET] 点击关卡 1-7 图标")
                 time.sleep(2)
                 continue

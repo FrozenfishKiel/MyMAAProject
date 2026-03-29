@@ -101,6 +101,15 @@ class TrainingCallback(BaseCallback):
             self.current_episode_reward = 0.0
             self.current_episode_length = 0
 
+        # === 新增：保存中间模型 ===
+        # 每隔 100 步（大概 3-4 个回合）自动存一次档，防止训练崩溃或手动停止白跑
+        if self.total_steps > 0 and self.total_steps % 100 == 0:
+            save_path = Path(r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy_latest.zip")
+            save_path.parent.mkdir(parents=True, exist_ok=True)
+            self.model.save(str(save_path))
+            print(f"[SAVE] 自动保存进度 (Step {self.total_steps}) -> {save_path.name}")
+        # ==========================
+
         return True
 
 def train_rl_model(
