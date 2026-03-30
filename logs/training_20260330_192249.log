@@ -1,0 +1,595 @@
+[INFO] 正在查找 ADB 设备...
+[SUCCESS] 连接到设备: MuMu安卓设备-MuMuPlayer12 v5 (127.0.0.1:16384)
+[SUCCESS] 设备握手成功!
+[INFO] 正在加载 YOLO 模型: D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\yolo\best.pt
+       使用设备: cpu
+[SUCCESS] YOLO 模型加载完成!
+[INFO] 正在加载模板匹配器...
+[SUCCESS] 模板匹配器加载完成!
+[INFO] 正在创建强化学习环境...
+[SUCCESS] 环境创建完成!
+[INFO] 正在创建 PPO 模型...
+Using cpu device
+[SUCCESS] PPO 模型创建完成!
+
+================ 开始训练 ===================
+总步数: 5000, 每次更新前收集步数: 128, 批次: 64
+Logging to ./tensorboard_logs/PPO_31
+
+[STEP 1] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(2,2) -> 朝向 0
+         坐标映射: 拖拽从(1105,650)至(400,350) -> 方向滑动至(400,200)
+[ACTION] ⛔ Fast-Fail! 目标网格(2,2)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 1次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 2] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(5,0) -> 朝向 1
+         坐标映射: 拖拽从(1105,650)至(700,190) -> 方向滑动至(700,340)
+[ACTION] ⛔ Fast-Fail! 目标网格(5,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 2次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 3] 开始执行动作...
+[ACTION] AI决定: 选卡 4 -> 放入网格(3,0) -> 朝向 3
+         坐标映射: 拖拽从(655,650)至(500,190) -> 方向滑动至(650,190)
+[ACTION] ⛔ Fast-Fail! 目标网格(3,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 3次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 4] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(2,0) -> 朝向 3
+         坐标映射: 拖拽从(1105,650)至(400,190) -> 方向滑动至(550,190)
+[ACTION] ⛔ Fast-Fail! 目标网格(2,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 4次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 5] 开始执行动作...
+[ACTION] AI决定: 选卡 7 -> 放入网格(9,2) -> 朝向 3
+         坐标映射: 拖拽从(925,650)至(1100,350) -> 方向滑动至(1250,350)
+[ACTION] ⛔ Fast-Fail! 目标网格(9,2)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 5次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 6] 开始执行动作...
+[ACTION] AI决定: 选卡 1 -> 放入网格(1,4) -> 朝向 3
+         坐标映射: 拖拽从(385,650)至(300,510) -> 方向滑动至(450,510)
+[ACTION] ⛔ Fast-Fail! 目标网格(1,4)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 6次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 7] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(4,3) -> 朝向 3
+         坐标映射: 拖拽从(475,650)至(600,430) -> 方向滑动至(750,430)
+[ACTION] ⛔ Fast-Fail! 目标网格(4,3)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 7次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 8] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(6,2) -> 朝向 2
+         坐标映射: 拖拽从(475,650)至(800,350) -> 方向滑动至(650,350)
+[ACTION] ⛔ Fast-Fail! 目标网格(6,2)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 8次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 9] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(5,4) -> 朝向 0
+         坐标映射: 拖拽从(1015,650)至(700,510) -> 方向滑动至(700,360)
+[ACTION] ⛔ Fast-Fail! 目标网格(5,4)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 9次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 10] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(0,0) -> 朝向 0
+         坐标映射: 拖拽从(475,650)至(200,190) -> 方向滑动至(200,40)
+[ACTION] ⛔ Fast-Fail! 目标网格(0,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 10次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.572 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 11] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(2,3) -> 朝向 1
+         坐标映射: 拖拽从(1015,650)至(400,430) -> 方向滑动至(400,580)
+[ACTION] ⛔ Fast-Fail! 目标网格(2,3)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 11次)
+[ENV] 🚨 优先级 1 触发：检测到画面剧烈变化 (MSE=12885.49 > 8000)，判定为场景切换/结算，强制终止回合！
+
+================= 回合结束，开始自动重启关卡 =================
+[TemplateMatcher] pause_gear.png -> max conf: 0.410 (needs 0.7, optimal scale: 0.85x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.132 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.438 (needs 0.5, optimal scale: 1.10x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.407 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 1/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.409 (needs 0.7, optimal scale: 0.85x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.132 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.437 (needs 0.5, optimal scale: 1.10x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.414 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 2/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.409 (needs 0.7, optimal scale: 0.85x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.132 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.436 (needs 0.5, optimal scale: 1.05x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.414 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 3/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.409 (needs 0.7, optimal scale: 0.85x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.132 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.438 (needs 0.5, optimal scale: 1.10x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.414 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 4/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.616 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.061 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.495 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.476 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 5/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.414 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.169 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.542 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.54 >= 0.5)，点击 (765, 674)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.431 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.085 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.456 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.401 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 7/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.408 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.252 (needs 0.45, optimal scale: 0.95x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.602 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.60 >= 0.5)，点击 (658, 668)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.051 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.075 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.380 (needs 0.5, optimal scale: 1.10x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.040 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 9/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.543 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.152 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.439 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.569 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [stage_1_7] (置信度 0.57 >= 0.5)，点击 (832, 442)
+[RESET] 点击关卡 1-7 图标
+[TemplateMatcher] pause_gear.png -> max conf: 0.567 (needs 0.7, optimal scale: 0.85x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.170 (needs 0.45, optimal scale: 0.95x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.561 (needs 0.5, optimal scale: 0.95x)
+[RESET] 找到 [practice] (置信度 0.56 >= 0.5)，点击 (589, 641)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.651 (needs 0.7, optimal scale: 0.85x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.092 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.444 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.557 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [stage_1_7] (置信度 0.56 >= 0.5)，点击 (663, 351)
+[RESET] 点击关卡 1-7 图标
+[TemplateMatcher] pause_gear.png -> max conf: 0.526 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.149 (needs 0.45, optimal scale: 0.85x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.403 (needs 0.5, optimal scale: 1.20x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.511 (needs 0.5, optimal scale: 1.20x)
+[RESET] 找到 [stage_1_7] (置信度 0.51 >= 0.5)，点击 (336, 320)
+[RESET] 点击关卡 1-7 图标
+[TemplateMatcher] pause_gear.png -> max conf: 0.267 (needs 0.7, optimal scale: 0.85x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.078 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.542 (needs 0.5, optimal scale: 1.15x)
+[RESET] 找到 [practice] (置信度 0.54 >= 0.5)，点击 (608, 671)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.523 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.047 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.456 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.722 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [stage_1_7] (置信度 0.72 >= 0.5)，点击 (638, 224)
+[RESET] 点击关卡 1-7 图标
+[TemplateMatcher] pause_gear.png -> max conf: 0.612 (needs 0.7, optimal scale: 1.10x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.100 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.687 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.69 >= 0.5)，点击 (935, 660)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.470 (needs 0.7, optimal scale: 1.05x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.451 (needs 0.45, optimal scale: 0.80x)
+[RESET] 找到 [start_action] (置信度 0.45 >= 0.45)，点击 (1101, 513)
+[RESET] 点击开始行动，进入加载...
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 18/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.511 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.063 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.379 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.411 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 19/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.511 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.063 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.379 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.411 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 20/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.215 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.224 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.373 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.271 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 21/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.211 (needs 0.7, optimal scale: 1.05x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.202 (needs 0.45, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.45)
+[TemplateMatcher] practice.png -> max conf: 0.297 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.277 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 22/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.852 (needs 0.7, optimal scale: 0.80x)
+[RESET] 找到 [pause_gear] (置信度 0.85 >= 0.7)，(仅检测，不点击)
+[RESET] ✅ 检测到战斗画面右上角齿轮，重启成功！
+================= 关卡重启流程结束 =================
+
+--> [回合结束] 第 1 回合 | 奖励: -11.0 | 步数: 11
+
+[STEP 1] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(0,0) -> 朝向 1
+         坐标映射: 拖拽从(475,650)至(200,190) -> 方向滑动至(200,340)
+[ACTION] ⛔ Fast-Fail! 目标网格(0,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 12次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 2] 开始执行动作...
+[ACTION] AI决定: 选卡 6 -> 放入网格(9,1) -> 朝向 1
+         坐标映射: 拖拽从(835,650)至(1100,270) -> 方向滑动至(1100,420)
+[ACTION] ⛔ Fast-Fail! 目标网格(9,1)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 13次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 3] 开始执行动作...
+[ACTION] AI决定: 选卡 4 -> 放入网格(8,1) -> 朝向 3
+         坐标映射: 拖拽从(655,650)至(1000,270) -> 方向滑动至(1150,270)
+[ACTION] ✅ CV校验通过！网格(8,1)具有高亮绿色(像素:323)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 3577.99
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.909 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 4] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(0,1) -> 朝向 2
+         坐标映射: 拖拽从(1015,650)至(200,270) -> 方向滑动至(50,270)
+[ACTION] ⛔ Fast-Fail! 目标网格(0,1)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 1次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 5] 开始执行动作...
+[ACTION] AI决定: 选卡 6 -> 放入网格(9,0) -> 朝向 3
+         坐标映射: 拖拽从(835,650)至(1100,190) -> 方向滑动至(1250,190)
+[ACTION] ⛔ Fast-Fail! 目标网格(9,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 2次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 6] 开始执行动作...
+[ACTION] AI决定: 选卡 6 -> 放入网格(3,2) -> 朝向 1
+         坐标映射: 拖拽从(835,650)至(500,350) -> 方向滑动至(500,500)
+[ACTION] ⛔ Fast-Fail! 目标网格(3,2)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 3次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 7] 开始执行动作...
+[ACTION] AI决定: 选卡 5 -> 放入网格(4,2) -> 朝向 3
+         坐标映射: 拖拽从(745,650)至(600,350) -> 方向滑动至(750,350)
+[ACTION] ⛔ Fast-Fail! 目标网格(4,2)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 4次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.906 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 8] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(4,3) -> 朝向 3
+         坐标映射: 拖拽从(1015,650)至(600,430) -> 方向滑动至(750,430)
+[ACTION] ⛔ Fast-Fail! 目标网格(4,3)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 5次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 9] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(3,0) -> 朝向 3
+         坐标映射: 拖拽从(1015,650)至(500,190) -> 方向滑动至(650,190)
+[ACTION] ✅ CV校验通过！网格(3,0)具有高亮绿色(像素:900)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 187.46
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 6次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 10] 开始执行动作...
+[ACTION] AI决定: 选卡 6 -> 放入网格(8,2) -> 朝向 3
+         坐标映射: 拖拽从(835,650)至(1000,350) -> 方向滑动至(1150,350)
+[ACTION] ✅ CV校验通过！网格(8,2)具有高亮绿色(像素:78)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 123.99
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 7次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 11] 开始执行动作...
+[ACTION] AI决定: 选卡 1 -> 放入网格(3,1) -> 朝向 0
+         坐标映射: 拖拽从(385,650)至(500,270) -> 方向滑动至(500,120)
+[ACTION] ⛔ Fast-Fail! 目标网格(3,1)非绿色高亮(绿像素:1)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 8次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 12] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(4,0) -> 朝向 1
+         坐标映射: 拖拽从(1015,650)至(600,190) -> 方向滑动至(600,340)
+[ACTION] ✅ CV校验通过！网格(4,0)具有高亮绿色(像素:186)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 123.12
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 9次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 13] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(5,1) -> 朝向 1
+         坐标映射: 拖拽从(1015,650)至(700,270) -> 方向滑动至(700,420)
+[ACTION] ✅ CV校验通过！网格(5,1)具有高亮绿色(像素:900)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 1506.24
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 14] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(5,3) -> 朝向 1
+         坐标映射: 拖拽从(475,650)至(700,430) -> 方向滑动至(700,580)
+[ACTION] ✅ CV校验通过！网格(5,3)具有高亮绿色(像素:900)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 750.49
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 15] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(7,0) -> 朝向 1
+         坐标映射: 拖拽从(475,650)至(900,190) -> 方向滑动至(900,340)
+[ACTION] ✅ CV校验通过！网格(7,0)具有高亮绿色(像素:755)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 303.13
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 16] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(9,2) -> 朝向 2
+         坐标映射: 拖拽从(1105,650)至(1100,350) -> 方向滑动至(950,350)
+[ACTION] ⛔ Fast-Fail! 目标网格(9,2)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 1次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 17] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(8,0) -> 朝向 3
+         坐标映射: 拖拽从(1015,650)至(1000,190) -> 方向滑动至(1150,190)
+[ACTION] ⛔ Fast-Fail! 目标网格(8,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 2次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 18] 开始执行动作...
+[ACTION] AI决定: 选卡 0 -> 放入网格(8,2) -> 朝向 1
+         坐标映射: 拖拽从(295,650)至(1000,350) -> 方向滑动至(1000,500)
+[ACTION] ✅ CV校验通过！网格(8,2)具有高亮绿色(像素:78)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 180.30
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 3次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 19] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(3,2) -> 朝向 2
+         坐标映射: 拖拽从(1105,650)至(500,350) -> 方向滑动至(350,350)
+[ACTION] ✅ CV校验通过！网格(3,2)具有高亮绿色(像素:362)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 3153.25
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 20] 开始执行动作...
+[ACTION] AI决定: 选卡 4 -> 放入网格(6,2) -> 朝向 3
+         坐标映射: 拖拽从(655,650)至(800,350) -> 方向滑动至(950,350)
+[ACTION] ✅ CV校验通过！网格(6,2)具有高亮绿色(像素:341)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 3227.18
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 21] 开始执行动作...
+[ACTION] AI决定: 选卡 7 -> 放入网格(2,4) -> 朝向 1
+         坐标映射: 拖拽从(925,650)至(400,510) -> 方向滑动至(400,660)
+[ACTION] ⛔ Fast-Fail! 目标网格(2,4)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 1次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 22] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(7,0) -> 朝向 0
+         坐标映射: 拖拽从(1015,650)至(900,190) -> 方向滑动至(900,40)
+[ACTION] ✅ CV校验通过！网格(7,0)具有高亮绿色(像素:137)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 171.39
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 2次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 23] 开始执行动作...
+[ACTION] AI决定: 选卡 4 -> 放入网格(6,2) -> 朝向 0
+         坐标映射: 拖拽从(655,650)至(800,350) -> 方向滑动至(800,200)
+[ACTION] ✅ CV校验通过！网格(6,2)具有高亮绿色(像素:341)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 130.14
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 3次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 24] 开始执行动作...
+[ACTION] AI决定: 选卡 7 -> 放入网格(2,1) -> 朝向 0
+         坐标映射: 拖拽从(925,650)至(400,270) -> 方向滑动至(400,120)
+[ACTION] ⛔ Fast-Fail! 目标网格(2,1)非绿色高亮(绿像素:2)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 4次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 25] 开始执行动作...
+[ACTION] AI决定: 选卡 1 -> 放入网格(4,0) -> 朝向 3
+         坐标映射: 拖拽从(385,650)至(600,190) -> 方向滑动至(750,190)
+[ACTION] ✅ CV校验通过！网格(4,0)具有高亮绿色(像素:186)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 145.39
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 5次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.909 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 26] 开始执行动作...
+[ACTION] AI决定: 选卡 4 -> 放入网格(6,0) -> 朝向 3
+         坐标映射: 拖拽从(655,650)至(800,190) -> 方向滑动至(950,190)
+[ACTION] ✅ CV校验通过！网格(6,0)具有高亮绿色(像素:425)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 179.46
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 6次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 27] 开始执行动作...
+[ACTION] AI决定: 选卡 7 -> 放入网格(1,1) -> 朝向 3
+         坐标映射: 拖拽从(925,650)至(300,270) -> 方向滑动至(450,270)
+[ACTION] ⛔ Fast-Fail! 目标网格(1,1)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 7次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 28] 开始执行动作...
+[ACTION] AI决定: 选卡 1 -> 放入网格(0,0) -> 朝向 2
+         坐标映射: 拖拽从(385,650)至(200,190) -> 方向滑动至(50,190)
+[ACTION] ✅ CV校验通过！网格(0,0)具有高亮绿色(像素:26)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 119.31
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: 8次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 29] 开始执行动作...
+[ACTION] AI决定: 选卡 4 -> 放入网格(7,1) -> 朝向 2
+         坐标映射: 拖拽从(655,650)至(900,270) -> 方向滑动至(750,270)
+[ACTION] ✅ CV校验通过！网格(7,1)具有高亮绿色(像素:616)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 1234.77
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 30] 开始执行动作...
+[ACTION] AI决定: 选卡 3 -> 放入网格(5,0) -> 朝向 3
+         坐标映射: 拖拽从(565,650)至(700,190) -> 方向滑动至(850,190)
+[ACTION] ⛔ Fast-Fail! 目标网格(5,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 1次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 31] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(0,1) -> 朝向 2
+         坐标映射: 拖拽从(1105,650)至(200,270) -> 方向滑动至(50,270)
+[ACTION] ⛔ Fast-Fail! 目标网格(0,1)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 2次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 32] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(5,0) -> 朝向 2
+         坐标映射: 拖拽从(1105,650)至(700,190) -> 方向滑动至(550,190)
+[ACTION] ✅ CV校验通过！网格(5,0)具有高亮绿色(像素:249)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 1238.64
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 33] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(6,3) -> 朝向 2
+         坐标映射: 拖拽从(475,650)至(800,430) -> 方向滑动至(650,430)
+[ACTION] ⛔ Fast-Fail! 目标网格(6,3)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: 1次)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 34] 开始执行动作...
+[ACTION] AI决定: 选卡 3 -> 放入网格(9,4) -> 朝向 2
+         坐标映射: 拖拽从(565,650)至(1100,510) -> 方向滑动至(950,510)
+[ACTION] ✅ CV校验通过！网格(9,4)具有高亮绿色(像素:728)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 341.64
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 35] 开始执行动作...
+[ACTION] AI决定: 选卡 1 -> 放入网格(8,1) -> 朝向 2
+         坐标映射: 拖拽从(385,650)至(1000,270) -> 方向滑动至(850,270)
+[ACTION] ✅ CV校验通过！网格(8,1)具有高亮绿色(像素:574)，准许拖拽。
+[REWARD] 执行前血条数: 0 -> 执行后血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 3996.10
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)
