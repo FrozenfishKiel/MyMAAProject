@@ -47,10 +47,15 @@ class DeployOperatorActions:
         Returns:
             (是否执行滑动, 目标像素x, 目标像素y)
         """
-        card_idx = int(action[0])    # 0~9
+        card_idx = int(action[0])    # 0~9，如果是10则代表挂机
         grid_x = int(action[1])      # 0~9
         grid_y = int(action[2])      # 0~4
         direction = int(action[3])   # 0:上, 1:下, 2:左, 3:右
+
+        if card_idx == 10:
+            print("[ACTION] AI决定: 💤 挂机 (Skip / Wait for Cost)")
+            # 挂机不需要坐标和拖拽
+            return False, -1, -1
 
         # 1. 计算手牌干员坐标 (平均分布)
         card_step = (self.CARD_END_X - self.CARD_START_X) // 10

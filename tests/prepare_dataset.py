@@ -1,3 +1,4 @@
+
 import os
 import shutil
 import random
@@ -7,6 +8,7 @@ from pathlib import Path
 ROOT = Path(r"D:\BiShe\MaAutomaton-main\MaAutomaton-main")
 # 原始截图和标注的存放地
 SOURCE_DIR = ROOT / "data" / "Source"
+SOURCE_LABELS_DIR = SOURCE_DIR / "labels"
 
 # YOLO 标准数据集结构
 DATASET_DIR = ROOT / "data" / "dataset"
@@ -35,31 +37,31 @@ def main():
                 f.unlink()
 
     # 2. 从 Source 目录扫描所有标注好的数据
-    if not SOURCE_DIR.exists():
-        print(f"❌ 错误: 数据源目录 {SOURCE_DIR} 不存在！请先截图并标注。")
+    if not SOURCE_LABELS_DIR.exists():
+        print(f"❌ 错误: 标签目录 {SOURCE_LABELS_DIR} 不存在！")
         return
 
     # 找到所有 txt 文件 (除了 classes.txt)
-    label_files = [f for f in SOURCE_DIR.glob("*.txt") if f.name != "classes.txt"]
+    label_files = [f for f in SOURCE_LABELS_DIR.glob("*.txt") if f.name != "classes.txt"]
 
     if not label_files:
-        print(f"⚠️ 警告: 在 {SOURCE_DIR} 中没有找到任何 .txt 标注文件！")
+        print(f"⚠️ 警告: 在 {SOURCE_LABELS_DIR} 中没有找到任何 .txt 标注文件！")
         print("请确保你已经在 labelImg 中完成了标注，并且将格式选为了 YOLO。")
         return
 
     # 检查对应的图片文件是否存在
     valid_pairs = []
     for txt_path in label_files:
-        # 尝试匹配同名的 .jpg 或 .png
-        img_path_jpg = txt_path.with_suffix('.jpg')
-        img_path_png = txt_path.with_suffix('.png')
+        # 尝试去 Source 目录找同名的 .jpg 或 .png
+        img_path_jpg = SOURCE_DIR / txt_path.with_suffix('.jpg').name
+        img_path_png = SOURCE_DIR / txt_path.with_suffix('.png').name
 
         if img_path_jpg.exists():
             valid_pairs.append((img_path_jpg, txt_path))
         elif img_path_png.exists():
             valid_pairs.append((img_path_png, txt_path))
         else:
-            print(f"⚠️ 警告: 找到标注文件 {txt_path.name} 但没有找到对应的图片，已跳过。")
+            print(f"⚠️ 警告: 找到标注文件 {txt_path.name} 但在 {SOURCE_DIR} 中没有找到对应的图片，已跳过。")
 
     total_pairs = len(valid_pairs)
     print(f"✅ 找到 {total_pairs} 组有效的数据 (图片+标注)")

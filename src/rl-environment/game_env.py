@@ -55,8 +55,8 @@ class GameEnv(Env):
         )
 
         # 2. 新的动作空间 (Action Space) - MultiDiscrete
-        # [选干员位(0-9), 网格X(0-9), 网格Y(0-4), 朝向(0-3)]
-        self.action_space = MultiDiscrete([10, 10, 5, 4])
+        # [选干员位(0-9，10代表挂机/空过), 网格X(0-9), 网格Y(0-4), 朝向(0-3)]
+        self.action_space = MultiDiscrete([11, 10, 5, 4])
 
         self.time_step = 0
         # 添加一个连续被 CV 阻断的计数器，用于判断战斗是否其实已经结束了
@@ -265,22 +265,53 @@ class GameEnv(Env):
         # 并接收 CV Fast-Fail 阻断标志
         executed_swipe, target_gx, target_gy = self._deploy_actions.execute_deployment(action)
 
-        # 3. 如果成功拖拽，等待游戏响应；如果是被 CV 阻断的，根本不需要等！
-        if executed_swipe:
-            time.sleep(1.5)
-        else:
-            time.sleep(0.1) # 被阻断了，直接跳过漫长的等待，进入下一轮算分
-
-        # 4. 动作执行后：截图并记录所有血条的中心点坐标
-        state_after, img_after = self._get_state_and_raw_image()
+        # 3. 如果成功拖拽，采用多次校验机制防漏检（检查 3 次，间隔 0.5s）
+        deployed_success = False
         hp_bar_centers_after = []
-        if img_after is not None:
-            detections = self._yolo_recognizer.detect(img_after, conf=0.25)
-            for d in detections:
-                if d.label == "operator_hp_bar":
-                    cx = (d.box_xyxy[0] + d.box_xyxy[2]) / 2
-                    cy = (d.box_xyxy[1] + d.box_xyxy[3]) / 2
-                    hp_bar_centers_after.append((cx, cy))
+
+        if executed_swipe:
+            print(f"[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.5s)...")
+            # 给一点初始动画时间
+            time.sleep(1.0)
+
+            for attempt in range(3):
+                time.sleep(0.5)
+                state_after, img_after = self._get_state_and_raw_image()
+                current_hp_bars = []
+
+                if img_after is not None:
+                    detections = self._yolo_recognizer.detect(img_after, conf=0.25)
+                    for d in detections:
+                        if d.label == "operator_hp_bar":
+                            cx = (d.box_xyxy[0] + d.box_xyxy[2]) / 2
+                            cy = (d.box_xyxy[1] + d.box_xyxy[3]) / 2
+                            current_hp_bars.append((cx, cy))
+
+                hp_bar_centers_after = current_hp_bars
+
+                # 校验是否成功
+                for cx_after, cy_after in current_hp_bars:
+                    is_new_hp_bar = True
+                    for cx_before, cy_before in hp_bar_centers_before:
+                        if np.sqrt((cx_after - cx_before)**2 + (cy_after - cy_before)**2) < 50.0:
+                            is_new_hp_bar = False
+                            break
+
+                    if is_new_hp_bar:
+                        dist_to_target = np.sqrt((cx_after - target_gx)**2 + (cy_after - target_gy)**2)
+                        # 容差扩大到 250 像素，涵盖干员下方的血条
+                        if dist_to_target < 250.0:
+                            deployed_success = True
+                            break
+
+                if deployed_success:
+                    print(f"[REWARD] ✅ 第 {attempt+1} 次检测命中目标干员血条！")
+                    break
+                else:
+                    print(f"[REWARD] ❌ 第 {attempt+1} 次未检测到目标血条...")
+        else:
+            time.sleep(0.1) # 被阻断了，直接跳过漫长的等待
+            state_after, img_after = self._get_state_and_raw_image()
 
         # 5. 计算全局 MSE (用于判断画面大变动/转场)
         mse = 0.0
@@ -289,52 +320,38 @@ class GameEnv(Env):
             gray_after = cv2.cvtColor(img_after, cv2.COLOR_BGR2GRAY)
             mse = np.mean((gray_after.astype("float") - gray_before.astype("float")) ** 2)
 
-        # 6. 核心逻辑：YOLO 局部坐标校验法 (解决血条闪烁和全局数量欺骗)
+        # 6. 核心逻辑：结算奖励
         reward = 0.0
-        print(f"[REWARD] 执行前血条数: {len(hp_bar_centers_before)} -> 执行后血条数: {len(hp_bar_centers_after)}")
+        print(f"[REWARD] 执行前血条数: {len(hp_bar_centers_before)} -> 最终确认血条数: {len(hp_bar_centers_after)}")
 
-        deployed_success = False
-        if executed_swipe and img_after is not None:
-            # 遍历部署后的每一个血条
-            for cx_after, cy_after in hp_bar_centers_after:
-                is_new_hp_bar = True
-                # 检查它是否和部署前的某个血条极其接近 (欧氏距离 < 50 像素)
-                for cx_before, cy_before in hp_bar_centers_before:
-                    dist = np.sqrt((cx_after - cx_before)**2 + (cy_after - cy_before)**2)
-                    if dist < 50.0:
-                        is_new_hp_bar = False
-                        break
-
-                # 如果这是一个全新的血条，我们还要检查它是不是在 AI 刚才拖拽的目标网格附近！
-                # (容差 120 像素，因为血条可能在角色头顶偏移)
-                if is_new_hp_bar:
-                    dist_to_target = np.sqrt((cx_after - target_gx)**2 + (cy_after - target_gy)**2)
-                    if dist_to_target < 120.0:
-                        deployed_success = True
-                        break
-
-        if not executed_swipe:
-            # 【奖励情况 0：被 CV Fast-Fail 机制直接阻断】
-            reward = -1.0
-            self.consecutive_fast_fails += 1
-            print(f"[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -1.0 (连续无作为: {self.consecutive_fast_fails}次)")
-        elif deployed_success:
-            # 【奖励情况 1：干员部署成功】
-            reward = 10.0
+        # ================== 修改处的逻辑调整 ==================
+        if executed_swipe == False and target_gx == -1 and target_gy == -1:
+            # 【情况 0：AI 主动选择挂机等费用】
+            # 这个动作其实很有用，所以我们不扣分（或者只给极小的 -0.01 惩罚防止它永远发呆）
+            reward = -0.01
+            # 挂机不算“连续失能无作为”
             self.consecutive_fast_fails = 0
-            print("[REWARD] 恭喜！局部坐标校验成功，干员部署在目标区域。奖励 +10.0")
+            print("[REWARD] 💤 AI 主动挂机等费用，只扣除微小时间惩罚 -0.01")
+        elif deployed_success:
+            # 【最高优先级】：只要局部坐标和新增血条校验通过，无视画面变化情况，立刻给满分！
+            reward = 8.0
+            self.consecutive_fast_fails = 0
+            print("[REWARD] 恭喜！局部坐标校验成功，干员部署在目标区域。奖励 +8.0")
+        elif not executed_swipe:
+            # 【情况 2：被 CV Fast-Fail 机制直接阻断】
+            reward = -0.5
+            self.consecutive_fast_fails += 1
+            print(f"[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -0.5 (连续无作为: {self.consecutive_fast_fails}次)")
         else:
             print(f"[REWARD] 部署失败，计算前后帧 MSE (均方误差) = {mse:.2f}")
             if mse < 300.0:
-                reward = -1.0
-                self.consecutive_fast_fails += 1
-                print(f"[REWARD] 画面未发生明显变化(非法部署)。奖励 -1.0 (连续无作为: {self.consecutive_fast_fails}次)")
-            else:
                 reward = -0.5
-                # 这是最关键的修复：只要画面有明显变化（说明是正常的战斗特效，游戏还在进行），
-                # 哪怕 AI 只是瞎划了一下，我们也必须打断“连续失能”的计数器！
+                self.consecutive_fast_fails += 1
+                print(f"[REWARD] 画面未发生明显变化(非法部署)。奖励 -0.5 (连续无作为: {self.consecutive_fast_fails}次)")
+            else:
+                reward = -0.2
                 self.consecutive_fast_fails = 0
-                print("[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.5 (已清空无作为计数器)")
+                print("[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.2 (已清空无作为计数器)")
 
         # 7. 多重战斗结束判定 (Priority 1 -> 2 -> 3)
         # 优先级 1：MSE 剧烈变化，判定为转场（如跳出结算界面）

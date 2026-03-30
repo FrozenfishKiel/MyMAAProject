@@ -326,7 +326,7 @@ def test_realtime_monitoring(adapter, duration=30, fps=10):
             while True:
                 # 检查是否超时
                 elapsed = time.time() - start_time
-                if elapsed >= duration:
+                if duration > 0 and elapsed >= duration:
                     print(f"⏱️ 监控结束，共运行 {elapsed:.1f} 秒")
                     break
                 
@@ -434,13 +434,23 @@ def test_realtime_monitoring(adapter, duration=30, fps=10):
 
 def main():
     """主函数"""
+    import argparse
+    parser = argparse.ArgumentParser(description="测试模拟器连接和视觉识别功能")
+    parser.add_argument("--monitor-only", action="store_true", help="仅运行无限时长的实时监控")
+    args = parser.parse_args()
+
     print("\n" + "=" * 60)
     print("🚀 开始测试模拟器连接和视觉识别功能")
     print("=" * 60 + "\n")
-    
+
     # 测试 1: 模拟器连接
     adapter = test_device_connection()
-    
+
+    if args.monitor_only:
+        # 仅运行监控，时长设置为0代表无限时长
+        test_realtime_monitoring(adapter, duration=0, fps=10)
+        return
+
     # 测试 2: 截图功能
     image = test_screenshot(adapter)
     

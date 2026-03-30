@@ -147,20 +147,39 @@ def train_rl_model(
     callback = TrainingCallback(verbose=verbose, check_pause_func=check_pause_training)
 
     print("[INFO] 正在创建 PPO 模型...")
-    # 使用 CnnPolicy 和 MultiDiscrete 动作空间，SB3 会自动适配
-    model = PPO(
-        "CnnPolicy",
-        env,
-        verbose=verbose,
-        learning_rate=learning_rate,
-        n_steps=n_steps,
-        batch_size=batch_size,
-        n_epochs=n_epochs,
-        gamma=gamma,
-        gae_lambda=gae_lambda,
-        ent_coef=0.01, # 鼓励AI探索不同的网格
-        tensorboard_log="./tensorboard_logs/", # 开启 Tensorboard，方便看训练曲线
-    )
+    # ================= 修改处：加载已有的记忆 =================
+    import os
+    latest_model_path = r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy_latest.zip"
+
+    if os.path.exists(latest_model_path):
+        print(f"[SUCCESS] 发现已有模型存档，从 {latest_model_path} 恢复记忆继续训练！")
+        model = PPO.load(
+            latest_model_path,
+            env=env,
+            verbose=verbose,
+            tensorboard_log="./tensorboard_logs/",
+            ent_coef=0.01
+        )
+        # 手动重置一下学习率等参数，防止因为加载而覆盖了这里设置的超参
+        model.learning_rate = learning_rate
+        model.n_steps = n_steps
+        model.batch_size = batch_size
+    else:
+        print("[INFO] 未发现已有模型存档，创建全新的 PPO 婴儿大脑！")
+        # 使用 CnnPolicy 和 MultiDiscrete 动作空间，SB3 会自动适配
+        model = PPO(
+            "CnnPolicy",
+            env,
+            verbose=verbose,
+            learning_rate=learning_rate,
+            n_steps=n_steps,
+            batch_size=batch_size,
+            n_epochs=n_epochs,
+            gamma=gamma,
+            gae_lambda=gae_lambda,
+            ent_coef=0.01, # 鼓励AI探索不同的网格
+            tensorboard_log="./tensorboard_logs/", # 开启 Tensorboard，方便看训练曲线
+        )
     print("[SUCCESS] PPO 模型创建完成!")
 
     print(f"\n================ 开始训练 ===================")
