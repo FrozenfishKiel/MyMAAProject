@@ -1,0 +1,104 @@
+[INFO] 正在查找 ADB 设备...
+[SUCCESS] 连接到设备: MuMu安卓设备-MuMuPlayer12 v5 (127.0.0.1:16384)
+[SUCCESS] 设备握手成功!
+[INFO] 正在加载 YOLO 模型: D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\yolo\best.pt
+       使用设备: cpu
+[SUCCESS] YOLO 模型加载完成!
+[INFO] 正在加载模板匹配器...
+[SUCCESS] 模板匹配器加载完成!
+[INFO] 正在创建强化学习环境...
+[SUCCESS] 环境创建完成!
+[INFO] 正在创建 PPO 模型...
+[INFO] 未发现已有模型存档，创建全新的 PPO 婴儿大脑！
+Using cpu device
+[SUCCESS] PPO 模型创建完成!
+
+================ 开始训练 ===================
+总步数: 5000, 每次更新前收集步数: 128, 批次: 64
+Logging to ./tensorboard_logs/PPO_1
+
+[STEP 1] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(9,2) -> 朝向 1
+         坐标映射: 拖拽从(1015,650)至(1100,350) -> 方向滑动至(1100,500)
+[ACTION] ✅ CV校验通过！网格(9,2)具有高亮绿色(像素:846)，准许拖拽。
+[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.2s)...
+[REWARD] ❌ 第 1 次未检测到目标血条...
+[REWARD] ❌ 第 2 次未检测到目标血条...
+[REWARD] ❌ 第 3 次未检测到目标血条...
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 2118.66
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.2 (已清空无作为计数器)
+[TemplateMatcher] battle_3star.png -> max conf: 0.303 (needs 0.75, optimal scale: 1.10x)
+[TemplateMatcher] battle_2star.png -> max conf: 0.488 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] battle_0star.png -> max conf: 0.255 (needs 0.75, optimal scale: 0.90x)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 2] 开始执行动作...
+[ACTION] AI决定: 选卡 7 -> 放入网格(4,2) -> 朝向 0
+         坐标映射: 拖拽从(925,650)至(600,350) -> 方向滑动至(600,200)
+[ACTION] ✅ CV校验通过！网格(4,2)具有高亮绿色(像素:867)，准许拖拽。
+[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.2s)...
+[REWARD] ❌ 第 1 次未检测到目标血条...
+[REWARD] ❌ 第 2 次未检测到目标血条...
+[REWARD] ❌ 第 3 次未检测到目标血条...
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 154.80
+[REWARD] 画面未发生明显变化(非法部署)。奖励 -0.5 (连续无作为: 1次)
+[TemplateMatcher] battle_3star.png -> max conf: 0.311 (needs 0.75, optimal scale: 0.85x)
+[TemplateMatcher] battle_2star.png -> max conf: 0.455 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] battle_0star.png -> max conf: 0.250 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 3] 开始执行动作...
+[ACTION] AI决定: 选卡 5 -> 放入网格(3,0) -> 朝向 1
+         坐标映射: 拖拽从(745,650)至(500,190) -> 方向滑动至(500,340)
+[ACTION] ✅ CV校验通过！网格(3,0)具有高亮绿色(像素:900)，准许拖拽。
+[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.2s)...
+[REWARD] ❌ 第 1 次未检测到目标血条...
+[REWARD] ❌ 第 2 次未检测到目标血条...
+[REWARD] ❌ 第 3 次未检测到目标血条...
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] 部署失败，计算前后帧 MSE (均方误差) = 2864.25
+[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.2 (已清空无作为计数器)
+[TemplateMatcher] battle_3star.png -> max conf: 0.319 (needs 0.75, optimal scale: 1.00x)
+[TemplateMatcher] battle_2star.png -> max conf: 0.481 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] battle_0star.png -> max conf: 0.254 (needs 0.75, optimal scale: 1.20x)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 4] 开始执行动作...
+[ACTION] AI决定: 选卡 6 -> 放入网格(9,0) -> 朝向 2
+         坐标映射: 拖拽从(835,650)至(1100,190) -> 方向滑动至(950,190)
+[ACTION] ⛔ Fast-Fail! 目标网格(9,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -0.5 (连续无作为: 1次)
+[TemplateMatcher] battle_3star.png -> max conf: 0.362 (needs 0.75, optimal scale: 0.90x)
+[TemplateMatcher] battle_2star.png -> max conf: 0.540 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] battle_0star.png -> max conf: 0.278 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 5] 开始执行动作...
+[ACTION] AI决定: 选卡 8 -> 放入网格(6,2) -> 朝向 0
+         坐标映射: 拖拽从(1015,650)至(800,350) -> 方向滑动至(800,200)
+[ACTION] ⛔ Fast-Fail! 目标网格(6,2)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -0.5 (连续无作为: 2次)
+[TemplateMatcher] battle_3star.png -> max conf: 0.384 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] battle_2star.png -> max conf: 0.488 (needs 0.75, optimal scale: 1.00x)
+[TemplateMatcher] battle_0star.png -> max conf: 0.298 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 6] 开始执行动作...
+[ACTION] AI决定: 选卡 2 -> 放入网格(8,0) -> 朝向 3
+         坐标映射: 拖拽从(475,650)至(1000,190) -> 方向滑动至(1150,190)
+[ACTION] ⛔ Fast-Fail! 目标网格(8,0)非绿色高亮(绿像素:0)。取消拖拽。
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -0.5 (连续无作为: 3次)
+[TemplateMatcher] battle_3star.png -> max conf: 0.361 (needs 0.75, optimal scale: 0.90x)
+[TemplateMatcher] battle_2star.png -> max conf: 0.472 (needs 0.75, optimal scale: 0.80x)
+[TemplateMatcher] battle_0star.png -> max conf: 0.321 (needs 0.75, optimal scale: 0.90x)
+[TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.5, optimal scale: 0.80x)
+
+[STEP 7] 开始执行动作...
+[ACTION] AI决定: 选卡 9 -> 放入网格(3,0) -> 朝向 3
+         坐标映射: 拖拽从(1105,650)至(500,190) -> 方向滑动至(650,190)
+[ACTION] ✅ CV校验通过！网格(3,0)具有高亮绿色(像素:102)，准许拖拽。

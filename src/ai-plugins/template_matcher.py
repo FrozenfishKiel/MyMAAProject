@@ -41,19 +41,20 @@ class TemplateMatcher:
         bgr_image: Any,
         template_path: str,
         threshold: float = 0.4,
-        roi: Optional[Tuple[int, int, int, int]] = None
+        roi: Optional[Tuple[int, int, int, int]] = None,
+        silent: bool = False,
+        exact_scale: bool = False
     ) -> Optional[TemplateMatchResult]:
         """
         模板匹配
-        
+
         Args:
             bgr_image: BGR图像
             template_path: 模板图像路径
             threshold: 匹配阈值（0-1），默认0.4
             roi: 感兴趣区域（x1, y1, x2, y2），默认None（全图）
-        
-        Returns:
-            模板匹配结果，如果未匹配到则返回None
+            silent: 如果为 True，则不打印任何调试日志
+            exact_scale: 如果为 True，则不进行缩放搜索，只按 1.0 原图比例匹配（速度更快且精准）
         """
         if self._client is None:
             raise RuntimeError("MaaFramework not loaded")
@@ -102,19 +103,19 @@ class TemplateMatcher:
         template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
 
         # === 算法升级：多尺度特征金字塔匹配 (Multi-Scale Pyramids) ===
-        # 应对模拟器分辨率缩放、UI等比拉伸导致的模板不匹配问题
         best_max_val = -1.0
         best_max_loc = (0, 0)
         best_scale = 1.0
         best_h, best_w = template_gray.shape
 
-        # 在 0.8 倍到 1.2 倍之间，以 0.05 为步长进行多尺度缩放扫描
-        for scale in np.arange(0.8, 1.25, 0.05):
+        # 如果要求精确比例，只扫 1.0；否则进行多尺度扫描
+        scales = [1.0] if exact_scale else np.arange(0.8, 1.25, 0.05)
+
+        for scale in scales:
             # 缩放模板图
             resized_w = int(template_gray.shape[1] * scale)
             resized_h = int(template_gray.shape[0] * scale)
 
-            # 如果缩放后的模板比目标图像还要大，则跳过这个尺度
             if resized_w > image_gray.shape[1] or resized_h > image_gray.shape[0]:
                 continue
 
@@ -134,9 +135,20 @@ class TemplateMatcher:
         max_val = best_max_val
         max_loc = best_max_loc
 
-        # 将实际的最高置信度打印出来，包含最终确定的缩放比例
-        template_name = str(template_path).replace('\\', '/').split('/')[-1]
-        print(f"[TemplateMatcher] {template_name} -> max conf: {max_val:.3f} (needs {threshold}, optimal scale: {best_scale:.2f}x)")
+        # 静默模式则跳过控制台输出，但写入日志文件（如果有专门的 log 对象的话）
+        # 这里通过检查 sys.stdout 是否被重定向到 Logger 来判断
+        import sys
+        if not silent or hasattr(sys.stdout, 'log'):
+            template_name = str(template_path).replace('\\', '/').split('/')[-1]
+            log_msg = f"[TemplateMatcher] {template_name} -> max conf: {max_val:.3f} (needs {threshold}, optimal scale: {best_scale:.2f}x)\n"
+
+            if silent and hasattr(sys.stdout, 'log'):
+                # 如果是静默模式，且存在文件日志系统，只写文件，不输出到屏幕
+                sys.stdout.log.write(log_msg)
+                sys.stdout.log.flush()
+            else:
+                # 正常模式，调用 print (会被双重日志捕捉)
+                print(log_msg, end='')
 
         # 如果最高匹配得分依然小于阈值，返回None
         if max_val < threshold:

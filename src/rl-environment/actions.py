@@ -39,13 +39,13 @@ class DeployOperatorActions:
         self.CELL_W = (self.GRID_END_X - self.GRID_START_X) // self.GRID_COLS
         self.CELL_H = (self.GRID_END_Y - self.GRID_START_Y) // self.GRID_ROWS
 
-    def execute_deployment(self, action: np.ndarray) -> Tuple[bool, int, int]:
+    def execute_deployment(self, action: np.ndarray) -> Tuple[bool, int, int, int]:
         """
         执行部署动作
         action: [card_idx, grid_x, grid_y, direction]
 
         Returns:
-            (是否执行滑动, 目标像素x, 目标像素y)
+            (是否执行滑动, 目标像素x, 目标像素y, 部署朝向)
         """
         card_idx = int(action[0])    # 0~9，如果是10则代表挂机
         grid_x = int(action[1])      # 0~9
@@ -53,11 +53,12 @@ class DeployOperatorActions:
         direction = int(action[3])   # 0:上, 1:下, 2:左, 3:右
 
         if card_idx == 10:
-            print("[ACTION] AI决定: 💤 挂机 (Skip / Wait for Cost)")
-            # 挂机不需要坐标和拖拽，但是必须在这里“真的等一会儿”，否则这步会瞬间结束
-            # 给它 1 秒钟的真实流逝时间，让游戏里的费用能涨上来
-            time.sleep(1.0)
-            return False, -1, -1
+            print("[ACTION] AI决定: 💤 挂机 (Skip / Wait for Cost) - 屏幕中上部防误触点击")
+            # 挂机不需要坐标和拖拽，但在屏幕中心最顶部点击一下，防止卡牌保持选中状态误触
+            self._controller.post_click(self.CARD_START_X + (self.CARD_END_X - self.CARD_START_X) // 2, 50).wait()
+            # 给它 2 秒钟的真实流逝时间，让游戏里的费用能涨上来
+            time.sleep(2.0)
+            return False, -1, -1, -1
 
         # 1. 计算手牌干员坐标 (平均分布)
         card_step = (self.CARD_END_X - self.CARD_START_X) // 10
@@ -117,7 +118,7 @@ class DeployOperatorActions:
                     print(f"[ACTION] ⛔ Fast-Fail! 目标网格({grid_x},{grid_y})非绿色高亮(绿像素:{green_pixels})。取消拖拽。")
                     # 取消选中状态的最佳方法：重新点击一次刚才选中的那张底部的卡牌
                     self._controller.post_click(cx, cy).wait()
-                    return False, gx, gy
+                    return False, gx, gy, direction
                 else:
                     print(f"[ACTION] ✅ CV校验通过！网格({grid_x},{grid_y})具有高亮绿色(像素:{green_pixels})，准许拖拽。")
 
@@ -130,8 +131,8 @@ class DeployOperatorActions:
             # 步骤C：在目标网格上按住，并划向指定方向松手（完成部署）
             self._controller.post_swipe(gx, gy, end_x, end_y, duration=300).wait()
 
-            return True, gx, gy
+            return True, gx, gy, direction
 
         except Exception as e:
             print(f"[ACTION ERROR] 动作执行异常: {e}")
-            return False, gx, gy
+            return False, gx, gy, direction

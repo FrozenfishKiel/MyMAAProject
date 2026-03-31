@@ -28,11 +28,6 @@ class GameEnv(Env):
     def __init__(self, controller: Any, yolo_recognizer: YoloRecognizer, template_matcher: Any = None) -> None:
         """
         初始化RL环境
-
-        Args:
-            controller: MaaFramework控制器
-            yolo_recognizer: YOLO识别器
-            template_matcher: 预留接口，已弃用
         """
         super().__init__()
 
@@ -63,30 +58,127 @@ class GameEnv(Env):
         self.consecutive_fast_fails = 0
         self.consecutive_missing_gear = 0
 
-    def _get_state_and_raw_image(self) -> Tuple[np.ndarray, np.ndarray]:
+        # === 观察者模式：异步打饭小弟 (星级结算检测线程) ===
+        import threading
+        self._score_thread = None
+        self._stop_score_thread = False
+
+        # 存放打到的饭（异步回调注入的分数和结束信号）
+        self._async_reward_buffer = 0.0
+        self._async_terminated_flag = False
+        self._score_lock = threading.Lock() # 线程锁，防止回调和主进程同时读写分数
+
+        # 启动异步订阅线程
+        self._start_score_thread()
+
+        # === 初始化雷达视觉引擎 (Radar Vision) ===
+        self.bg_subtractor = cv2.createBackgroundSubtractorMOG2(history=300, varThreshold=120, detectShadows=False)
+        self.kernel_open = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
+        self.kernel_close = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
+
+    def _start_score_thread(self):
         """
-        获取缩小后的状态输入，以及用于检测血条的原图
+        启动一个独立的后台守护线程 (打饭小弟)。
+        主线程 (AI) 该干嘛干嘛，下棋、发呆、计算 MSE，完全不受影响。
+        这个后台线程每隔 0.5 秒偷偷截一张图，只看左上角有没有星星。
+        如果有，就把星级和分数存到环境变量里，等主线程有空了来取。
+        """
+        import threading
+        if self._score_thread is not None and self._score_thread.is_alive():
+            return
+
+        self._stop_score_thread = False
+        self._score_thread = threading.Thread(target=self._score_worker, daemon=True)
+        self._score_thread.start()
+
+    def _score_worker(self):
+        """
+        [观察者模式的发布者]
+        后台打饭小弟的工作逻辑。他在自己的线程里每 0.5s 看一眼左上角。
+        只要看到星级画面，就立即触发类似回调的逻辑，将分数强行注入到环境缓冲池，
+        并举起终止大旗。主进程的下一次步进自然会取走它，绝对不阻塞任何流程。
+        """
+        import threading
+        while not self._stop_score_thread:
+            if self._controller is not None:
+                try:
+                    job = self._controller.post_screencap().wait()
+                    if job.succeeded:
+                        img = self._controller.cached_image
+                        if img is not None:
+                            is_ended, score = self._check_battle_end_and_score(img)
+                            if is_ended:
+                                # [触发回调] 打到饭了！拿到锁，强行塞入主进程的奖励池
+                                with self._score_lock:
+                                    self._async_reward_buffer += score
+                                    self._async_terminated_flag = True
+                                    print(f"\n[ASYNC OBSERVER] 🔔 星级捕获成功！注入奖励 {score} 到主环境池，发出终结信号！")
+
+                                # 防止连续检测重复加分，让他休息一阵子
+                                time.sleep(10.0)
+                except Exception as e:
+                    pass
+            time.sleep(0.5)
+
+    def close(self):
+        """环境关闭时，记得叫小弟下班"""
+        self._stop_score_thread = True
+        if self._score_thread is not None:
+            self._score_thread.join(timeout=1.0)
+        super().close()
+
+    def _get_state_and_raw_image(self) -> Tuple[np.ndarray, np.ndarray, list]:
+        """
+        获取 3 通道雷达状态输入，用于检测血条的原图，以及雷达锁定的敌人目标坐标。
+        返回: (state_tensor, raw_image, enemy_targets_list)
         """
         try:
             if self._controller is None:
-                return np.zeros((self.CHANNELS, self.HEIGHT, self.WIDTH), dtype=np.uint8), None
+                return np.zeros((self.CHANNELS, self.HEIGHT, self.WIDTH), dtype=np.uint8), None, []
 
             # 获取原图
             raw_image = self._controller.post_screencap().wait().get()
 
-            # 缩小尺寸，用于 RL 模型输入
-            state = cv2.resize(raw_image, (self.WIDTH, self.HEIGHT))
+            # --- 制作通道 1：灰度原图 ---
+            gray = cv2.cvtColor(raw_image, cv2.COLOR_BGR2GRAY)
 
-            # 颜色转换：MAA 截图默认可能是 BGR，转换为 RGB 以获得真实色彩特征
-            state = cv2.cvtColor(state, cv2.COLOR_BGR2RGB)
+            # --- 制作通道 2：绿色可部署区域 Mask ---
+            hsv = cv2.cvtColor(raw_image, cv2.COLOR_BGR2HSV)
+            lower_green = np.array([35, 43, 46])
+            upper_green = np.array([90, 255, 255])
+            grid_mask = cv2.inRange(hsv, lower_green, upper_green)
+            grid_mask = cv2.morphologyEx(grid_mask, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+
+            # --- 制作通道 3：敌人动态雷达 Mask ---
+            fg_mask = self.bg_subtractor.apply(raw_image)
+            fg_mask_clean = cv2.morphologyEx(fg_mask, cv2.MORPH_OPEN, self.kernel_open)
+            fg_mask_clean = cv2.morphologyEx(fg_mask_clean, cv2.MORPH_CLOSE, self.kernel_close)
+
+            # --- 提取敌人坐标靶心 ---
+            num_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(fg_mask_clean, connectivity=8)
+            enemy_targets = []
+            for i in range(1, num_labels):
+                area = stats[i, cv2.CC_STAT_AREA]
+                if 300 < area < 4000:
+                    width = stats[i, cv2.CC_STAT_WIDTH]
+                    height = stats[i, cv2.CC_STAT_HEIGHT]
+                    if 0.25 < width/height < 4.0:
+                        enemy_targets.append((int(centroids[i][0]), int(centroids[i][1])))
+
+            # --- 组合为 3 通道 RL 输入 ---
+            # OpenCV merge 需要同样的尺寸
+            stacked_img = cv2.merge([gray, grid_mask, fg_mask_clean])
+
+            # 缩小尺寸，用于 RL 模型输入
+            state = cv2.resize(stacked_img, (self.WIDTH, self.HEIGHT))
 
             # 转换为 SB3 要求的格式 (Channels, Height, Width)
             state = np.transpose(state, (2, 0, 1))
 
-            return state, raw_image
+            return state, raw_image, enemy_targets
         except Exception as e:
             print(f"[ERROR] 获取状态失败: {e}")
-            return np.zeros((self.CHANNELS, self.HEIGHT, self.WIDTH), dtype=np.uint8), None
+            return np.zeros((self.CHANNELS, self.HEIGHT, self.WIDTH), dtype=np.uint8), None, []
 
     def _click_template(self, image: np.ndarray, template_name: str, threshold: float = 0.6, roi: Tuple[int, int, int, int] = None, check_only: bool = False) -> bool:
         """
@@ -120,33 +212,49 @@ class GameEnv(Env):
             pass
         return False
 
-    def _check_battle_end(self, image: np.ndarray) -> bool:
+    def _check_battle_end_and_score(self, image: np.ndarray) -> Tuple[bool, float]:
         """
-        检查画面是否出现了战斗结束的标志（胜利或失败）。
+        [极高频检测，绝不漏掉动画]
+        在每一次 step 的最后一瞬，检查左上角是否弹出了过关的蓝色星级。
+
         需要在 data/templates/ 下提供:
-        - battle_win.png (例如行动结束的文字/图标)
-        - battle_lose.png (例如任务失败的红色大字/图标)
+        - battle_3star.png (完美通关的三颗蓝星)
+        - battle_2star.png (漏怪通关的两颗蓝星)
+
+        Returns:
+            (是否结束, 这局的最终通关奖励/惩罚分数)
         """
         if self._template_matcher is None:
-            return False
+            return False, 0.0
 
-        # 检测胜利结算界面
-        win_template = str(ROOT.parent / "data" / "templates" / "battle_win.png")
-        if Path(win_template).exists():
-            result = self._template_matcher.match(image, win_template, threshold=0.7)
-            if result is not None:
-                print("[ENV] 检测到战斗胜利结算画面！")
-                return True
+        h, w = image.shape[:2]
+        # 【关键优化】方舟打完出星级的地方是在左上角。
+        # 我们把扫描区域 (ROI) 死死限制在左上角的狭小范围内，并向下偏移
+        # 宽 0%~40%, 高 15%~45% (对应测试脚本中调校好的坐标)
+        star_roi = (0, int(h * 0.15), int(w * 0.40), int(h * 0.45))
 
-        # 检测失败结算界面
-        lose_template = str(ROOT.parent / "data" / "templates" / "battle_lose.png")
-        if Path(lose_template).exists():
-            result = self._template_matcher.match(image, lose_template, threshold=0.7)
-            if result is not None:
-                print("[ENV] 检测到战斗失败结算画面！")
-                return True
+        # 1. 检测 3 星完美通关 (最高奖励)
+        template_3star = str(ROOT.parent / "data" / "templates" / "battle_3star.png")
+        if Path(template_3star).exists():
+            if self._template_matcher.match(image, template_3star, threshold=0.75, roi=star_roi, silent=True, exact_scale=True):
+                print("\n[ENV] 🎉 检测到 3 星完美通关！发放巨额奖励 +100.0")
+                return True, 100.0
 
-        return False
+        # 2. 检测 2 星漏怪通关 (中等奖励，虽然通关了但防守有漏洞)
+        template_2star = str(ROOT.parent / "data" / "templates" / "battle_2star.png")
+        if Path(template_2star).exists():
+            if self._template_matcher.match(image, template_2star, threshold=0.75, roi=star_roi, silent=True, exact_scale=True):
+                print("\n[ENV] ⚠️ 检测到 2 星瑕疵通关 (有漏怪)。发放奖励 +30.0")
+                return True, 30.0
+
+        # 3. 检测 0 星任务失败 (漏怪/全灭)
+        template_0star = str(ROOT.parent / "data" / "templates" / "battle_0star.png")
+        if Path(template_0star).exists():
+            if self._template_matcher.match(image, template_0star, threshold=0.75, roi=star_roi, silent=True, exact_scale=True):
+                print("\n[ENV] 💀 检测到 0 星任务失败 (漏怪/全灭)。发放惩罚 -50.0")
+                return True, -50.0
+
+        return False, 0.0
 
     def _auto_restart_battle(self) -> None:
         """
@@ -238,7 +346,7 @@ class GameEnv(Env):
             self._auto_restart_battle()
 
         self.time_step = 0
-        state, _ = self._get_state_and_raw_image()
+        state, _, _ = self._get_state_and_raw_image()
         return state, {}
 
     def step(self, action: np.ndarray) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:
@@ -250,7 +358,7 @@ class GameEnv(Env):
         print(f"\n[STEP {self.time_step}] 开始执行动作...")
 
         # 1. 动作执行前：截图并记录所有血条的中心点坐标
-        state_before, img_before = self._get_state_and_raw_image()
+        state_before, img_before, enemy_targets_before = self._get_state_and_raw_image()
         hp_bar_centers_before = []
         if img_before is not None:
             detections = self._yolo_recognizer.detect(img_before, conf=0.25)
@@ -263,7 +371,7 @@ class GameEnv(Env):
 
         # 2. 调用 actions.py，把离散的动作数组变成 MAA 的物理操作
         # 并接收 CV Fast-Fail 阻断标志
-        executed_swipe, target_gx, target_gy = self._deploy_actions.execute_deployment(action)
+        executed_swipe, target_gx, target_gy, direction = self._deploy_actions.execute_deployment(action)
 
         # 3. 如果成功拖拽，采用多次校验机制防漏检（检查 3 次，间隔 0.2s）
         deployed_success = False
@@ -271,12 +379,11 @@ class GameEnv(Env):
 
         if executed_swipe:
             print(f"[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.2s)...")
-            # 给一点初始动画时间（干员落地特效白光比较长）
-            time.sleep(1.0)
+            # 移除 1.0 秒的初始死板等待，立刻开始心跳检测，加快训练节奏
 
             for attempt in range(3):
                 time.sleep(0.2)
-                state_after, img_after = self._get_state_and_raw_image()
+                state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
                 current_hp_bars = []
 
                 if img_after is not None:
@@ -311,7 +418,7 @@ class GameEnv(Env):
                     print(f"[REWARD] ❌ 第 {attempt+1} 次未检测到目标血条...")
         else:
             time.sleep(0.1) # 被阻断了，直接跳过漫长的等待
-            state_after, img_after = self._get_state_and_raw_image()
+            state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
 
         # 5. 计算全局 MSE (用于判断画面大变动/转场)
         mse = 0.0
@@ -324,19 +431,63 @@ class GameEnv(Env):
         reward = 0.0
         print(f"[REWARD] 执行前血条数: {len(hp_bar_centers_before)} -> 最终确认血条数: {len(hp_bar_centers_after)}")
 
-        # ================== 修改处的逻辑调整 ==================
+        # ================== 核心雷达空间奖励结算 (朝向/距离) ==================
         if executed_swipe == False and target_gx == -1 and target_gy == -1:
             # 【情况 0：AI 主动选择挂机等费用】
-            # 这个动作其实很有用，所以我们不扣分（或者只给极小的 -0.01 惩罚防止它永远发呆）
             reward = -0.01
-            # 挂机不算“连续失能无作为”
             self.consecutive_fast_fails = 0
             print("[REWARD] 💤 AI 主动挂机等费用，只扣除微小时间惩罚 -0.01")
         elif deployed_success:
-            # 【最高优先级】：只要局部坐标和新增血条校验通过，无视画面变化情况，立刻给满分！
-            reward = 8.0
+            # 基础分：只要部署成功就给 +1.0 (大幅降低底薪，逼迫它追求完美操作)
+            reward = 1.0
             self.consecutive_fast_fails = 0
-            print("[REWARD] 恭喜！局部坐标校验成功，干员部署在目标区域。奖励 +8.0")
+
+            # 强制重置 MOG2 消除落地瞬间大面积的白光鬼影
+            self.bg_subtractor = cv2.createBackgroundSubtractorMOG2(history=300, varThreshold=120, detectShadows=False)
+
+            # !!! 极其关键的修正：必须使用 AI 决策“前”的敌人坐标 (enemy_targets_before) !!!
+            # 因为拖拽+动画要耗费 2~3 秒，如果用落地后的坐标，敌人可能已经走过干员了，
+            # 这会导致 AI 原本正确的“迎击”预判，在结算时被误判为“背对”而冤枉扣分！
+            if len(enemy_targets_before) > 0:
+                # 寻找离干员最近的敌人
+                closest_enemy = min(enemy_targets_before, key=lambda e: (e[0]-target_gx)**2 + (e[1]-target_gy)**2)
+                enemy_x, enemy_y = closest_enemy
+
+                # 计算距离 (等距视角下，Y轴像素差距权重算大一点)
+                dist = np.sqrt((enemy_x - target_gx)**2 + (1.5 * (enemy_y - target_gy))**2)
+
+                # 1. 距离奖励 (是否贴脸抗敌)
+                if dist < 300.0:  # 距离很近，比如盾卫顶在前排
+                    reward += 2.0
+                    print(f"[REWARD] 🎯 完美落子！部署点靠近敌人 (距离: {dist:.1f})，奖励 +2.0")
+                elif dist > 800.0: # 放到了完全打不到的地方
+                    reward -= 1.0
+                    print(f"[REWARD] ⚠️ 无效部署！距离敌人太远 (距离: {dist:.1f})，惩罚 -1.0")
+
+                # 2. 朝向奖励 (是否正对敌人)
+                import math
+                # 计算敌人相对于干员的真实角度
+                angle = math.degrees(math.atan2(enemy_y - target_gy, enemy_x - target_gx))
+                if angle < 0: angle += 360
+
+                # 将 0:上, 1:下, 2:左, 3:右 映射为角度的扇区
+                # 0(上): 225~315, 1(下): 45~135, 2(左): 135~225, 3(右): 315~45
+                is_facing = False
+                if direction == 0 and 225 <= angle <= 315: is_facing = True
+                elif direction == 1 and 45 <= angle <= 135: is_facing = True
+                elif direction == 2 and 135 <= angle <= 225: is_facing = True
+                elif direction == 3 and (angle >= 315 or angle <= 45): is_facing = True
+
+                if is_facing:
+                    reward += 8.0
+                    print(f"[REWARD] ⚔️ 完美朝向！正对敌人 (角度: {angle:.1f}°)，巨额奖励 +8.0")
+                else:
+                    reward -= 1.0
+                    print(f"[REWARD] 🛡️ 背对敌人！(角度: {angle:.1f}°)，严厉惩罚 -1.0")
+            else:
+                # 场上暂时没敌人的情况 (静态兜底)
+                print("[REWARD] 场上暂无移动目标，仅发放基础部署奖励 +1.0")
+
         elif not executed_swipe:
             # 【情况 2：被 CV Fast-Fail 机制直接阻断】
             reward = -0.5
@@ -354,22 +505,33 @@ class GameEnv(Env):
                 print("[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.2 (已清空无作为计数器)")
 
         # 7. 多重战斗结束判定 (Priority 1 -> 2 -> 3)
-        # 优先级 1：MSE 剧烈变化，判定为转场（如跳出结算界面）
-        if mse > 8000.0:
-            print(f"[ENV] 🚨 优先级 1 触发：检测到画面剧烈变化 (MSE={mse:.2f} > 8000)，判定为场景切换/结算，强制终止回合！")
-            terminated = True
+        # ================== 观察者模式：接收异步注入的结算奖惩 ==================
+        import threading
+        with self._score_lock:
+            if self._async_terminated_flag:
+                print(f"[ENV] 🚨 优先级 1 触发 (观察者回调)：接收到结算信号，总计注入附加得分 {self._async_reward_buffer}！战斗结束！")
+                reward += self._async_reward_buffer
+                terminated = True
 
-        # 优先级 2：连续找不到右上角的齿轮图标（UI元素消失）
+                # 清空池子，防止下一局错误加分
+                self._async_reward_buffer = 0.0
+                self._async_terminated_flag = False
+
+        # ================== 兜底保护判定 ==================
+        # 如果游戏确实结束了，但由于某种原因没有进入上面的结算分支（比如小弟的线程挂了，或者截图失败），
+        # 还是需要一个粗暴的方法结束游戏，避免死循环。
+        if mse > 8000.0:
+            print(f"[ENV] 🚨 优先级 2 触发：画面剧变 (MSE={mse:.2f} > 8000)，判定为转场/断线，结束回合！")
+            terminated = True
         elif img_after is not None and not terminated:
             template_path = str(ROOT.parent / "data" / "templates" / "pause_gear.png")
             if Path(template_path).exists() and self._template_matcher is not None:
-                # 仅检测不点击，阈值稍微放宽
                 result = self._template_matcher.match(img_after, template_path, threshold=0.5)
                 if result is None:
                     self.consecutive_missing_gear += 1
-                    print(f"[ENV] ⚠️ 警告：未检测到右上角齿轮图标！(连续 {self.consecutive_missing_gear}/3 次)")
+                    print(f"[ENV] ⚠️ 未检测到右上角齿轮图标！(连续 {self.consecutive_missing_gear}/3 次)")
                     if self.consecutive_missing_gear >= 3:
-                        print(f"[ENV] 🚨 优先级 2 触发：连续 {self.consecutive_missing_gear} 次未检测到战斗界面UI元素，判定游戏已结束！")
+                        print(f"[ENV] 🚨 优先级 3 触发：齿轮彻底消失，战斗已结束！")
                         terminated = True
                 else:
                     self.consecutive_missing_gear = 0
