@@ -265,17 +265,17 @@ class GameEnv(Env):
         # 并接收 CV Fast-Fail 阻断标志
         executed_swipe, target_gx, target_gy = self._deploy_actions.execute_deployment(action)
 
-        # 3. 如果成功拖拽，采用多次校验机制防漏检（检查 3 次，间隔 0.5s）
+        # 3. 如果成功拖拽，采用多次校验机制防漏检（检查 3 次，间隔 0.2s）
         deployed_success = False
         hp_bar_centers_after = []
 
         if executed_swipe:
-            print(f"[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.5s)...")
-            # 给一点初始动画时间
+            print(f"[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.2s)...")
+            # 给一点初始动画时间（干员落地特效白光比较长）
             time.sleep(1.0)
 
             for attempt in range(3):
-                time.sleep(0.5)
+                time.sleep(0.2)
                 state_after, img_after = self._get_state_and_raw_image()
                 current_hp_bars = []
 

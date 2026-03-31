@@ -54,7 +54,9 @@ class DeployOperatorActions:
 
         if card_idx == 10:
             print("[ACTION] AI决定: 💤 挂机 (Skip / Wait for Cost)")
-            # 挂机不需要坐标和拖拽
+            # 挂机不需要坐标和拖拽，但是必须在这里“真的等一会儿”，否则这步会瞬间结束
+            # 给它 1 秒钟的真实流逝时间，让游戏里的费用能涨上来
+            time.sleep(1.0)
             return False, -1, -1
 
         # 1. 计算手牌干员坐标 (平均分布)
