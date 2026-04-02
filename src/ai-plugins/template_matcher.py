@@ -98,31 +98,57 @@ class TemplateMatcher:
             print(f"[TemplateMatcher] Warning: Template {template_path} is larger than the target image region. Match skipped.")
             return None
 
-        # 转换为灰度图像
-        image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+        # 判断是否是需要区分颜色的模板，如果是，强制使用彩色图像(BGR)进行匹配以区分颜色
+        # 目前：start_action（开始行动按钮）
+        filename = str(template_path).lower()
+        is_color_sensitive = "start_action" in filename
+        is_star_template = "star" in filename
+
+        if is_color_sensitive:
+            # 彩色匹配
+            image_to_match = image
+            template_to_match = template
+            best_h, best_w = template_to_match.shape[:2]
+        elif is_star_template:
+            # 【提取单通道特征】因为亮起的星星是蓝色的，所以我们在 BGR 中只提取 B(蓝色) 通道
+            # 在蓝色通道中，亮起的蓝星像素值接近 255 (极亮)，暗淡的灰星像素值很低 (偏暗)
+            # 这样既保留了图像的结构特征，又极大放大了亮暗星的差异，且绝不会出现全黑模板
+            image_to_match = image[:, :, 0]
+            template_to_match = template[:, :, 0]
+            best_h, best_w = template_to_match.shape
+        else:
+            # 常规灰度匹配
+            image_to_match = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            template_to_match = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+            best_h, best_w = template_to_match.shape
 
         # === 算法升级：多尺度特征金字塔匹配 (Multi-Scale Pyramids) ===
         best_max_val = -1.0
         best_max_loc = (0, 0)
         best_scale = 1.0
-        best_h, best_w = template_gray.shape
 
         # 如果要求精确比例，只扫 1.0；否则进行多尺度扫描
         scales = [1.0] if exact_scale else np.arange(0.8, 1.25, 0.05)
 
         for scale in scales:
             # 缩放模板图
-            resized_w = int(template_gray.shape[1] * scale)
-            resized_h = int(template_gray.shape[0] * scale)
+            if is_color_sensitive:
+                resized_w = int(template_to_match.shape[1] * scale)
+                resized_h = int(template_to_match.shape[0] * scale)
+            elif is_star_template:
+                resized_w = int(template_to_match.shape[1] * scale)
+                resized_h = int(template_to_match.shape[0] * scale)
+            else:
+                resized_w = int(template_to_match.shape[1] * scale)
+                resized_h = int(template_to_match.shape[0] * scale)
 
-            if resized_w > image_gray.shape[1] or resized_h > image_gray.shape[0]:
+            if resized_w > image_to_match.shape[1] or resized_h > image_to_match.shape[0]:
                 continue
 
-            resized_template = cv2.resize(template_gray, (resized_w, resized_h))
+            resized_template = cv2.resize(template_to_match, (resized_w, resized_h))
 
             # 使用缩放后的模板进行匹配
-            res = cv2.matchTemplate(image_gray, resized_template, cv2.TM_CCOEFF_NORMED)
+            res = cv2.matchTemplate(image_to_match, resized_template, cv2.TM_CCOEFF_NORMED)
             _, max_val, _, max_loc = cv2.minMaxLoc(res)
 
             # 记录得分最高的尺度
@@ -144,7 +170,8 @@ class TemplateMatcher:
 
             if silent and hasattr(sys.stdout, 'log'):
                 # 如果是静默模式，且存在文件日志系统，只写文件，不输出到屏幕
-                sys.stdout.log.write(log_msg)
+                # 同时加个特殊前缀，方便在日志里直接搜 "SILENT_LOG"
+                sys.stdout.log.write(f"[SILENT_LOG] {log_msg}")
                 sys.stdout.log.flush()
             else:
                 # 正常模式，调用 print (会被双重日志捕捉)

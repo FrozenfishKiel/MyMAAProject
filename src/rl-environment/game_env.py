@@ -230,27 +230,38 @@ class GameEnv(Env):
         h, w = image.shape[:2]
         # 【关键优化】方舟打完出星级的地方是在左上角。
         # 我们把扫描区域 (ROI) 死死限制在左上角的狭小范围内，并向下偏移
-        # 宽 0%~40%, 高 15%~45% (对应测试脚本中调校好的坐标)
-        star_roi = (0, int(h * 0.15), int(w * 0.40), int(h * 0.45))
+        # 宽 0%~30%, 高 38.5%~50% (对应测试脚本中调校好的坐标)
+        star_roi = (0, int(h * 0.385), int(w * 0.30), int(h * 0.5))
 
         # 1. 检测 3 星完美通关 (最高奖励)
         template_3star = str(ROOT.parent / "data" / "templates" / "battle_3star.png")
         if Path(template_3star).exists():
-            if self._template_matcher.match(image, template_3star, threshold=0.75, roi=star_roi, silent=True, exact_scale=True):
-                print("\n[ENV] 🎉 检测到 3 星完美通关！发放巨额奖励 +100.0")
+            res_3 = self._template_matcher.match(image, template_3star, threshold=0.45, roi=star_roi, silent=True, exact_scale=True)
+            if res_3 is not None:
+                # 把当前的置信度强行打印到屏幕（用来在实战中排错）
+                print(f"\n[ENV] 🎉 检测到 3 星完美通关！(置信度: {res_3.confidence:.3f}) 发放巨额奖励 +100.0")
                 return True, 100.0
 
         # 2. 检测 2 星漏怪通关 (中等奖励，虽然通关了但防守有漏洞)
         template_2star = str(ROOT.parent / "data" / "templates" / "battle_2star.png")
         if Path(template_2star).exists():
-            if self._template_matcher.match(image, template_2star, threshold=0.75, roi=star_roi, silent=True, exact_scale=True):
-                print("\n[ENV] ⚠️ 检测到 2 星瑕疵通关 (有漏怪)。发放奖励 +30.0")
-                return True, 30.0
+            res_2 = self._template_matcher.match(image, template_2star, threshold=0.45, roi=star_roi, silent=True, exact_scale=True)
+            if res_2 is not None:
+                print(f"\n[ENV] ⚠️ 检测到 2 星瑕疵通关！(置信度: {res_2.confidence:.3f}) 发放惩罚 -15.0")
+                return True, -15.0
 
         # 3. 检测 0 星任务失败 (漏怪/全灭)
         template_0star = str(ROOT.parent / "data" / "templates" / "battle_0star.png")
         if Path(template_0star).exists():
-            if self._template_matcher.match(image, template_0star, threshold=0.75, roi=star_roi, silent=True, exact_scale=True):
+            res_0 = self._template_matcher.match(image, template_0star, threshold=0.45, roi=star_roi, silent=True, exact_scale=True)
+            if res_0 is not None:
+                print(f"\n[ENV] 💀 检测到 0 星任务失败！(置信度: {res_0.confidence:.3f}) 发放惩罚 -50.0")
+                return True, -50.0
+
+        # 3. 检测 0 星任务失败 (漏怪/全灭)
+        template_0star = str(ROOT.parent / "data" / "templates" / "battle_0star.png")
+        if Path(template_0star).exists():
+            if self._template_matcher.match(image, template_0star, threshold=0.5, roi=star_roi, silent=True, exact_scale=True):
                 print("\n[ENV] 💀 检测到 0 星任务失败 (漏怪/全灭)。发放惩罚 -50.0")
                 return True, -50.0
 
@@ -299,7 +310,7 @@ class GameEnv(Env):
             # 状态2：如果在干员编队页，点击红色的“开始行动”
             # ROI: 使用动态比例，限制在右下角 [宽 50%~100%, 高 40%~100%]，和演习区域完全对齐
             start_roi = (int(w * 0.75), int(h * 0.4), w, h)
-            if self._click_template(image, "start_action", threshold=0.45, roi=start_roi):
+            if self._click_template(image, "start_action", threshold=0.43, roi=start_roi):
                 print("[RESET] 点击开始行动，进入加载...")
                 time.sleep(5) # 点击开始行动后，加载时间较长
                 continue
