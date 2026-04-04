@@ -18,7 +18,6 @@ sys.path.insert(0, str(ROOT / "rl-environment"))
 from yolo_recognizer import YoloRecognizer
 from actions import DeployOperatorActions
 
-
 class GameEnv(Env):
     """
     网格化的明日方舟 RL 部署环境
@@ -58,73 +57,12 @@ class GameEnv(Env):
         self.consecutive_fast_fails = 0
         self.consecutive_missing_gear = 0
 
-        # === 观察者模式：异步打饭小弟 (星级结算检测线程) ===
-        import threading
-        self._score_thread = None
-        self._stop_score_thread = False
-
-        # 存放打到的饭（异步回调注入的分数和结束信号）
-        self._async_reward_buffer = 0.0
-        self._async_terminated_flag = False
-        self._score_lock = threading.Lock() # 线程锁，防止回调和主进程同时读写分数
-
-        # 启动异步订阅线程
-        self._start_score_thread()
-
         # === 初始化雷达视觉引擎 (Radar Vision) ===
         self.bg_subtractor = cv2.createBackgroundSubtractorMOG2(history=300, varThreshold=120, detectShadows=False)
         self.kernel_open = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
         self.kernel_close = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
 
-    def _start_score_thread(self):
-        """
-        启动一个独立的后台守护线程 (打饭小弟)。
-        主线程 (AI) 该干嘛干嘛，下棋、发呆、计算 MSE，完全不受影响。
-        这个后台线程每隔 0.5 秒偷偷截一张图，只看左上角有没有星星。
-        如果有，就把星级和分数存到环境变量里，等主线程有空了来取。
-        """
-        import threading
-        if self._score_thread is not None and self._score_thread.is_alive():
-            return
-
-        self._stop_score_thread = False
-        self._score_thread = threading.Thread(target=self._score_worker, daemon=True)
-        self._score_thread.start()
-
-    def _score_worker(self):
-        """
-        [观察者模式的发布者]
-        后台打饭小弟的工作逻辑。他在自己的线程里每 0.5s 看一眼左上角。
-        只要看到星级画面，就立即触发类似回调的逻辑，将分数强行注入到环境缓冲池，
-        并举起终止大旗。主进程的下一次步进自然会取走它，绝对不阻塞任何流程。
-        """
-        import threading
-        while not self._stop_score_thread:
-            if self._controller is not None:
-                try:
-                    job = self._controller.post_screencap().wait()
-                    if job.succeeded:
-                        img = self._controller.cached_image
-                        if img is not None:
-                            is_ended, score = self._check_battle_end_and_score(img)
-                            if is_ended:
-                                # [触发回调] 打到饭了！拿到锁，强行塞入主进程的奖励池
-                                with self._score_lock:
-                                    self._async_reward_buffer += score
-                                    self._async_terminated_flag = True
-                                    print(f"\n[ASYNC OBSERVER] 🔔 星级捕获成功！注入奖励 {score} 到主环境池，发出终结信号！")
-
-                                # 防止连续检测重复加分，让他休息一阵子
-                                time.sleep(10.0)
-                except Exception as e:
-                    pass
-            time.sleep(0.5)
-
     def close(self):
-        """环境关闭时，记得叫小弟下班"""
-        self._stop_score_thread = True
-        if self._score_thread is not None:
-            self._score_thread.join(timeout=1.0)
         super().close()
 
     def _get_state_and_raw_image(self) -> Tuple[np.ndarray, np.ndarray, list]:
@@ -212,26 +150,11 @@ class GameEnv(Env):
             pass
         return False
 
-    def _check_battle_end_and_score(self, image: np.ndarray) -> Tuple[bool, float]:
-        """
-        [极高频检测，绝不漏掉动画]
-        在每一次 step 的最后一瞬，检查左上角是否弹出了过关的蓝色星级。
-
-        需要在 data/templates/ 下提供:
-        - battle_3star.png (完美通关的三颗蓝星)
-        - battle_2star.png (漏怪通关的两颗蓝星)
-
-        Returns:
-            (是否结束, 这局的最终通关奖励/惩罚分数)
-        """
-        if self._template_matcher is None:
-            return False, 0.0
-
         h, w = image.shape[:2]
         # 【关键优化】方舟打完出星级的地方是在左上角。
         # 我们把扫描区域 (ROI) 死死限制在左上角的狭小范围内，并向下偏移
-        # 宽 0%~30%, 高 38.5%~50% (对应测试脚本中调校好的坐标)
-        star_roi = (0, int(h * 0.385), int(w * 0.30), int(h * 0.5))
+        # 对应测试脚本中调校好的坐标
+        star_roi = (int(w * 0.05), int(h * 0.35), int(w * 0.30), int(h * 0.55))
 
         # 1. 检测 3 星完美通关 (最高奖励)
         template_3star = str(ROOT.parent / "data" / "templates" / "battle_3star.png")
@@ -343,7 +266,6 @@ class GameEnv(Env):
             print(f"[RESET] 尝试跳过动画/寻找入口... (尝试 {attempts}/{max_attempts})")
             self._controller.post_click(640, 600).wait()
             time.sleep(1.5)
-
 
         if attempts >= max_attempts:
             print("[ERROR] 自动重启关卡失败！陷入死循环，请检查模拟器界面是否异常！")
@@ -501,32 +423,21 @@ class GameEnv(Env):
 
         elif not executed_swipe:
             # 【情况 2：被 CV Fast-Fail 机制直接阻断】
-            reward = -0.5
+            reward = -15.0 # 【路线B：极大增强非法拦截的惩罚】让它产生对非法区域的恐惧
             self.consecutive_fast_fails += 1
-            print(f"[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。奖励 -0.5 (连续无作为: {self.consecutive_fast_fails}次)")
+            print(f"[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。极度严厉惩罚 -15.0 (连续无作为: {self.consecutive_fast_fails}次)")
         else:
             print(f"[REWARD] 部署失败，计算前后帧 MSE (均方误差) = {mse:.2f}")
             if mse < 300.0:
-                reward = -0.5
+                reward = -15.0 # 【路线B：极大增强画面无变化的惩罚】
                 self.consecutive_fast_fails += 1
-                print(f"[REWARD] 画面未发生明显变化(非法部署)。奖励 -0.5 (连续无作为: {self.consecutive_fast_fails}次)")
+                print(f"[REWARD] 画面未发生明显变化(非法部署)。极度严厉惩罚 -15.0 (连续无作为: {self.consecutive_fast_fails}次)")
             else:
                 reward = -0.2
                 self.consecutive_fast_fails = 0
                 print("[REWARD] 动作无效，但游戏仍在进行(画面有变化)。奖励 -0.2 (已清空无作为计数器)")
 
         # 7. 多重战斗结束判定 (Priority 1 -> 2 -> 3)
-        # ================== 观察者模式：接收异步注入的结算奖惩 ==================
-        import threading
-        with self._score_lock:
-            if self._async_terminated_flag:
-                print(f"[ENV] 🚨 优先级 1 触发 (观察者回调)：接收到结算信号，总计注入附加得分 {self._async_reward_buffer}！战斗结束！")
-                reward += self._async_reward_buffer
-                terminated = True
-
-                # 清空池子，防止下一局错误加分
-                self._async_reward_buffer = 0.0
-                self._async_terminated_flag = False
 
         # ================== 兜底保护判定 ==================
         # 如果游戏确实结束了，但由于某种原因没有进入上面的结算分支（比如小弟的线程挂了，或者截图失败），
@@ -546,8 +457,6 @@ class GameEnv(Env):
                         terminated = True
                 else:
                     self.consecutive_missing_gear = 0
-
- 
 
         # 强制截断保护 (已移除步数限制)
         # if self.time_step >= self.max_time_steps:

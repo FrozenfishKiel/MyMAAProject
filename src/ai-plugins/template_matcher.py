@@ -63,10 +63,18 @@ class TemplateMatcher:
         import cv2
         import numpy as np
         
-        # 读取模板图像
-        template = cv2.imread(template_path, cv2.IMREAD_COLOR)
-        if template is None:
+        # 读取模板图像 (尝试保留 Alpha 透明通道作为 MAA 掩码)
+        template_raw = cv2.imread(template_path, cv2.IMREAD_UNCHANGED)
+        if template_raw is None:
             raise RuntimeError(f"Failed to load template image: {template_path}")
+
+        # 分离 BGR 和 Alpha(Mask)
+        if len(template_raw.shape) == 3 and template_raw.shape[2] == 4:
+            template = template_raw[:, :, :3]
+            template_mask = template_raw[:, :, 3]
+        else:
+            template = template_raw
+            template_mask = None
         
         # 如果指定了ROI，裁剪图像
         if roi is not None:
@@ -109,18 +117,22 @@ class TemplateMatcher:
             image_to_match = image
             template_to_match = template
             best_h, best_w = template_to_match.shape[:2]
+            match_method = cv2.TM_CCOEFF_NORMED
         elif is_star_template:
-            # 【提取单通道特征】因为亮起的星星是蓝色的，所以我们在 BGR 中只提取 B(蓝色) 通道
-            # 在蓝色通道中，亮起的蓝星像素值接近 255 (极亮)，暗淡的灰星像素值很低 (偏暗)
-            # 这样既保留了图像的结构特征，又极大放大了亮暗星的差异，且绝不会出现全黑模板
-            image_to_match = image[:, :, 0]
-            template_to_match = template[:, :, 0]
+            # ============================================================
+            # MAA 混合视觉架构：第一阶段【形状提取】
+            # 使用灰度图进行稳定的轮廓匹配，无视颜色干扰，只要找到"三颗星星"的物理坐标框即可
+            # ============================================================
+            image_to_match = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            template_to_match = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
             best_h, best_w = template_to_match.shape
+            match_method = cv2.TM_CCOEFF_NORMED
         else:
             # 常规灰度匹配
             image_to_match = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             template_to_match = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
             best_h, best_w = template_to_match.shape
+            match_method = cv2.TM_CCOEFF_NORMED
 
         # === 算法升级：多尺度特征金字塔匹配 (Multi-Scale Pyramids) ===
         best_max_val = -1.0
@@ -148,7 +160,8 @@ class TemplateMatcher:
             resized_template = cv2.resize(template_to_match, (resized_w, resized_h))
 
             # 使用缩放后的模板进行匹配
-            res = cv2.matchTemplate(image_to_match, resized_template, cv2.TM_CCOEFF_NORMED)
+            res = cv2.matchTemplate(image_to_match, resized_template, match_method)
+
             _, max_val, _, max_loc = cv2.minMaxLoc(res)
 
             # 记录得分最高的尺度
@@ -177,13 +190,59 @@ class TemplateMatcher:
                 # 正常模式，调用 print (会被双重日志捕捉)
                 print(log_msg, end='')
 
-        # 如果最高匹配得分依然小于阈值，返回None
-        if max_val < threshold:
-            return None
-
         # 计算最终匹配框的位置
         h, w = best_h, best_w
         top_left = max_loc
+
+        # ============================================================
+        # MAA 混合视觉架构：第二阶段【二次颜色特征校验 (HSVCount)】
+        # ============================================================
+        if is_star_template and max_val >= 0.2: # 只要形状有 20% 像，就认为找到了目标框，开始数颜色
+            # 把当前画面中，定位到的星星框切下来（使用彩色原图 bgr_image）
+            # 注意需要加上 ROI 偏移以获取真实全图坐标
+            global_x1 = top_left[0] + (roi[0] if roi else 0)
+            global_y1 = top_left[1] + (roi[1] if roi else 0)
+            target_crop = bgr_image[global_y1:global_y1+h, global_x1:global_x1+w]
+
+            # 提取明日方舟特有的 "蓝/青色" 像素
+            hsv_crop = cv2.cvtColor(target_crop, cv2.COLOR_BGR2HSV)
+            lower_blue = np.array([90, 40, 150])
+            upper_blue = np.array([130, 255, 255])
+            blue_mask = cv2.inRange(hsv_crop, lower_blue, upper_blue)
+
+            # 统计纯蓝像素点的数量 (每个像素点为 255)
+            blue_pixel_count = cv2.countNonZero(blue_mask)
+
+            # 我们需要对比的目标是我们要找的那个模板图 (template)
+            # 同样统计模板图里的蓝像素数量作为标准参照物 (TP)
+            hsv_template = cv2.cvtColor(template, cv2.COLOR_BGR2HSV)
+            template_blue_mask = cv2.inRange(hsv_template, lower_blue, upper_blue)
+            template_blue_count = cv2.countNonZero(template_blue_mask)
+
+            if template_blue_count > 0:
+                # MAA 核心逻辑：计算 F1-Score 或者重叠比例 (当前画面的蓝色量 / 模板规定的蓝色量)
+                color_ratio = blue_pixel_count / template_blue_count
+
+                # 对于 3星 和 2星，颜色比例必须严丝合缝
+                if "3star" in filename or "2star" in filename:
+                    # 如果蓝光像素达标 (大于 70%)，说明确实是这个星级！强行把形状得分和颜色比例综合
+                    if color_ratio > 0.70:
+                        max_val = 0.95 # 确信无疑，强行拉高置信度
+                    else:
+                        max_val = 0.1  # 蓝光不够，绝对是误判，强行压低置信度
+                # 对于 0星，它不能有蓝色像素
+                elif "0star" in filename:
+                    if blue_pixel_count < 100: # 几乎没有蓝光
+                        max_val = 0.95
+                    else:
+                        max_val = 0.1
+            else:
+                # 理论上不会走到这里，除非模板是纯黑图
+                pass
+
+        # 如果最高匹配得分依然小于阈值，返回None
+        if max_val < threshold:
+            return None
         
         # 如果指定了ROI，需要加上ROI的偏移
         if roi is not None:

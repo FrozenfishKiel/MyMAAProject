@@ -76,7 +76,7 @@ def main():
         h, w = frame.shape[:2]
 
         # 核心：game_env.py 里定义的精确 ROI
-        star_roi = (0, int(h * 0.385), int(w * 0.30), int(h * 0.5))
+        star_roi = (int(h * 0.2), int(h * 0.38), int(w * 0.238), int(h * 0.5))
 
         # --- 手动跑一次匹配拿到置信度（不设阈值，强制看最高分是谁） ---
         # 也就是不管对不对，我都要知道这个模板在这个 ROI 里最高能打几分
