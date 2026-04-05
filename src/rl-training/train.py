@@ -102,8 +102,8 @@ class TrainingCallback(BaseCallback):
             self.current_episode_length = 0
 
         # === 新增：保存中间模型 ===
-        # 每隔 100 步（大概 3-4 个回合）自动存一次档，防止训练崩溃或手动停止白跑
-        if self.total_steps > 0 and self.total_steps % 100 == 0:
+        # 每隔 20 步自动存一次档（为了让你尽早看到文件生成，缩短了保存间隔）
+        if self.total_steps > 0 and self.total_steps % 20 == 0:
             save_path = Path(r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy_latest.zip")
             save_path.parent.mkdir(parents=True, exist_ok=True)
             self.model.save(str(save_path))

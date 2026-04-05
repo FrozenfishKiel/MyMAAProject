@@ -21,11 +21,14 @@ from template_matcher import TemplateMatcher
 from game_env import GameEnv
 
 def main():
-    model_path = r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy_latest.zip"
-    yolo_model_path = r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\yolo\best.pt"
-    
+    model_path = r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy.zip"
     if not os.path.exists(model_path):
-        print(f"找不到模型文件: {model_path}，请先运行 train.py 训练一个晚上！")
+        model_path = r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy_latest.zip"
+
+    yolo_model_path = r"D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\yolo\best.pt"
+
+    if not os.path.exists(model_path):
+        print(f"找不到模型文件: {model_path}，请先运行 train.py！")
         return
 
     try:

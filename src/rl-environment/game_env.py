@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 import time
+import threading
 import cv2
 import numpy as np
 from pathlib import Path
@@ -56,11 +57,53 @@ class GameEnv(Env):
         # 添加一个连续被 CV 阻断的计数器，用于判断战斗是否其实已经结束了
         self.consecutive_fast_fails = 0
         self.consecutive_missing_gear = 0
+        
+        # --- 异步全局监视器 (小弟打饭) ---
+        self._battle_active = False
+        self._monitor_thread = None
+        self._stop_monitor_event = threading.Event()
+        self._emergency_stop_flag = False
 
         # === 初始化雷达视觉引擎 (Radar Vision) ===
         self.bg_subtractor = cv2.createBackgroundSubtractorMOG2(history=300, varThreshold=120, detectShadows=False)
         self.kernel_open = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
         self.kernel_close = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
+        self._init_level_prior("1-7")
+
+    def _init_level_prior(self, stage_code="1-7"):
+        import json
+        self.playable_grid = np.zeros((5, 10), dtype=np.uint8)
+        try:
+            json_path = ROOT.parent / "Arknights-Tile-Pos-main" / "Arknights-Tile-Pos-main" / "levels.json"
+            with open(json_path, 'r', encoding='utf-8') as f:
+                levels = json.load(f)
+            target_level = next((l for l in levels if l.get("code") == stage_code), None)
+            if target_level:
+                tiles = target_level["tiles"]
+                for r in range(5):
+                    for c in range(10):
+                        jr = r + 1
+                        jc = c + 1
+                        if jr < len(tiles) and jc < len(tiles[jr]):
+                            self.playable_grid[r, c] = tiles[jr][jc]["buildableType"]
+            print(f"[ENV] 成功加载 {stage_code} 关卡地形先验数据(黑白灰矩阵)!")
+        except Exception as e:
+            print(f"[ENV ERROR] 地形加载失败: {e}")
+            self.playable_grid.fill(1)
+
+        self.ch2_map = np.zeros((self.HEIGHT, self.WIDTH), dtype=np.uint8)
+        cell_w = self.WIDTH / 10.0
+        cell_h = self.HEIGHT / 5.0
+        for r in range(5):
+            for c in range(10):
+                val = self.playable_grid[r, c]
+                color = 0
+                if val == 1: color = 255 # 低台白
+                elif val == 2: color = 128 # 高台灰
+                x1, y1 = int(c * cell_w), int(r * cell_h)
+                x2, y2 = int((c+1) * cell_w), int((r+1) * cell_h)
+                import cv2
+                cv2.rectangle(self.ch2_map, (x1, y1), (x2, y2), color, -1)
 
     def close(self):
         super().close()
@@ -80,12 +123,8 @@ class GameEnv(Env):
             # --- 制作通道 1：灰度原图 ---
             gray = cv2.cvtColor(raw_image, cv2.COLOR_BGR2GRAY)
 
-            # --- 制作通道 2：绿色可部署区域 Mask ---
-            hsv = cv2.cvtColor(raw_image, cv2.COLOR_BGR2HSV)
-            lower_green = np.array([35, 43, 46])
-            upper_green = np.array([90, 255, 255])
-            grid_mask = cv2.inRange(hsv, lower_green, upper_green)
-            grid_mask = cv2.morphologyEx(grid_mask, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+            # --- 制作通道 2：先验地图地形层 (白=低台, 灰=高台, 黑=不可部署) ---
+            grid_mask = cv2.resize(self.ch2_map, (gray.shape[1], gray.shape[0]), interpolation=cv2.INTER_NEAREST)
 
             # --- 制作通道 3：敌人动态雷达 Mask ---
             fg_mask = self.bg_subtractor.apply(raw_image)
@@ -271,14 +310,150 @@ class GameEnv(Env):
             print("[ERROR] 自动重启关卡失败！陷入死循环，请检查模拟器界面是否异常！")
         print("================= 关卡重启流程结束 =================\n")
 
+    def _battle_monitor_worker(self):
+        """
+        后台高频监视线程：专职盯着右上角的齿轮和画面 MSE 剧变。
+        一旦发现游戏结束（齿轮消失或剧变），立刻置位应急停止标志。
+        """
+        template_path = str(ROOT.parent / "data" / "templates" / "pause_gear.png")
+        if not Path(template_path).exists() or self._template_matcher is None:
+            return
+
+        print("[ENV] 🛡️ 战斗全局异步监视器已启动...")
+        missing_count = 0
+        last_img = None
+        
+        while not self._stop_monitor_event.is_set():
+            if not self._battle_active:
+                time.sleep(0.5)
+                continue
+                
+            # 获取画面，不阻塞主线程
+            future = self._controller.post_screencap()
+            if future is None:
+                time.sleep(0.2)
+                continue
+                
+            img = future.wait().get()
+            if img is None:
+                time.sleep(0.2)
+                continue
+                
+            h, w = img.shape[:2]
+            
+            # 1. 画面剧变检测 (快速MSE)
+            if last_img is not None:
+                try:
+                    gray_cur = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    gray_last = cv2.cvtColor(last_img, cv2.COLOR_BGR2GRAY)
+                    mse = np.mean((gray_cur.astype("float") - gray_last.astype("float")) ** 2)
+                    if mse > 8000.0:
+                        print(f"\n[MONITOR] 🚨 后台紧急熔断：画面剧变 (MSE={mse:.2f} > 8000)！")
+                        self._emergency_stop_flag = True
+                        break
+                except:
+                    pass
+            last_img = img
+
+            # 2. 齿轮极速检测
+            gear_roi = (int(w * 0.7), 0, w, int(h * 0.3))
+            result = self._template_matcher.match(img, template_path, threshold=0.55, roi=gear_roi, silent=True)
+            
+            if result is None:
+                missing_count += 1
+                if missing_count >= 2:
+                    print(f"\n[MONITOR] 🚨 后台紧急熔断：连续 {missing_count} 次未见右上角齿轮，战斗结束！")
+                    self._emergency_stop_flag = True
+                    break
+            else:
+                missing_count = 0
+                
+            time.sleep(0.3)  # 高频扫描 (约 3Hz)
+
+    def _battle_monitor_worker(self):
+        """
+        后台高频监视线程：专职盯着右上角的齿轮和画面 MSE 剧变。
+        一旦发现游戏结束（齿轮消失或剧变），立刻置位应急停止标志。
+        """
+        import time
+        import cv2
+        template_path = str(ROOT.parent / "data" / "templates" / "pause_gear.png")
+        if not Path(template_path).exists() or getattr(self, '_template_matcher', None) is None:
+            return
+
+        print("[ENV] 🛡️ 战斗全局异步监视器已启动...")
+        missing_count = 0
+        last_img = None
+        
+        while not self._stop_monitor_event.is_set():
+            if not self._battle_active:
+                time.sleep(0.5)
+                continue
+                
+            # 获取画面，不阻塞主线程
+            future = getattr(self, '_controller', None).post_screencap()
+            if future is None:
+                time.sleep(0.2)
+                continue
+                
+            img = future.wait().get()
+            if img is None:
+                time.sleep(0.2)
+                continue
+                
+            h, w = img.shape[:2]
+            
+            # 1. 画面剧变检测 (快速MSE)
+            if last_img is not None:
+                try:
+                    gray_cur = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    gray_last = cv2.cvtColor(last_img, cv2.COLOR_BGR2GRAY)
+                    mse = np.mean((gray_cur.astype("float") - gray_last.astype("float")) ** 2)
+                    if mse > 8000.0:
+                        print(f"\n[MONITOR] 🚨 后台紧急熔断：画面剧变 (MSE={mse:.2f} > 8000)！")
+                        self._emergency_stop_flag = True
+                        break
+                except:
+                    pass
+            last_img = img
+
+            # 2. 齿轮极速检测
+            gear_roi = (int(w * 0.7), 0, w, int(h * 0.3))
+            result = self._template_matcher.match(img, template_path, threshold=0.55, roi=gear_roi, silent=True)
+            
+            if result is None:
+                missing_count += 1
+                if missing_count >= 2:
+                    print(f"\n[MONITOR] 🚨 后台紧急熔断：连续 {missing_count} 次未见右上角齿轮，战斗结束！")
+                    self._emergency_stop_flag = True
+                    break
+            else:
+                missing_count = 0
+                
+            time.sleep(0.3)  # 高频扫描 (约 3Hz)
+
     def reset(self, seed: int = None, options: Dict[str, Any] = None) -> Tuple[np.ndarray, Dict[str, Any]]:
         super().reset(seed=seed)
+
+        # 关停上一局的监视器
+        self._battle_active = False
+        if getattr(self, '_monitor_thread', None) is not None:
+            self._stop_monitor_event.set()
+            self._monitor_thread.join(timeout=1.0)
 
         # 核心：如果是被 done=True 触发进来的 reset，执行全自动重启流程！
         if self.time_step > 0:
             self._auto_restart_battle()
 
         self.time_step = 0
+        
+        # 开启新一局的监视器
+        self._emergency_stop_flag = False
+        self._stop_monitor_event.clear()
+        self._battle_active = True
+        self._monitor_thread = __import__('threading').Thread(target=self._battle_monitor_worker, daemon=True)
+        self._monitor_thread.start()
+
         state, _, _ = self._get_state_and_raw_image()
         return state, {}
 
@@ -297,28 +472,72 @@ class GameEnv(Env):
             detections = self._yolo_recognizer.detect(img_before, conf=0.25)
             for d in detections:
                 if d.label == "operator_hp_bar":
-                    # 计算血条中心点 (cx, cy)
                     cx = (d.box_xyxy[0] + d.box_xyxy[2]) / 2
                     cy = (d.box_xyxy[1] + d.box_xyxy[3]) / 2
                     hp_bar_centers_before.append((cx, cy))
 
-        # 2. 调用 actions.py，把离散的动作数组变成 MAA 的物理操作
-        # 并接收 CV Fast-Fail 阻断标志
-        executed_swipe, target_gx, target_gy, direction = self._deploy_actions.execute_deployment(action)
+        # ========================================================
+        # 终极形态：混合先验规则与视觉掩码 (Prior Masking & Blind Execution)
+        # ========================================================
+        card_idx = int(action[0])
+        grid_x = int(action[1])
+        grid_y = int(action[2])
+        direction = int(action[3])
 
-        # 3. 如果成功拖拽，采用多次校验机制防漏检（检查 3 次，间隔 0.2s）
+        executed_swipe = False
+        target_gx, target_gy = -1, -1
         deployed_success = False
         hp_bar_centers_after = []
 
-        if executed_swipe:
-            print(f"[REWARD] 动作已执行，开始 3 次心跳检测 (间隔 0.2s)...")
-            # 移除 1.0 秒的初始死板等待，立刻开始心跳检测，加快训练节奏
+        # ========================================================
+        # 终极形态：混合先验规则与视觉掩码 (Prior Masking & Blind Execution)
+        # 引入 OpenCV 亮度检测，前置拦截“没费”和“冷却”！
+        # ========================================================
+        card_is_playable = True
+        if card_idx < 10 and img_before is not None:
+            try:
+                # 按照 test_live_brightness.py 调校好的比例截取并计算亮度
+                h_raw, w_raw = img_before.shape[:2]
+                y_start, y_end = int(h_raw * 0.85), int(h_raw * 0.95)
+                x_start, x_end = int(w_raw * 0.20), int(w_raw * 0.85)
 
+                cards_roi = img_before[y_start:y_end, x_start:x_end]
+                gray_cards = cv2.cvtColor(cards_roi, cv2.COLOR_BGR2GRAY)
+                card_width = gray_cards.shape[1] // 10
+
+                single_card = gray_cards[:, card_idx*card_width : (card_idx+1)*card_width]
+                avg_brightness = np.mean(single_card)
+
+                # 亮度低于 100 认为手牌不可用
+                if avg_brightness < 100:
+                    card_is_playable = False
+            except Exception as e:
+                print(f"[DEBUG] 亮度检测失败: {e}")
+
+        if card_idx == 10:
+            # 挂机
+            self._deploy_actions.execute_deployment_blind(action)
+            time.sleep(0.1)
+            state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
+        elif not card_is_playable:
+            # 【亮度规则拦截】如果卡牌灰暗，直接拦截！
+            print(f"[ACTION MASKING] ⛔ 警告：手牌 {card_idx} 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！")
+            time.sleep(0.1) # 加速回合
+            state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
+        elif self.playable_grid[grid_y, grid_x] == 0:
+            # 【地形先验拦截】如果丢进了黑洞，拦截！
+            print(f"[ACTION MASKING] ⛔ 警告：目标网格({grid_x},{grid_y})不可部署区域！代码直接拦截！")
+            time.sleep(0.1) # 极短时间流逝，极大加速由于错误动作导致的训练回合
+            state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
+        else:
+            # 盲狙拖拽（不查绿光，直接拖）
+            executed_swipe, target_gx, target_gy, direction = self._deploy_actions.execute_deployment_blind(action)
+
+            print(f"[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...")
             for attempt in range(3):
                 time.sleep(0.2)
                 state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
                 current_hp_bars = []
-
                 if img_after is not None:
                     detections = self._yolo_recognizer.detect(img_after, conf=0.25)
                     for d in detections:
@@ -328,30 +547,23 @@ class GameEnv(Env):
                             current_hp_bars.append((cx, cy))
 
                 hp_bar_centers_after = current_hp_bars
-
-                # 校验是否成功
                 for cx_after, cy_after in current_hp_bars:
-                    is_new_hp_bar = True
+                    is_new = True
                     for cx_before, cy_before in hp_bar_centers_before:
                         if np.sqrt((cx_after - cx_before)**2 + (cy_after - cy_before)**2) < 50.0:
-                            is_new_hp_bar = False
-                            break
-
-                    if is_new_hp_bar:
+                            is_new = False; break
+                    if is_new:
                         dist_to_target = np.sqrt((cx_after - target_gx)**2 + (cy_after - target_gy)**2)
-                        # 容差扩大到 250 像素，涵盖干员下方的血条
                         if dist_to_target < 250.0:
-                            deployed_success = True
-                            break
-
+                            deployed_success = True; break
                 if deployed_success:
                     print(f"[REWARD] ✅ 第 {attempt+1} 次检测命中目标干员血条！")
                     break
-                else:
-                    print(f"[REWARD] ❌ 第 {attempt+1} 次未检测到目标血条...")
-        else:
-            time.sleep(0.1) # 被阻断了，直接跳过漫长的等待
-            state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
+
+            if not deployed_success:
+                print("[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！")
+                time.sleep(2.0)
+                state_after, img_after, current_enemy_targets = self._get_state_and_raw_image()
 
         # 5. 计算全局 MSE (用于判断画面大变动/转场)
         mse = 0.0
@@ -412,26 +624,31 @@ class GameEnv(Env):
                 elif direction == 3 and (angle >= 315 or angle <= 45): is_facing = True
 
                 if is_facing:
-                    reward += 8.0
-                    print(f"[REWARD] ⚔️ 完美朝向！正对敌人 (角度: {angle:.1f}°)，巨额奖励 +8.0")
+                    reward += 1.0 # 暂时削弱朝向的巨额奖励 (原为 +8.0)，前期鼓励“先放下去”，防止只追求彩票大奖
+                    print(f"[REWARD] ⚔️ 完美朝向！正对敌人 (角度: {angle:.1f}°)，额外奖励 +1.0")
                 else:
-                    reward -= 1.0
-                    print(f"[REWARD] 🛡️ 背对敌人！(角度: {angle:.1f}°)，严厉惩罚 -1.0")
+                    reward -= 0.5 # 削弱背对惩罚 (原为 -1.0)
+                    print(f"[REWARD] 🛡️ 偏离/背对敌人！(角度: {angle:.1f}°)，微小惩罚 -0.5")
             else:
                 # 场上暂时没敌人的情况 (静态兜底)
                 print("[REWARD] 场上暂无移动目标，仅发放基础部署奖励 +1.0")
 
         elif not executed_swipe:
-            # 【情况 2：被 CV Fast-Fail 机制直接阻断】
-            reward = -15.0 # 【路线B：极大增强非法拦截的惩罚】让它产生对非法区域的恐惧
+            # 【情况 2：被 Action Masking (地形拦截或无钱拦截) 直接阻断】
+            reward = -0.5  # 大幅下调非法探索惩罚，从 -15 降到 -0.5
             self.consecutive_fast_fails += 1
-            print(f"[REWARD] ⛔ 非法区域/无费用，已被 CV 阻断。极度严厉惩罚 -15.0 (连续无作为: {self.consecutive_fast_fails}次)")
+            print(f"[REWARD] ⛔ 动作被前置规则拦截 (非法地形或手牌灰暗)。轻微惩罚 -0.5 (连续无作为: {self.consecutive_fast_fails}次)")
+        elif not deployed_success:
+            # 【情况 3：模拟器滑了但是没血条】因为我们加了亮度拦截，这种情况极少发生，可能是被怪打死了或者费用刚好差一点点
+            reward = -0.5  # 下调滑屏失败惩罚，从 -2 降到 -0.5
+            self.consecutive_fast_fails += 1
+            print(f"[REWARD] ❌ 模拟器滑屏后未产生新血条。惩罚 -0.5 (连续无作为: {self.consecutive_fast_fails}次)")
         else:
             print(f"[REWARD] 部署失败，计算前后帧 MSE (均方误差) = {mse:.2f}")
             if mse < 300.0:
-                reward = -15.0 # 【路线B：极大增强画面无变化的惩罚】
+                reward = -0.5 # 同样下调画面无变化惩罚，从 -15 降到 -0.5
                 self.consecutive_fast_fails += 1
-                print(f"[REWARD] 画面未发生明显变化(非法部署)。极度严厉惩罚 -15.0 (连续无作为: {self.consecutive_fast_fails}次)")
+                print(f"[REWARD] 画面未发生明显变化。轻微惩罚 -0.5 (连续无作为: {self.consecutive_fast_fails}次)")
             else:
                 reward = -0.2
                 self.consecutive_fast_fails = 0
@@ -439,24 +656,11 @@ class GameEnv(Env):
 
         # 7. 多重战斗结束判定 (Priority 1 -> 2 -> 3)
 
-        # ================== 兜底保护判定 ==================
-        # 如果游戏确实结束了，但由于某种原因没有进入上面的结算分支（比如小弟的线程挂了，或者截图失败），
-        # 还是需要一个粗暴的方法结束游戏，避免死循环。
-        if mse > 8000.0:
-            print(f"[ENV] 🚨 优先级 2 触发：画面剧变 (MSE={mse:.2f} > 8000)，判定为转场/断线，结束回合！")
+        # 异步监视器拦截
+        if getattr(self, '_emergency_stop_flag', False):
+            print(f"[ENV] 🚨 后台监视器触发熔断，本回合正式结束！")
             terminated = True
-        elif img_after is not None and not terminated:
-            template_path = str(ROOT.parent / "data" / "templates" / "pause_gear.png")
-            if Path(template_path).exists() and self._template_matcher is not None:
-                result = self._template_matcher.match(img_after, template_path, threshold=0.5)
-                if result is None:
-                    self.consecutive_missing_gear += 1
-                    print(f"[ENV] ⚠️ 未检测到右上角齿轮图标！(连续 {self.consecutive_missing_gear}/3 次)")
-                    if self.consecutive_missing_gear >= 3:
-                        print(f"[ENV] 🚨 优先级 3 触发：齿轮彻底消失，战斗已结束！")
-                        terminated = True
-                else:
-                    self.consecutive_missing_gear = 0
+            self._battle_active = False
 
         # 强制截断保护 (已移除步数限制)
         # if self.time_step >= self.max_time_steps:

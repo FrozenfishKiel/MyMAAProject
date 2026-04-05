@@ -39,96 +39,146 @@ class DeployOperatorActions:
         self.CELL_W = (self.GRID_END_X - self.GRID_START_X) // self.GRID_COLS
         self.CELL_H = (self.GRID_END_Y - self.GRID_START_Y) // self.GRID_ROWS
 
-    def execute_deployment(self, action: np.ndarray) -> Tuple[bool, int, int, int]:
-        """
-        执行部署动作
-        action: [card_idx, grid_x, grid_y, direction]
-
-        Returns:
-            (是否执行滑动, 目标像素x, 目标像素y, 部署朝向)
-        """
-        card_idx = int(action[0])    # 0~9，如果是10则代表挂机
-        grid_x = int(action[1])      # 0~9
-        grid_y = int(action[2])      # 0~4
-        direction = int(action[3])   # 0:上, 1:下, 2:左, 3:右
+    def execute_deployment_blind(self, action: np.ndarray):
+        card_idx = int(action[0])
+        grid_x = int(action[1])
+        grid_y = int(action[2])
+        direction = int(action[3])
 
         if card_idx == 10:
-            print("[ACTION] AI决定: 💤 挂机 (Skip / Wait for Cost) - 屏幕中上部防误触点击")
-            # 挂机不需要坐标和拖拽，但在屏幕中心最顶部点击一下，防止卡牌保持选中状态误触
             self._controller.post_click(self.CARD_START_X + (self.CARD_END_X - self.CARD_START_X) // 2, 50).wait()
-            # 给它 2 秒钟的真实流逝时间，让游戏里的费用能涨上来
             time.sleep(2.0)
             return False, -1, -1, -1
 
-        # 1. 计算手牌干员坐标 (平均分布)
         card_step = (self.CARD_END_X - self.CARD_START_X) // 10
         cx = self.CARD_START_X + card_idx * card_step + card_step // 2
         cy = self.CARD_Y
 
-        # 2. 计算目标网格的中心坐标
         gx = self.GRID_START_X + grid_x * self.CELL_W + self.CELL_W // 2
         gy = self.GRID_START_Y + grid_y * self.CELL_H + self.CELL_H // 2
 
-        # 3. 计算划定朝向的终点坐标
         swipe_offset = 150
         end_x, end_y = gx, gy
-        if direction == 0:   # 上
-            end_y -= swipe_offset
-        elif direction == 1: # 下
-            end_y += swipe_offset
-        elif direction == 2: # 左
-            end_x -= swipe_offset
-        elif direction == 3: # 右
-            end_x += swipe_offset
+        if direction == 0: end_y -= swipe_offset
+        elif direction == 1: end_y += swipe_offset
+        elif direction == 2: end_x -= swipe_offset
+        elif direction == 3: end_x += swipe_offset
 
-        print(f"[ACTION] AI决定: 选卡 {card_idx} -> 放入网格({grid_x},{grid_y}) -> 朝向 {direction}")
-        print(f"         坐标映射: 拖拽从({cx},{cy})至({gx},{gy}) -> 方向滑动至({end_x},{end_y})")
+        print(f"[ACTION] 盲狙执行: 选卡{card_idx} -> 拖拽至({grid_x},{grid_y}) 朝向{direction}")
 
-        # === 执行 MAA 指令 ===
         try:
-            # 步骤A：点击底部的干员卡牌（进入待部署状态）
-            self._controller.post_click(cx, cy).wait()
+            # === 修改处：修复“手滑”和“断连”问题 ===
+            # 不要分开用 click 和 swipe，这样容易被模拟器判定为两次独立操作导致断触。
+            # 直接从底部卡牌位置，按住不放拖动到目标格子，再从目标格子拖动出方向。
+            # duration 设置长一点，让模拟器有足够时间响应物理轨迹。
 
-            # 等待极短时间让游戏出现地形高亮 (子弹时间)
-            time.sleep(0.4)
+            # 第一段：按住卡牌拖到目标网格
+            self._controller.post_swipe(cx, cy, gx, gy, duration=1000).wait()
+            # 极短的停顿，模拟人手停留，但不能太长否则干员会提前落地
+            time.sleep(0.05)
+            # 第二段：从目标网格滑出朝向，然后松手
+            self._controller.post_swipe(gx, gy, end_x, end_y, duration=500).wait()
 
+            return True, gx, gy, direction
+        except Exception as e:
+            print(f"[ACTION ERROR] 盲狙失败: {e}")
+            return False, gx, gy, direction
+        """
+        Phase 1: 选卡阶段。
+        只负责点击干员卡牌（或者挂机）。点击后游戏进入子弹时间，显示特定绿光。
+        返回 False 代表选择挂机（不需要执行后续 Phase 2）。
+        """
+        card_idx = int(action[0])
+        if card_idx == 10:
+            print("[ACTION] AI决定: 💤 挂机 (Skip / Wait for Cost) - 屏幕中上部防误触点击")
+            self._controller.post_click(self.CARD_START_X + (self.CARD_END_X - self.CARD_START_X) // 2, 50).wait()
+            time.sleep(2.0)
+            return False
+
+        card_step = (self.CARD_END_X - self.CARD_START_X) // 10
+        cx = self.CARD_START_X + card_idx * card_step + card_step // 2
+        cy = self.CARD_Y
+
+        print(f"[ACTION Phase-1] AI决定: 选卡 {card_idx}，点击坐标({cx},{cy})")
+        self._controller.post_click(cx, cy).wait()
+
+        # 核心等待：这里是从点击卡片到绿光出现的唯一渲染时间窗口！
+        # 如果你看到一片漆黑，说明这里等得不够久！
+        # 我们把 0.8 延长到 2.5 秒，强制等绿光完全亮起。
+        time.sleep(2.5)
+        return True
+
+    def execute_deployment_phase_2(self, action: np.ndarray, last_action: np.ndarray) -> Tuple[bool, int, int, int]:
+        """
+        Phase 2: 拖拽阶段。
+        AI 看着带有绿光的新画面，决定把刚刚选中的卡放到哪里。
+        """
+        card_idx = int(last_action[0]) # 从上一个动作获取卡片索引
+        grid_x = int(action[1])
+        grid_y = int(action[2])
+        direction = int(action[3])
+
+        # 重新计算坐标
+        card_step = (self.CARD_END_X - self.CARD_START_X) // 10
+        cx = self.CARD_START_X + card_idx * card_step + card_step // 2
+        cy = self.CARD_Y
+
+        gx = self.GRID_START_X + grid_x * self.CELL_W + self.CELL_W // 2
+        gy = self.GRID_START_Y + grid_y * self.CELL_H + self.CELL_H // 2
+
+        swipe_offset = 150
+        end_x, end_y = gx, gy
+        if direction == 0: end_y -= swipe_offset
+        elif direction == 1: end_y += swipe_offset
+        elif direction == 2: end_x -= swipe_offset
+        elif direction == 3: end_x += swipe_offset
+
+        print(f"[ACTION Phase-2] AI决定: 放入网格({grid_x},{grid_y}) -> 朝向 {direction}")
+
+        try:
             # --- 【CV 物理外挂：Fast-Fail 快速阻断机制】 ---
-            # 获取当前屏幕
             image = self._controller.post_screencap().wait().get()
             if image is not None:
-                # 转换到 HSV 颜色空间寻找绿色高亮
                 hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-                # 明日方舟部署时的绿色高亮大概在这个 HSV 范围内
-                lower_green = np.array([35, 43, 46])
-                upper_green = np.array([90, 255, 255])
+                # 【HSV 微调优化】：针对明日方舟浅绿色地砖特效优化，避开星熊等深青绿色的干扰
+                # 色相(H)卡得更死在黄绿~浅绿之间 (40~80)
+                # 饱和度(S)卡在偏低~中等之间 (40~160)，因为特效偏白发亮，不是高饱和的纯绿
+                # 亮度(V)卡在偏高，滤掉环境暗色
+                lower_green = np.array([40, 40, 100])
+                upper_green = np.array([80, 160, 255])
                 mask = cv2.inRange(hsv, lower_green, upper_green)
 
-                # 切割出目标网格 (gx, gy) 附近的一个小区域 (30x30像素)
                 y1, y2 = max(0, gy-15), min(mask.shape[0], gy+15)
                 x1, x2 = max(0, gx-15), min(mask.shape[1], gx+15)
                 roi = mask[y1:y2, x1:x2]
-
-                # 统计这块区域里的绿色像素数量
                 green_pixels = cv2.countNonZero(roi)
 
+                # --- 增加极其直观的 DEBUG 窗口，把我们检测的格子画面展示出来 ---
+                # 用同一个名字的窗口持续更新，不会消失，方便你一直看
+                debug_vis = cv2.cvtColor(roi, cv2.COLOR_GRAY2BGR)
+                debug_vis = cv2.resize(debug_vis, (300, 300), interpolation=cv2.INTER_NEAREST)
+
+                # 画一个红色的准星，表示我们检测的正中心
+                cv2.line(debug_vis, (150, 0), (150, 300), (0, 0, 255), 2)
+                cv2.line(debug_vis, (0, 150), (300, 150), (0, 0, 255), 2)
+
+                # 把当前的绿像素数量写在图片上
+                cv2.putText(debug_vis, f"Green: {green_pixels} (Needs 20)", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+
+                cv2.imshow("Green Detection ROI", debug_vis)
+                cv2.waitKey(1)  # 只刷新，不阻塞游戏进程
+                # -------------------------------------------------------------
+
                 if green_pixels < 20:
-                    # 如果几乎没有绿色，说明：
-                    # 1. 根本没点中干员（或者干员在CD/费用不够）
-                    # 2. 目标网格是不可部署的黑洞/高台受限
                     print(f"[ACTION] ⛔ Fast-Fail! 目标网格({grid_x},{grid_y})非绿色高亮(绿像素:{green_pixels})。取消拖拽。")
-                    # 取消选中状态的最佳方法：重新点击一次刚才选中的那张底部的卡牌
-                    self._controller.post_click(cx, cy).wait()
+                    self._controller.post_click(cx, cy).wait() # 取消选中
                     return False, gx, gy, direction
                 else:
-                    print(f"[ACTION] ✅ CV校验通过！网格({grid_x},{grid_y})具有高亮绿色(像素:{green_pixels})，准许拖拽。")
+                    print(f"[ACTION] ✅ CV校验通过！具有高亮绿色(像素:{green_pixels})，准许拖拽。")
 
-            # 步骤B：将底部干员卡牌拖拽到目标网格（释放后进入慢动作方向选择阶段）
+            # 拖拽
             self._controller.post_swipe(cx, cy, gx, gy, duration=500).wait()
-
-            # 等待极短时间让游戏出现方向选择的慢动作 UI
             time.sleep(0.5)
-
-            # 步骤C：在目标网格上按住，并划向指定方向松手（完成部署）
             self._controller.post_swipe(gx, gy, end_x, end_y, duration=300).wait()
 
             return True, gx, gy, direction
