@@ -1,0 +1,105 @@
+[INFO] 正在查找 ADB 设备...
+[SUCCESS] 连接到设备: MuMu安卓设备-MuMuPlayer12 v5 (127.0.0.1:16384)
+[SUCCESS] 设备握手成功!
+[INFO] 正在加载 YOLO 模型: D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\yolo\best.pt
+       使用设备: cpu
+[SUCCESS] YOLO 模型加载完成!
+[INFO] 正在加载模板匹配器...
+[SUCCESS] 模板匹配器加载完成!
+[INFO] 正在创建强化学习环境...
+[ENV ERROR] 地形加载失败: [Errno 2] No such file or directory: 'D:\\BiShe\\MaAutomaton-main\\MaAutomaton-main\\Arknights-Tile-Pos-main\\Arknights-Tile-Pos-main\\levels.json'
+[SUCCESS] 环境创建完成!
+[INFO] 正在创建 PPO 模型...
+[SUCCESS] 发现已有模型存档，从 D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy_latest.zip 恢复记忆继续训练！
+[SUCCESS] PPO 模型创建完成!
+
+================ 开始训练 ===================
+总步数: 20000, 每次更新前收集步数: 128, 批次: 64
+[ENV] 🛡️ 战斗全局异步监视器已启动...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.55, optimal scale: 0.80x)
+Logging to D:\BiShe\MaAutomaton-main\MaAutomaton-main\tensorboard_logs\PPO_2
+
+[STEP 1] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.55, optimal scale: 0.80x)
+
+[MONITOR] 🚨 后台紧急熔断：连续 2 次未见右上角齿轮，战斗结束！
+[ACTION MASKING] ⛔ 警告：手牌 8 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 1次)
+[ENV] 🚨 后台监视器触发熔断，本回合正式结束！
+
+================= 回合结束，开始自动重启关卡 =================
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 1/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.511 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.052 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.379 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.411 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 2/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.219 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.211 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.367 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.271 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 3/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.215 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.210 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.373 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.271 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 4/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.211 (needs 0.7, optimal scale: 1.05x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.187 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.297 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.277 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 5/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.825 (needs 0.7, optimal scale: 0.80x)
+[RESET] 找到 [pause_gear] (置信度 0.82 >= 0.7)，(仅检测，不点击)
+[RESET] ✅ 检测到战斗画面右上角齿轮，重启成功！
+================= 关卡重启流程结束 =================
+
+[ENV] 🛡️ 战斗全局异步监视器已启动...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+--> [回合结束] 第 1 回合 | 奖励: -0.1 | 步数: 1
+
+[STEP 1] 开始执行动作...
+[ACTION MASKING] ⛔ 警告：手牌 9 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 2次)
+
+[STEP 2] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡11 -> 拖拽至(9,2) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION ERROR] 盲狙失败: Controller.post_touch_up() takes from 1 to 2 positional arguments but 4 were given
+[ERROR] 训练中断: Controller.post_touch_up() takes from 1 to 2 positional arguments but 4 were given
+
+================ 保存模型 ===================
+[SUCCESS] 模型已保存至: D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\rl\policy.zip

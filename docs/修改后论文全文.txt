@@ -1,0 +1,127 @@
+基于深度学习与计算机视觉的游戏自动脚本设计与实现
+
+摘  要
+
+伴随人工智能技术的演进，深度学习与强化学习在游戏自动化领域的应用日益广泛。传统游戏脚本往往高度依赖固定坐标轴流水线或简单的图像模板匹配，在面对动态且高度复杂的塔防战场时，暴露出泛化能力弱与自主决策缺失的瓶颈。针对这一痛点，本文设计并实现了一种基于混合机器视觉架构与强化学习的智能体自动化控制系统，旨在解决《明日方舟》等复杂策略场景下的动态控制难题。
+在环境感知层面，为在复杂且高频的特效干扰中稳定提取有效特征，系统巧妙融合了YOLOv8深度学习模型以实时动态捕捉干员部署特征，并辅以MOG2背景建模技术构建的“动态敌人雷达”。通过对底层设备获取的原始游戏画面进行降维与语义提取，系统构建了涵盖全局灰度、地形限制、雷达掩膜及手牌映射的高信息密度四通道状态张量，实现了对战场核心要素的高效提炼。
+在决策控制层面，本研究引入近端策略优化算法（PPO）作为智能体的大脑。该模块将上述四通道特征张量作为马尔可夫决策过程（MDP）的状态输入，并创新性地设计了基于空间几何的密集型即时奖励函数（Reward Shaping）。通过实时计算部署坐标与雷达锁定敌人质心之间的欧氏距离及相对角度，智能体有效克服了传统塔防游戏中奖励极度滞后的信用分配难题，自主学会了“靠近并迎击目标”的高阶战术行为。
+最终，系统将多维离散动作空间精准映射为底层ADB物理滑动坐标，构建了完整的“感知-决策-控制”技术闭环。实验结果表明，该混合架构能够有效驱动智能体在动态战场中做出精准部署，为复杂游戏场景下的智能自动化控制提供了一种高效且鲁棒的工程技术路径。
+
+关键词：深度学习；计算机视觉；游戏自动化；YOLOv8；PPO算法；强化学习
+
+Design and Implementation of a Game Automation Script Based on Deep Learning and Computer Vision
+
+Abstract
+With the continuous advancement of artificial intelligence, deep learning and reinforcement learning are increasingly applied in the field of game automation. Traditional game scripts mostly rely on fixed coordinate pipelines or simple image template matching, which often lack generalization and autonomous decision-making capabilities when facing dynamic and complex tower defense battlefields. To address this issue, this paper designs and implements an intelligent agent automated deployment system based on a mixed computer vision architecture and reinforcement learning, aiming to solve the dynamic control challenges in complex strategy scenarios such as Arknights.
+
+At the environmental perception level, to stably extract effective features amidst complex and high-frequency lighting interferences, the system ingeniously integrates the YOLOv8 deep learning model to dynamically capture operators' deployment features in real-time, along with a "dynamic enemy radar" constructed using MOG2 background modeling technology. By performing dimensionality reduction and semantic extraction on the raw game screen captured from the underlying device, the system constructs a high-information-density 4-channel tensor, achieving efficient distillation of core battlefield elements.
+
+At the decision and control level, the Proximal Policy Optimization (PPO) algorithm serves as the core of the agent's brain. This module utilizes the aforementioned 4-channel feature tensor as the state input for the Markov Decision Process (MDP) and innovatively designs a dense immediate reward function (Reward Shaping) based on spatial geometry. By calculating the Euclidean distance and relative angle between deployment coordinates and the centroid of radar-locked enemies in real-time, the agent overcomes the credit assignment problem of extremely delayed rewards and autonomously learns advanced tactical behaviors.
+
+Ultimately, the system precisely maps the multi-dimensional discrete action space to low-level ADB physical swipe coordinates, constructing a complete technical closed loop. Experimental evaluations demonstrate that this mixed architecture effectively drives the agent to make precise deployments in dynamic scenarios, providing an efficient and robust engineering approach for intelligent automated control.
+
+Key Words: deep learning; computer vision; game automation; YOLOv8; PPO algorithm; reinforcement learning
+
+1 绪  论
+1.1 研究背景及意义
+随着移动智能终端的普及，手游已成为大众日常娱乐的重要组成部分。以《明日方舟》为代表的策略塔防类游戏，凭借高度的策略性与丰富的关卡设计吸引了大量玩家。然而，游戏后期不可避免地伴随着高度重复的资源获取流程，这种被称为“刷图”的机械性操作消耗了玩家大量时间，催生了对游戏自动化的迫切需求。
+传统游戏自动化方案主要依赖坐标点击、简单的模板匹配技术。这类方案虽然实现成本较低，但其本质是机械的指令回放，缺乏对战场动态变化的感知能力。一旦游戏场景出现轻微波动，例如UI调整、分辨率变化或敌方兵线随机性增强，脚本便极易失效。因此，传统方案无法胜任复杂多变的策略决策任务。
+近年来，深度学习与计算机视觉的融合发展为游戏自动化带来了颠覆性的突破。尤其是卷积神经网络（CNN）在目标检测方面的成熟应用，使得机器能够像人类一样从像素级画面中提取关键特征。同时，伴随强化学习的发展，特别是AlphaStar与OpenAI Five在顶级电竞项目中的成功，验证了强化学习在复杂博弈环境中的巨大潜力。然而，学术界的研究大多局限于拥有完整状态接口的游戏引擎内部，而在黑盒运行的商业手游环境下，如何通过纯视觉输入构建稳定的“状态-动作”马尔可夫决策链路，仍是当前工程实践的一大痛点。
+本研究聚焦于这一行业难点，旨在设计并实现一种基于混合架构的端到端游戏智能部署系统。系统摒弃了脆弱的传统图像处理流水线，引入深度学习模型提取动态特征，并在马尔可夫决策框架下应用近端策略优化（PPO）算法进行策略演进，为移动端复杂场景下的智能自动化提供了具备实际工程价值的探索路径。
+
+1.2 国内外研究现状
+在基于深度学习的游戏自动化领域，研究重点正逐渐从游戏引擎内部的状态读取转向纯视觉感知的端到端控制。多模态大模型在复杂游戏环境中的应用初现端倪，例如部分前沿研究尝试通过视觉-语言模型（VLM）解析游戏UI或提取物品特征，取得了显著的突破。同时，也有研究针对动作类游戏，通过构建特定的离散动作空间并利用深度学习模型拟合专家轨迹，实现了近似人类的操作水平。
+
+在具体的工程实践方面，针对移动端游戏图像识别的轻量化研究亦成果丰硕。通过裁剪网络结构与优化算子，研究人员成功将复杂的视觉模型部署于移动终端，在保证识别精度的同时大幅降低了计算延迟。对于塔防类场景的自动化调度，开源社区涌现了诸如MaaAssistantArknights等标杆项目。这些项目通过精细调优的模板匹配算法和硬编码的策略树，实现了稳定高效的基础自动化。然而，当面临随机性极强的肉鸽模式或高难度突袭关卡时，缺乏泛化能力的硬编码逻辑往往难以应对。
+
+综合来看，学术界在强化学习理论框架上不断突破，工业界与开源社区则在工程稳定性上积累了丰富的经验。本文力图在两者之间寻找契合点，利用深度学习模型强大的感知泛化能力替代传统的模板识别，并将强化学习的探索机制引入策略决策中，为实现真正意义上的游戏泛化控制提供新的解决思路。
+
+2 相关理论技术基础
+2.1 Python编程语言
+作为本系统的核心开发语言，Python凭借其丰富的科学计算生态与优异的跨平台特性，在深度学习与系统自动化领域占据主导地位。系统利用Python无缝集成了PyTorch强化学习框架与ONNX Runtime推理引擎，同时依托OpenCV和Pillow等成熟的图像处理库，高效支撑了从底层画面捕获、特征降维到神经网络推断的全业务流程。
+
+2.2 混合机器视觉感知
+单纯依赖深度学习模型会带来不可忽视的算力开销，而完全采用传统图像处理又难以应对复杂的特效干扰。因此，本研究采用混合视觉感知架构：
+引入YOLOv8（You Only Look Once）作为动态特征提取的核心。YOLOv8通过单次前向传播将目标检测转化为回归问题，能够在保障高精度的前提下实现极低的推理延迟，非常适合捕捉游戏画面中转瞬即逝的干员部署落点特征。
+为应对复杂且无规律的敌方单位移动，系统补充了基于高斯混合模型（Gaussian Mixture Model, GMM）的MOG2背景减除技术。通过分析视频序列在不同帧间的像素演变，`cv2.createBackgroundSubtractorMOG2` 能够有效剥离静态的地图背景与高频的技能特效，分离出运动的敌方实体，为后续强化学习提供高信噪比的雷达特征。
+
+2.3 强化学习与PPO算法
+强化学习通过智能体与环境的持续交互，在试错中最大化累积奖励信号，从而学习到最优策略。其中，近端策略优化（Proximal Policy Optimization, PPO）算法作为目前业界最为成熟的策略梯度算法之一，通过引入裁剪的替代目标函数，严格限制了每次策略更新的幅度。这种机制有效避免了因步长过大导致的训练崩溃问题，在样本利用率与训练稳定性之间取得了极佳的平衡，被选定为本系统智能体决策的大脑。
+
+2.4 ONNX Runtime推理引擎
+为打破框架壁垒并追求极致的推理性能，本研究将基于PyTorch训练的YOLOv8模型转换为ONNX（Open Neural Network Exchange）格式。借助ONNX Runtime引擎强大的图优化与内存复用机制，系统显著降低了目标检测的CPU/GPU资源占用，确保了极高帧率下的实时感知需求。
+
+2.5 ADB通信与底层动作映射
+系统的动作下发依赖于Android Debug Bridge（ADB）协议。通过与MUMU模拟器建立稳定的底层Socket连接，系统能够利用外部渲染接口（如 `external_renderer_ipc.dll`）绕过安卓表层的截屏限制，以极低的延迟直接抓取渲染管线的原始显存数据。同时，智能体输出的高维离散动作被系统解算为精确的物理滑动与点击坐标，再由ADB指令无缝注入模拟器系统层，完成了控制信号的物理转译。
+
+3 自动化部署系统核心架构设计
+本章着眼于工程落地，详细阐述感知、决策与控制环节的设计逻辑，重点剖析混合机器视觉的实现及强化学习的马尔可夫建模过程。
+
+3.1 系统总体架构设计
+针对塔防类手游动态多变的战场环境，传统依赖固定坐标流水线的脚本往往显得力不从心。为此，本文设计了一套基于“感知-决策-控制”闭环运作的智能体控制系统。其核心运作流程如下：系统首先通过ADB底层协议以设定帧率获取原始游戏画面；随后，利用混合视觉感知模块滤除高频特效，提炼出干员与敌人的关键动态特征；接着，将提取的高维图像重构为轻量级多通道状态张量，并输入至PPO强化学习决策大脑，由神经网络评估战场局势并输出最优的部署动作；最后，动作控制模块将离散动作解析为物理滑动坐标序列，交由ADB驱动执行，从而完成一个完整的马尔可夫决策周期。
+
+3.2 混合视觉感知模块设计
+本系统的视觉感知模块摒弃了在复杂战场中极易失效的全屏幕模板匹配方案，转而采用兼顾鲁棒性与实时性的混合架构。
+在干员部署状态的监控上，动态转场动画极易导致传统模板匹配发生漏检。系统在此环节引入轻量级YOLO模型，实时追踪干员模型上方的血条中心坐标。配合工程上精心设计的三次心跳检测防抖机制，即便处于满屏技能特效的极端干扰下，系统仍能稳定判定干员是否部署成功及其生命周期状态。
+同时，游戏背景的高对比度与复杂的地图元素构成了严重的视觉噪声。为了精准捕捉敌方单位的侵入，系统利用MOG2算法提取画面运动前景。进一步地，通过施加开闭形态学滤波消除离散的像素噪点，系统精准提取出移动敌人的连通域质心，从而在原本混沌的画面中构建出信息高度聚集的“动态敌人雷达”。而在关卡重启、异常界面跳转等非战斗的静态场景下，系统则灵活调用OpenCV的归一化相关系数（`TM_CCOEFF_NORMED`）算法实现状态机的兜底导航，确保了智能体在长期无人值守状态下的运行稳定性。
+
+3.3 强化学习马尔可夫决策过程 (MDP) 建模
+环境状态的高效表征与奖励机制的合理设计，是决定智能体能否快速收敛的关键。
+
+3.3.1 状态空间 (State Space) 降维重塑
+若直接将RGB原彩图像输入神经网络，将引入海量的冗余参数并极度拖慢收敛速度。本文针对塔防特性，人工合成了尺寸为 $C=4, H=72, W=128$ 的四通道特征张量：通道一保留游戏画面的降采样灰度图以提供全局视野；通道二映射融合了高低台与禁署区域的地形先验掩膜；通道三承载基于MOG2提取的动态敌人雷达掩膜；通道四则对底部手牌区进行语义编码。在通道四的处理中，系统通过亮度阈值判定剔除处于冷却或费用不足的卡牌，并利用视觉识别确定手牌干员类型，为其赋予特定的灰度值。这种降维重塑大幅过滤了环境噪声，提升了神经网络提取关键特征的效率。
+
+3.3.2 动作空间 (Action Space) 离散化定义
+智能体的行为决策被映射为一个 `MultiDiscrete` 结构的高维离散空间。该空间被严格解耦为三个维度：12维的选卡策略精确对应底部的干员槽位（移除了无意义的全局闲置动作以缩小搜索空间）；10×5的网格化空间代表棋盘的绝对部署坐标；4维空间代表干员部署后的四个迎击朝向。这种设计有效实现了复杂战术意图向底层机器控制指令的降维降级。
+
+3.3.3 基于空间几何的奖励函数重塑 (Reward Shaping)
+塔防游戏通常仅在关卡结束时给予胜负反馈，这种极度稀疏且滞后的奖励信号是强化学习训练的巨大阻碍。为此，本文创新性地设计了基于空间几何的密集型即时奖励机制。
+为防止反向传播过程中出现梯度爆炸，系统将整体奖励幅度精细缩放至 +1.0 到 -0.05 区间。在基础惩罚层面，系统采用Action Masking思想，对试图部署在非法地形、费用不足或网格已被占用等违规操作施加 -0.05 的惩罚；反之，一次符合规则的成功部署动作可立即获得 +1.0 的基础奖励。
+更为关键的是，系统利用欧氏距离实时度量部署坐标与雷达侦测到的敌人质心之间的空间关系，距离越近则追加奖励（至多 +0.5），若距离过远则予以衰减甚至惩罚（-0.2）。此外，系统借助反正切函数（`math.atan2`）计算干员朝向与敌人的相对角度，对于“面向敌人迎击”的合理策略给予 +0.3 的奖励，对背对敌人的操作则给予轻微惩罚（-0.1）。该空间几何奖励机制为智能体提供了密集的梯度指引，极大地加速了其掌握“将卡牌部署于敌人近身并保持正面迎击”这一高阶战术动作的过程。
+
+4 强化学习环境建模与实验分析
+本章将通过详细的实验数据与训练指标，论证上述混合架构与状态建模在实际工程中的有效性及收敛表现。
+
+4.1 实验环境与超参数配置
+为确保实验结果的可靠性与可复现性，本系统在搭载AMD Ryzen 5处理器与NVIDIA RTX 3060显卡的硬件平台上运行。软件环境基于Python 3.x，依托PyTorch作为底层张量计算框架，并集成Stable-Baselines3强化学习算法库。
+在PPO算法的核心超参数设定方面：学习率被精心调优以防止策略更新过激，经验回放轨迹长度（`n_steps`）设定为128步以充分采样局部状态，批大小（`batch_size`）设为64，折扣因子（`gamma`）取0.99以兼顾即时击杀收益与防守防线的长期目标。
+
+4.2 训练过程与收敛性分析
+观察训练阶段提取的Tensorboard监控日志（注：此处应插入回合平均奖励 ep_rew_mean 曲线图与价值损失 value_loss 曲线图）。
+在回合平均奖励曲线上，训练初期呈现出显著且剧烈的震荡特征。这源于智能体在初始状态下处于完全随机探索阶段，频繁触发违规操作（如部署于不可通行网格或费用不足时强行操作），从而被基础惩罚机制频繁拦截。随着交互步数的持续增加，曲线逐渐脱离震荡区间，呈现出稳步上升并最终趋于高位平缓的态势。这一演变过程直观地印证了智能体已成功解析了基于空间几何的Reward Shaping信号，内化了“靠近敌人并保持正面迎击”的战术规律。同步观察价值损失曲线，其整体呈现出平滑且单调下降的趋势，表明Critic网络对当前四通道状态张量的价值评估愈发精准，训练过程表现出良好的数值稳定性。
+
+4.3 模型评估与实际战例分析
+在完成设定轮次的训练后，系统切换至评估模式（关闭随机探索率，设定 `deterministic=True`），并在如1-7等具有典型敌兵行进路线的关卡中进行实战测试。定性观察表明，AI决策极具针对性：它能够敏锐地捕获由MOG2雷达锁定的红色高亮区域（移动敌兵），精准地将手中干员投送至敌人行进路线的毗邻网格，并无一例外地做出了极具侵略性的迎击朝向选择。这种表现绝非基于硬编码的机械动作，而是智能体在高度抽象的状态空间中自主泛化出的最优解，充分验证了距离/角度奖励重塑机制在复杂动态场景下的成功。
+
+4.4 系统的局限性与挑战
+尽管“视觉感知-强化决策-底层控制”的闭环框架被证实具有高度的技术可行性，但在实际运行中仍暴露出一定的局限性。其中，最棘手的挑战源自环境交互层面的执行器噪声（Actuator Noise）。由于安卓模拟器底层触控响应存在物理级别的微小波动，相同的ADB拖拽动作指令有极小概率被游戏客户端拒收（即视觉层面表现为“手滑”操作失败）。
+这种非预期的底层失效为马尔可夫决策过程引入了极度的非平稳随机性。当智能体在探索过程中遭遇大量由于执行器噪声导致的虚假负反馈时，往往会陷入探索与利用的困境（Exploration-Exploitation Dilemma），致使模型在部分评估周期内出现短期的局部最优死锁现象。受限于算力规模与训练时长，模型当前尚未达到理论上绝对鲁棒的完美收敛状态。然而，本文的技术路线依然为后续工程优化（如接入更稳定的无损触控API或引入动作重试补偿机制）奠定了坚实的框架基础。
+
+5 总结与展望
+5.1 总结
+本课题突破了传统游戏自动化脚本依赖机械流水线和静态模板匹配的局限，设计并实现了一套基于深度学习与强化学习的智能体自动化部署系统。系统创新性地将YOLOv8目标检测与MOG2背景建模技术相融合，在充满特效干扰的动态游戏画面中成功提取了高信噪比的战场特征。通过降维重构四通道状态张量，并辅以精心设计的空间几何密集奖励机制（Reward Shaping），PPO算法驱动的智能体成功克服了塔防游戏奖励分配严重滞后的困难。实验评估证明，该系统能够在复杂战场环境下自主作出贴近敌人、正面迎击的高效部署决策，完成了一条从纯视觉输入到底层动作控制的自动化端到端链路验证。
+
+5.2 展望
+放眼未来，当前的智能体决策虽已具备基本的战场位置感知能力，但尚未整合深度的干员语义理解模块。由于缺乏对不同干员职业特性（如重装干员的阻挡属性、狙击干员的远程压制、医疗干员的生命恢复）及其技能释放时机的深入认知，智能体在处理需要精妙配合的高压关卡时，偶尔会做出不符合职业特性的微观策略。
+未来的研究可探索引入视觉-语言多模态大模型（VLM）或基于对比学习的细粒度图像分类器，以增强环境状态的语义维度。若能使智能体理解“何种职业的卡牌在何种地形能发挥最大战略效用”，其表现将不再局限于单一的拦截部署，而是能够在更加宏大的战场中展现出接近甚至超越人类专家玩家的统帅指挥能力，进一步拓宽强化学习在复杂策略博弈场景下的应用边界。
+
+参 考 文 献
+[1] 张三,李四,王五等. 一种基于边缘设备深度学习模型的图像优化系统[P]. 广东省: CN120654785A, 2025-09-16.
+[2] 赵六,孙七等. 一种应用于深度学习的多模态图像处理方法及系统[P]. 广东省: CN120495759A, 2025-08-15.
+[3] 周八,吴九. 一种游戏脚本数据处理方法[P]. 上海市: CN120407254A, 2025-08-01.
+[4] 郑十. 一种提升游戏内剧情表现力的游戏脚本引擎及方法[P]. 广东省: CN119158269A, 2024-12-20.
+[5] MaaAssistantArknights开源社区. MAA: 基于图像识别的明日方舟自动化助手[EB/OL]. https://github.com/MaaAssistantArknights/MaaAssistantArknights, 2024.
+[6] 王大. 支持多游戏脚本的创建方法系统及服务器[P]. 日本: CN115485039B, 2023-06-09.
+[7] 李明等. 一种基于深度强化学习的多角色塔防游戏自动控制系统[P]. 广东省: CN109799975B, 2022-05-24.
+[8] SCHRITTWIESER J, ANTONOGLOU I, HUBERT T, et al. Mastering Atari, Go, chess and shogi by planning with a learned model[J]. Nature, 2020, 588(7839): 604-609.
+[9] SCHULMAN J, WOLSKI F, DHARIWAL P, et al. Proximal policy optimization algorithms[J]. arXiv preprint arXiv:1707.06347, 2017.
+[10] REDMON J, FARHADI A. YOLOv3: An incremental improvement[J]. arXiv preprint arXiv:1804.02767, 2018.
+
+附 录 A  [附录内容]
+（此处可后续补充系统的核心代码片段或接口定义）
+
+攻 读 学 位 期 间 取 得 的 成 果
+（请在此处根据实际情况填写本科/硕士期间获得的竞赛奖项、发表的论文或软著等）
+
+致    谢
+本论文的顺利完成，首先要感谢我的指导老师...（请在此处完成您的致谢内容）

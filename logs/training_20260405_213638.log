@@ -1,0 +1,1024 @@
+[INFO] 正在查找 ADB 设备...
+[SUCCESS] 连接到设备: MuMu安卓设备-MuMuPlayer12 v5 (127.0.0.1:16384)
+[SUCCESS] 设备握手成功!
+[INFO] 正在加载 YOLO 模型: D:\BiShe\MaAutomaton-main\MaAutomaton-main\models\yolo\best.pt
+       使用设备: cpu
+[SUCCESS] YOLO 模型加载完成!
+[INFO] 正在加载模板匹配器...
+[SUCCESS] 模板匹配器加载完成!
+[INFO] 正在创建强化学习环境...
+[ENV ERROR] 地形加载失败: [Errno 2] No such file or directory: 'D:\\BiShe\\MaAutomaton-main\\MaAutomaton-main\\Arknights-Tile-Pos-main\\Arknights-Tile-Pos-main\\levels.json'
+[SUCCESS] 环境创建完成!
+[INFO] 正在创建 PPO 模型...
+[INFO] 未发现已有模型存档，创建全新的 PPO 婴儿大脑！
+Using cpu device
+[SUCCESS] PPO 模型创建完成!
+
+================ 开始训练 ===================
+总步数: 20000, 每次更新前收集步数: 128, 批次: 64
+[ENV] 🛡️ 战斗全局异步监视器已启动...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+Logging to D:\BiShe\MaAutomaton-main\MaAutomaton-main\tensorboard_logs\PPO_6
+
+[STEP 1] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡11 -> 拖拽至(9,1) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.891 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.909 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 2] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡11 -> 拖拽至(6,4) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.887 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.887 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.886 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 1
+[REWARD] 🎯 完美落子！部署点靠近敌人 (距离: 176.1)，奖励 +0.5
+[REWARD] ⚔️ 完美朝向！正对敌人 (角度: 349.0°)，额外奖励 +0.3
+
+[STEP 3] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡8 -> 拖拽至(4,3) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.886 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.886 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.887 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 2
+[REWARD] 场上暂无移动目标，仅发放基础部署奖励 +1.0
+
+[STEP 4] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 9 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 1次)
+
+[STEP 5] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡7 -> 拖拽至(6,2) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.884 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 2
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 6] 开始执行动作...
+[ACTION MASKING] ⛔ 警告：手牌 9 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 3次)
+
+[STEP 7] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡10 -> 拖拽至(1,0) 朝向1
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.887 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.556 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.675 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.675 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.55, optimal scale: 0.80x)
+
+[MONITOR] 🚨 后台紧急熔断：连续 2 次未见右上角齿轮，战斗结束！
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 0
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+[ENV] 🚨 后台监视器触发熔断，本回合正式结束！
+
+================= 回合结束，开始自动重启关卡 =================
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 1/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.616 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.039 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.621 (needs 0.5, optimal scale: 0.95x)
+[RESET] 找到 [practice] (置信度 0.62 >= 0.5)，点击 (1156, 682)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.616 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.039 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.621 (needs 0.5, optimal scale: 0.95x)
+[RESET] 找到 [practice] (置信度 0.62 >= 0.5)，点击 (1156, 682)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.490 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.018 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.522 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (533, 603)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.490 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.018 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.522 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (533, 603)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.490 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.018 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.522 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (533, 603)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.471 (needs 0.7, optimal scale: 0.90x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.027 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.489 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.712 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [stage_1_7] (置信度 0.71 >= 0.5)，点击 (638, 224)
+[RESET] 点击关卡 1-7 图标
+[TemplateMatcher] pause_gear.png -> max conf: 0.612 (needs 0.7, optimal scale: 1.10x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.103 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.687 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.69 >= 0.5)，点击 (935, 660)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.470 (needs 0.7, optimal scale: 1.05x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.431 (needs 0.43, optimal scale: 0.80x)
+[RESET] 找到 [start_action] (置信度 0.43 >= 0.43)，点击 (1101, 516)
+[RESET] 点击开始行动，进入加载...
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 10/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 11/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 12/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 13/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.511 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.052 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.379 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.411 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 14/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.227 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.211 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.367 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.272 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 15/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.215 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.210 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.373 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.271 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 16/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.211 (needs 0.7, optimal scale: 1.05x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.187 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.297 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.277 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 17/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.826 (needs 0.7, optimal scale: 0.80x)
+[RESET] 找到 [pause_gear] (置信度 0.83 >= 0.7)，(仅检测，不点击)
+[RESET] ✅ 检测到战斗画面右上角齿轮，重启成功！
+================= 关卡重启流程结束 =================
+
+[ENV] 🛡️ 战斗全局异步监视器已启动...
+--> [回合结束] 第 1 回合 | 奖励: 2.6 | 步数: 7
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+
+[STEP 1] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡1 -> 拖拽至(2,0) 朝向2
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.884 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.885 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.887 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 1
+[REWARD] 🎯 完美落子！部署点靠近敌人 (距离: 57.3)，奖励 +0.5
+[REWARD] 🛡️ 偏离/背对敌人！(角度: 56.7°)，微小惩罚 -0.1
+
+[STEP 2] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡10 -> 拖拽至(1,3) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 1
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 3] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 6 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 2次)
+
+[STEP 4] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 4 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 3次)
+
+[STEP 5] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 5 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 4次)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+
+[STEP 6] 开始执行动作...
+[ACTION] 盲狙执行: 选卡2 -> 拖拽至(0,4) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 1
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 7] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡11 -> 拖拽至(6,2) 朝向1
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 1
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 8] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡3 -> 拖拽至(6,1) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.889 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 1
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 9] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 0 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 8次)
+
+[STEP 10] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡7 -> 拖拽至(4,3) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.888 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.889 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.890 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 1 -> 最终确认血条数: 2
+[REWARD] 🎯 完美落子！部署点靠近敌人 (距离: 99.2)，奖励 +0.5
+[REWARD] 🛡️ 偏离/背对敌人！(角度: 177.7°)，微小惩罚 -0.1
+
+[STEP 11] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 9 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 1次)
+
+[STEP 12] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡7 -> 拖拽至(6,3) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.895 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.894 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.891 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.909 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 3
+[REWARD] 🎯 完美落子！部署点靠近敌人 (距离: 155.8)，奖励 +0.5
+[REWARD] 🛡️ 偏离/背对敌人！(角度: 67.2°)，微小惩罚 -0.1
+
+[STEP 13] 开始执行动作...
+[ACTION MASKING] ⛔ 警告：手牌 8 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 3 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 1次)
+[SAVE] 自动保存进度 (Step 20) -> policy_latest.zip
+
+[STEP 14] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡10 -> 拖拽至(5,0) 朝向2
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 3 -> 最终确认血条数: 3
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 15] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 0 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 3 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 3次)
+
+[STEP 16] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡3 -> 拖拽至(5,2) 朝向2
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.887 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.887 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.889 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.909 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 3 -> 最终确认血条数: 4
+[REWARD] 场上暂无移动目标，仅发放基础部署奖励 +1.0
+
+[STEP 17] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 9 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 1次)
+
+[STEP 18] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 5 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 2次)
+
+[STEP 19] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 7 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 3次)
+
+[STEP 20] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 3 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 4次)
+
+[STEP 21] 开始执行动作...
+[ACTION MASKING] ⛔ 警告：目标网格(3,4)已被友方干员驻守！代码直接拦截！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 5次)
+
+[STEP 22] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡2 -> 拖拽至(7,2) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.893 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.892 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.894 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 5
+[REWARD] 🎯 完美落子！部署点靠近敌人 (距离: 58.9)，奖励 +0.5
+[REWARD] 🛡️ 偏离/背对敌人！(角度: 259.8°)，微小惩罚 -0.1
+
+[STEP 23] 开始执行动作...
+[ACTION] 盲狙执行: 选卡10 -> 拖拽至(5,0) 朝向1
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 5
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 24] 开始执行动作...
+[ACTION MASKING] ⛔ 警告：手牌 4 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 2次)
+
+[STEP 25] 开始执行动作...
+[ACTION MASKING] ⛔ 警告：手牌 4 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 3次)
+
+[STEP 26] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 0 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 4次)
+
+[STEP 27] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡10 -> 拖拽至(0,1) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.904 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.904 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.905 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.904 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 2
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 28] 开始执行动作...
+[ACTION MASKING] ⛔ 警告：手牌 9 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.904 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 6次)
+
+[STEP 29] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.904 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡6 -> 拖拽至(1,2) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.886 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 2 -> 最终确认血条数: 4
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 30] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 7 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 8次)
+
+[STEP 31] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：手牌 4 亮度过低(无费/CD中)！代码直接拦截，不执行拖拽！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 9次)
+
+[STEP 32] 开始执行动作...
+[ACTION] 盲狙执行: 选卡11 -> 拖拽至(8,2) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ✅ 第 1 次检测命中目标干员血条！
+[REWARD] 执行前血条数: 4 -> 最终确认血条数: 5
+[REWARD] 🎯 完美落子！部署点靠近敌人 (距离: 131.4)，奖励 +0.5
+[REWARD] 🛡️ 偏离/背对敌人！(角度: 183.1°)，微小惩罚 -0.1
+
+[STEP 33] 开始执行动作...
+[ACTION] 盲狙执行: 选卡2 -> 拖拽至(5,1) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.890 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 5
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+[SAVE] 自动保存进度 (Step 40) -> policy_latest.zip
+
+[STEP 34] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION MASKING] ⛔ 警告：目标网格(3,4)已被友方干员驻守！代码直接拦截！
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 0
+[REWARD] ⛔ 动作被拦截 (非法地形/没钱/有人)。惩罚 -0.05 (连续无作为: 2次)
+
+[STEP 35] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡4 -> 拖拽至(9,3) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.611 (needs 0.55, optimal scale: 0.95x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.609 (needs 0.55, optimal scale: 0.95x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.613 (needs 0.55, optimal scale: 0.95x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.650 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.646 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.55, optimal scale: 0.80x)
+
+[MONITOR] 🚨 后台紧急熔断：连续 2 次未见右上角齿轮，战斗结束！
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[REWARD] 执行前血条数: 5 -> 最终确认血条数: 0
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+[ENV] 🚨 后台监视器触发熔断，本回合正式结束！
+
+================= 回合结束，开始自动重启关卡 =================
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 1/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.401 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.059 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.523 (needs 0.5, optimal scale: 1.15x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (607, 648)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.401 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.059 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.523 (needs 0.5, optimal scale: 1.15x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (607, 648)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.490 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.017 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.522 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (533, 603)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.490 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.017 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.522 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (533, 603)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.490 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.017 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.522 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.52 >= 0.5)，点击 (533, 603)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.472 (needs 0.7, optimal scale: 0.95x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.027 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.489 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.712 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [stage_1_7] (置信度 0.71 >= 0.5)，点击 (638, 224)
+[RESET] 点击关卡 1-7 图标
+[TemplateMatcher] pause_gear.png -> max conf: 0.612 (needs 0.7, optimal scale: 1.10x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.103 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.687 (needs 0.5, optimal scale: 0.80x)
+[RESET] 找到 [practice] (置信度 0.69 >= 0.5)，点击 (935, 660)
+[RESET] 点击演习按钮
+[TemplateMatcher] pause_gear.png -> max conf: 0.470 (needs 0.7, optimal scale: 1.05x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.431 (needs 0.43, optimal scale: 0.80x)
+[RESET] 找到 [start_action] (置信度 0.43 >= 0.43)，点击 (1101, 516)
+[RESET] 点击开始行动，进入加载...
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 10/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 11/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.000 (needs 0.7, optimal scale: 0.80x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.000 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.000 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 12/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.511 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.052 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.379 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.411 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 13/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.511 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: -0.052 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.379 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.411 (needs 0.5, optimal scale: 0.90x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 14/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.215 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.210 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.390 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.271 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 15/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.215 (needs 0.7, optimal scale: 1.20x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.210 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.390 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.271 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 16/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.211 (needs 0.7, optimal scale: 1.05x)
+[DEBUG] 未匹配 [pause_gear] (要求阈值 0.7)
+[TemplateMatcher] start_action.png -> max conf: 0.187 (needs 0.43, optimal scale: 0.80x)
+[DEBUG] 未匹配 [start_action] (要求阈值 0.43)
+[TemplateMatcher] practice.png -> max conf: 0.297 (needs 0.5, optimal scale: 0.80x)
+[DEBUG] 未匹配 [practice] (要求阈值 0.5)
+[TemplateMatcher] stage_1_7.png -> max conf: 0.277 (needs 0.5, optimal scale: 0.85x)
+[DEBUG] 未匹配 [stage_1_7] (要求阈值 0.5)
+[RESET] 尝试跳过动画/寻找入口... (尝试 17/100)
+[TemplateMatcher] pause_gear.png -> max conf: 0.849 (needs 0.7, optimal scale: 0.80x)
+[RESET] 找到 [pause_gear] (置信度 0.85 >= 0.7)，(仅检测，不点击)
+[RESET] ✅ 检测到战斗画面右上角齿轮，重启成功！
+================= 关卡重启流程结束 =================
+
+[ENV] 🛡️ 战斗全局异步监视器已启动...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+--> [回合结束] 第 2 回合 | 奖励: 6.5 | 步数: 35
+
+[STEP 1] 开始执行动作...
+[ACTION] 盲狙执行: 选卡2 -> 拖拽至(6,1) 朝向2
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.892 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.909 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 2] 开始执行动作...
+[ACTION] 盲狙执行: 选卡5 -> 拖拽至(4,3) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.891 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.907 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 3] 开始执行动作...
+[ACTION] 盲狙执行: 选卡9 -> 拖拽至(4,4) 朝向2
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.894 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 4] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡10 -> 拖拽至(8,2) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.890 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 5] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡7 -> 拖拽至(2,4) 朝向0
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.888 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 执行前血条数: 0 -> 最终确认血条数: 0
+[REWARD] ❌ 未产生血条 (游戏拒收/高低台错位/手滑)。惩罚 -0.05
+
+[STEP 6] 开始执行动作...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[ACTION] 盲狙执行: 选卡10 -> 拖拽至(8,4) 朝向3
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.886 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] 动作已执行，开始 3 次心跳检测血条 (间隔 0.2s)...
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[REWARD] ❌ 未检测到新血条！判定为【费用不足或CD中】，强制挂机 2.0 秒等待费用恢复！
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
+[SILENT_LOG] [TemplateMatcher] pause_gear.png -> max conf: 0.908 (needs 0.55, optimal scale: 0.80x)
